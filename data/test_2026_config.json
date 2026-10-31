@@ -1,0 +1,10 @@
+{
+  "saved_on": "2026-10-31 19:53:59.927819",
+  "refit_rows": 260078,
+  "test_rows": 16282,
+  "xhist_trees_2026": 301,
+  "xhist_2025_at_best": 1.4723287959789233,
+  "xgboost": "3.4.1",
+  "b2hist_iterations": 175,
+  "b2hist_inputs": 118
+}
