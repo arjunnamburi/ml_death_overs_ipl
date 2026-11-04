@@ -1,0 +1,41 @@
+{
+ "rule": "Four 2026 matches, picked by a rule written on Nov 4 before any per-match death result was looked at. Eligible: matches where both innings reached over 16. Gain = XGBoost's mean death-ball log-loss minus B1's, over both innings. Picked in this order, each from the matches not yet picked: XGBoost's best (most negative gain); XGBoost's worst (most positive gain); typical (gain closest to the median of all eligible matches); close chase (a chase that reached the 20th over, with the smallest gap between the two innings totals; ties go to the earlier match).",
+ "matches": [
+  {
+   "match_id": 1535464,
+   "role": "XGBoost best",
+   "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+   "teams": [
+    "Rajasthan Royals",
+    "Gujarat Titans"
+   ]
+  },
+  {
+   "match_id": 1529310,
+   "role": "XGBoost worst",
+   "venue": "Rajiv Gandhi International Stadium, Uppal",
+   "teams": [
+    "Sunrisers Hyderabad",
+    "Royal Challengers Bengaluru"
+   ]
+  },
+  {
+   "match_id": 1529291,
+   "role": "typical",
+   "venue": "Feroz Shah Kotla",
+   "teams": [
+    "Delhi Capitals",
+    "Chennai Super Kings"
+   ]
+  },
+  {
+   "match_id": 1529281,
+   "role": "close chase",
+   "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+   "teams": [
+    "Kolkata Knight Riders",
+    "Lucknow Super Giants"
+   ]
+  }
+ ]
+}
