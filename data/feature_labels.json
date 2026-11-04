@@ -1,0 +1,475 @@
+{
+ "_note": "Plain-English names for the 87 X-hist features, for the website. fmt: int, dec1, dec2, pct (stored as a fraction; show x100 with %), bool, cat. Groups follow the A1 assignment; \"player type\" is split out of situation, and the rest of situation is \"scorecard\". Drafted by Claude on Nov 4 from the W3 printout; best guesses from the names, to confirm: recent_pressure_diff, season_rpo, and the matchup_type category wording.",
+ "features": {
+  "innings": {
+   "label": "Innings",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "bat_pos": {
+   "label": "Striker's batting position",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_team_runs": {
+   "label": "Team score",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_team_balls": {
+   "label": "Legal balls bowled so far",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_team_wickets": {
+   "label": "Wickets down",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_batter_runs": {
+   "label": "Striker's runs so far",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_batter_balls": {
+   "label": "Striker's balls faced so far",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_bowler_runs": {
+   "label": "Bowler's runs conceded today",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_bowler_wickets": {
+   "label": "Bowler's wickets today",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "c_bowler_balls": {
+   "label": "Bowler's balls bowled today",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "balls_remaining": {
+   "label": "Balls left in the innings",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "wickets_remaining": {
+   "label": "Wickets in hand",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "current_run_rate": {
+   "label": "Current run rate",
+   "group": "scorecard",
+   "fmt": "dec2"
+  },
+  "match_phase": {
+   "label": "Phase of the innings",
+   "group": "scorecard",
+   "fmt": "cat"
+  },
+  "ball_in_over": {
+   "label": "Ball of the over",
+   "group": "scorecard",
+   "fmt": "int"
+  },
+  "projected_score": {
+   "label": "Projected score at the current rate",
+   "group": "scorecard",
+   "fmt": "dec1"
+  },
+  "balls_per_wicket_remaining": {
+   "label": "Balls left per wicket in hand",
+   "group": "scorecard",
+   "fmt": "dec2"
+  },
+  "batter_hand": {
+   "label": "Batting hand",
+   "group": "player type",
+   "fmt": "cat"
+  },
+  "bowler_cat": {
+   "label": "Bowling type",
+   "group": "player type",
+   "fmt": "cat"
+  },
+  "matchup_type": {
+   "label": "Batting hand vs bowling type",
+   "group": "player type",
+   "fmt": "cat"
+  },
+  "runs_target": {
+   "label": "Target",
+   "group": "chase pressure",
+   "fmt": "int"
+  },
+  "runs_needed": {
+   "label": "Runs needed",
+   "group": "chase pressure",
+   "fmt": "int"
+  },
+  "required_run_rate": {
+   "label": "Required run rate",
+   "group": "chase pressure",
+   "fmt": "dec2"
+  },
+  "pressure_diff": {
+   "label": "Required rate minus current rate",
+   "group": "chase pressure",
+   "fmt": "dec2"
+  },
+  "runs_needed_per_wicket": {
+   "label": "Runs needed per wicket in hand",
+   "group": "chase pressure",
+   "fmt": "dec1"
+  },
+  "recent_pressure_diff": {
+   "label": "Required rate minus recent scoring rate",
+   "group": "chase pressure",
+   "fmt": "dec2"
+  },
+  "team_runs_last6": {
+   "label": "Team runs, last 6 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_runs_last12": {
+   "label": "Team runs, last 12 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_wkts_last6": {
+   "label": "Wickets, last 6 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_wkts_last12": {
+   "label": "Wickets, last 12 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_dots_last6": {
+   "label": "Dot balls, last 6 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_dots_last12": {
+   "label": "Dot balls, last 12 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_bdry_last6": {
+   "label": "Boundaries, last 6 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_bdry_last12": {
+   "label": "Boundaries, last 12 balls",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "team_extras_last12": {
+   "label": "Extras, last 12 deliveries",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "balls_since_last_boundary": {
+   "label": "Balls since the last boundary",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "balls_since_last_wicket": {
+   "label": "Balls since the last wicket",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "runs_this_over": {
+   "label": "Runs so far this over",
+   "group": "momentum",
+   "fmt": "int"
+  },
+  "batter_sr_innings": {
+   "label": "Striker's strike rate this innings",
+   "group": "striker form",
+   "fmt": "dec1"
+  },
+  "batter_runs_last6": {
+   "label": "Striker's runs off their last 6 balls",
+   "group": "striker form",
+   "fmt": "int"
+  },
+  "batter_dots_last6": {
+   "label": "Striker's dots in their last 6 balls",
+   "group": "striker form",
+   "fmt": "int"
+  },
+  "batter_dots_in_row": {
+   "label": "Striker's dots in a row",
+   "group": "striker form",
+   "fmt": "int"
+  },
+  "batter_bdry_run_pct": {
+   "label": "Share of the striker's runs from boundaries",
+   "group": "striker form",
+   "fmt": "pct"
+  },
+  "non_striker_pos": {
+   "label": "Non-striker's batting position",
+   "group": "partnership",
+   "fmt": "int"
+  },
+  "partnership_runs": {
+   "label": "Partnership runs",
+   "group": "partnership",
+   "fmt": "int"
+  },
+  "partnership_balls": {
+   "label": "Partnership balls",
+   "group": "partnership",
+   "fmt": "int"
+  },
+  "non_striker_runs": {
+   "label": "Non-striker's runs",
+   "group": "partnership",
+   "fmt": "int"
+  },
+  "non_striker_balls": {
+   "label": "Non-striker's balls faced",
+   "group": "partnership",
+   "fmt": "int"
+  },
+  "non_striker_sr": {
+   "label": "Non-striker's strike rate",
+   "group": "partnership",
+   "fmt": "dec1"
+  },
+  "is_left_right_pair": {
+   "label": "Left-right batting pair",
+   "group": "partnership",
+   "fmt": "bool"
+  },
+  "bowler_econ_match": {
+   "label": "Bowler's economy today",
+   "group": "bowler spell",
+   "fmt": "dec2"
+  },
+  "overs_since_last_bowled": {
+   "label": "Overs since the bowler last bowled",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "bowler_last_over_runs": {
+   "label": "Runs off the bowler's previous over",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "spell_balls": {
+   "label": "Balls in the bowler's current spell",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "spell_runs": {
+   "label": "Runs in the bowler's current spell",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "spell_wkts": {
+   "label": "Wickets in the bowler's current spell",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "spell_dots": {
+   "label": "Dots in the bowler's current spell",
+   "group": "bowler spell",
+   "fmt": "int"
+  },
+  "is_free_hit": {
+   "label": "Free hit",
+   "group": "delivery",
+   "fmt": "bool"
+  },
+  "prev_ball_outcome": {
+   "label": "Previous ball's outcome",
+   "group": "delivery",
+   "fmt": "cat"
+  },
+  "bat_balls_3s": {
+   "label": "Striker's balls faced, last 3 seasons",
+   "group": "batter history",
+   "fmt": "int"
+  },
+  "bat_sr_3s": {
+   "label": "Striker's strike rate, last 3 seasons",
+   "group": "batter history",
+   "fmt": "dec1"
+  },
+  "bat_bdry_pct_3s": {
+   "label": "Striker's boundary rate, last 3 seasons",
+   "group": "batter history",
+   "fmt": "pct"
+  },
+  "bat_six_pct_3s": {
+   "label": "Striker's six rate, last 3 seasons",
+   "group": "batter history",
+   "fmt": "pct"
+  },
+  "bat_out_pct_3s": {
+   "label": "Striker's dismissal rate, last 3 seasons",
+   "group": "batter history",
+   "fmt": "pct"
+  },
+  "bat_sr_phase": {
+   "label": "Striker's past strike rate in this phase",
+   "group": "batter history",
+   "fmt": "dec1"
+  },
+  "bat_out_pct_phase": {
+   "label": "Striker's past dismissal rate in this phase",
+   "group": "batter history",
+   "fmt": "pct"
+  },
+  "bat_sr_matchup": {
+   "label": "Striker's past strike rate vs this bowling type",
+   "group": "batter history",
+   "fmt": "dec1"
+  },
+  "bat_out_pct_matchup": {
+   "label": "Striker's past dismissal rate vs this bowling type",
+   "group": "batter history",
+   "fmt": "pct"
+  },
+  "bowl_balls_3s": {
+   "label": "Bowler's balls bowled, last 3 seasons",
+   "group": "bowler history",
+   "fmt": "int"
+  },
+  "bowl_econ_3s": {
+   "label": "Bowler's economy, last 3 seasons",
+   "group": "bowler history",
+   "fmt": "dec2"
+  },
+  "bowl_dot_pct_3s": {
+   "label": "Bowler's dot-ball rate, last 3 seasons",
+   "group": "bowler history",
+   "fmt": "pct"
+  },
+  "bowl_bdry_pct_3s": {
+   "label": "Bowler's boundary rate conceded, last 3 seasons",
+   "group": "bowler history",
+   "fmt": "pct"
+  },
+  "bowl_wkt_pct_3s": {
+   "label": "Bowler's wicket rate, last 3 seasons",
+   "group": "bowler history",
+   "fmt": "pct"
+  },
+  "bowl_econ_phase": {
+   "label": "Bowler's past economy in this phase",
+   "group": "bowler history",
+   "fmt": "dec2"
+  },
+  "bowl_wkt_pct_phase": {
+   "label": "Bowler's past wicket rate in this phase",
+   "group": "bowler history",
+   "fmt": "pct"
+  },
+  "bowl_bdry_pct_vs_hand": {
+   "label": "Bowler's past boundary rate vs this batting hand",
+   "group": "bowler history",
+   "fmt": "pct"
+  },
+  "base_bdry_pct_mp": {
+   "label": "League boundary rate, this matchup type and phase",
+   "group": "matchup and base rates",
+   "fmt": "pct"
+  },
+  "base_wkt_pct_mp": {
+   "label": "League wicket rate, this matchup type and phase",
+   "group": "matchup and base rates",
+   "fmt": "pct"
+  },
+  "base_econ_cat_phase": {
+   "label": "League economy, this bowling type and phase",
+   "group": "matchup and base rates",
+   "fmt": "dec2"
+  },
+  "base_wkt_pct_cat_phase": {
+   "label": "League wicket rate, this bowling type and phase",
+   "group": "matchup and base rates",
+   "fmt": "pct"
+  },
+  "venue_balls_3s": {
+   "label": "Balls at this venue, last 3 seasons",
+   "group": "venue and season",
+   "fmt": "int"
+  },
+  "venue_rpo_3s": {
+   "label": "Venue run rate, last 3 seasons",
+   "group": "venue and season",
+   "fmt": "dec2"
+  },
+  "venue_bdry_pct_3s": {
+   "label": "Venue boundary rate, last 3 seasons",
+   "group": "venue and season",
+   "fmt": "pct"
+  },
+  "venue_par_score": {
+   "label": "Venue par first-innings score",
+   "group": "venue and season",
+   "fmt": "dec1"
+  },
+  "target_vs_par": {
+   "label": "Target minus venue par",
+   "group": "venue and season",
+   "fmt": "dec1"
+  },
+  "season_rpo": {
+   "label": "Season run rate (earlier matches)",
+   "group": "venue and season",
+   "fmt": "dec2"
+  },
+  "impact_player_era": {
+   "label": "Impact-player era (2023 onward)",
+   "group": "venue and season",
+   "fmt": "bool"
+  }
+ },
+ "categories": {
+  "batter_hand": {
+   "LHB": "left-handed",
+   "RHB": "right-handed"
+  },
+  "bowler_cat": {
+   "LA_Orthodox": "left-arm orthodox spin",
+   "LA_Pace": "left-arm pace",
+   "RA_Offspin": "right-arm off-spin",
+   "RA_Pace": "right-arm pace",
+   "Wrist_Spin": "wrist spin"
+  },
+  "matchup_type": {
+   "Finger_Spin_Turning_Away": "finger spin turning away",
+   "Finger_Spin_Turning_In": "finger spin turning in",
+   "Pace_Opposite_Arm": "pace, opposite arm to the batting hand",
+   "Pace_Same_Arm": "pace, same arm as the batting hand",
+   "Wrist_Spin": "wrist spin"
+  },
+  "match_phase": {
+   "powerplay": "powerplay (overs 1-6)",
+   "middle": "middle (overs 7-15)",
+   "death": "death (overs 16-20)"
+  },
+  "prev_ball_outcome": {
+   "start": "none (first ball)",
+   "extra": "a wide or no-ball",
+   "0": "dot",
+   "1": "1 run",
+   "2": "2 runs",
+   "3": "3 runs",
+   "4": "four",
+   "6": "six"
+  }
+ }
+}

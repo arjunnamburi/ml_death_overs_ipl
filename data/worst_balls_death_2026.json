@@ -1,0 +1,3393 @@
+{
+ "lists": {
+  "top10_loss": [
+   292601,
+   290273,
+   292861,
+   293367,
+   294699,
+   292747,
+   294203,
+   283617,
+   288165,
+   278944
+  ],
+  "top10_vs_B1": [
+   292601,
+   278944,
+   288165,
+   291521,
+   284620,
+   280124,
+   285829,
+   285089,
+   283617,
+   295175
+  ],
+  "top3_per_outcome": [
+   290549,
+   278382,
+   289360,
+   283626,
+   281313,
+   293250,
+   285089,
+   295175,
+   285097,
+   292601,
+   290273,
+   292861,
+   294573,
+   294574,
+   294820,
+   283617,
+   288165,
+   278944,
+   283600,
+   290651,
+   285949
+  ]
+ },
+ "balls": [
+  {
+   "id": 292601,
+   "lists": {
+    "top10_loss": 1,
+    "top10_vs_B1": 1,
+    "top3_per_outcome": 10
+   },
+   "match_id": 1529305,
+   "innings": 2,
+   "batting": "Delhi Capitals",
+   "over": "15.2",
+   "score": "143/3",
+   "batter": "AR Patel",
+   "bowler": "AF Milne",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.1671,
+     0.4538,
+     0.062,
+     0.0008,
+     0.1443,
+     0.1133,
+     0.0587
+    ],
+    "lr": [
+     0.1998,
+     0.466,
+     0.0601,
+     0.0015,
+     0.1445,
+     0.0725,
+     0.0555
+    ],
+    "b1": [
+     0.195,
+     0.4284,
+     0.0917,
+     0.0028,
+     0.1216,
+     0.0862,
+     0.0744
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.08,
+    "lr": 0.15,
+    "b1": 0.28
+   },
+   "loss": {
+    "xgb": 7.1582,
+    "lr": 6.4735,
+    "b1": 5.8826
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.065,
+     "push": -0.3
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.057,
+     "push": -0.147
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.239,
+     "push": -0.142
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 4100.0,
+     "push": -0.132
+    },
+    {
+     "f": "season_rpo",
+     "value": 9.441,
+     "push": -0.089
+    }
+   ],
+   "hypothesis": "",
+   "need": 51,
+   "balls_left": 29,
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.065,
+     "push": -0.3
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.057,
+     "push": -0.147
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.239,
+     "push": -0.142
+    }
+   ],
+   "group_push": {
+    "batter history": -0.553,
+    "venue & season": -0.423,
+    "scorecard": -0.192,
+    "chase": -0.098,
+    "bowler history": -0.095,
+    "matchup & base rates": -0.085,
+    "delivery": -0.067,
+    "bowler spell": -0.021,
+    "momentum": -0.019,
+    "player type": 0.005,
+    "partnership": 0.005,
+    "striker": 0.077
+   }
+  },
+  {
+   "id": 290273,
+   "lists": {
+    "top10_loss": 2,
+    "top3_per_outcome": 11
+   },
+   "match_id": 1529296,
+   "innings": 1,
+   "batting": "Lucknow Super Giants",
+   "over": "15.2",
+   "score": "154/6",
+   "batter": "Himmat Singh",
+   "bowler": "Noor Ahmad",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.2738,
+     0.4355,
+     0.0627,
+     0.0011,
+     0.0722,
+     0.0868,
+     0.0679
+    ],
+    "lr": [
+     0.2961,
+     0.4261,
+     0.0581,
+     0.0017,
+     0.0854,
+     0.0588,
+     0.0738
+    ],
+    "b1": [
+     0.2172,
+     0.4001,
+     0.0941,
+     0.0027,
+     0.1111,
+     0.0727,
+     0.1021
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.11,
+    "lr": 0.17,
+    "b1": 0.27
+   },
+   "loss": {
+    "xgb": 6.8316,
+    "lr": 6.3907,
+    "b1": 5.8978
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.077,
+     "push": -0.312
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 1.0,
+     "push": -0.173
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.184,
+     "push": -0.15
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.053,
+     "push": -0.139
+    },
+    {
+     "f": "prev_ball_outcome",
+     "value": "0",
+     "push": 0.101
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.077,
+     "push": -0.312
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 1.0,
+     "push": -0.173
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.184,
+     "push": -0.15
+    }
+   ],
+   "group_push": {
+    "batter history": -0.447,
+    "venue & season": -0.34,
+    "striker": -0.195,
+    "scorecard": -0.092,
+    "momentum": -0.075,
+    "matchup & base rates": -0.072,
+    "bowler history": -0.054,
+    "bowler spell": -0.028,
+    "player type": 0.002,
+    "chase": 0.023,
+    "partnership": 0.079,
+    "delivery": 0.101
+   }
+  },
+  {
+   "id": 292861,
+   "lists": {
+    "top10_loss": 3,
+    "top3_per_outcome": 12
+   },
+   "match_id": 1529306,
+   "innings": 2,
+   "batting": "Sunrisers Hyderabad",
+   "over": "16.4",
+   "score": "146/3",
+   "batter": "Nithish Kumar Reddy",
+   "bowler": "A Kamboj",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.1728,
+     0.4472,
+     0.0819,
+     0.0014,
+     0.1426,
+     0.0905,
+     0.0636
+    ],
+    "lr": [
+     0.212,
+     0.4226,
+     0.0751,
+     0.0016,
+     0.1388,
+     0.0867,
+     0.0632
+    ],
+    "b1": [
+     0.195,
+     0.4284,
+     0.0917,
+     0.0028,
+     0.1216,
+     0.0862,
+     0.0744
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.14,
+    "lr": 0.16,
+    "b1": 0.28
+   },
+   "loss": {
+    "xgb": 6.5819,
+    "lr": 6.4077,
+    "b1": 5.8826
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.081,
+     "push": -0.207
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.186,
+     "push": -0.157
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 4797.0,
+     "push": -0.11
+    },
+    {
+     "f": "c_team_balls",
+     "value": 99.0,
+     "push": -0.093
+    },
+    {
+     "f": "season_rpo",
+     "value": 9.441,
+     "push": -0.087
+    }
+   ],
+   "hypothesis": "",
+   "need": 35,
+   "balls_left": 21,
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.081,
+     "push": -0.207
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.186,
+     "push": -0.157
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 4797.0,
+     "push": -0.11
+    }
+   ],
+   "group_push": {
+    "venue & season": -0.412,
+    "batter history": -0.215,
+    "momentum": -0.082,
+    "matchup & base rates": -0.076,
+    "delivery": -0.071,
+    "scorecard": -0.046,
+    "partnership": -0.03,
+    "chase": -0.009,
+    "player type": -0.005,
+    "bowler spell": 0.011,
+    "bowler history": 0.018,
+    "striker": 0.044
+   }
+  },
+  {
+   "id": 293367,
+   "lists": {
+    "top10_loss": 4
+   },
+   "match_id": 1529308,
+   "innings": 2,
+   "batting": "Kolkata Knight Riders",
+   "over": "18.3",
+   "score": "141/6",
+   "batter": "AS Roy",
+   "bowler": "WG Jacks",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.3042,
+     0.396,
+     0.0569,
+     0.0015,
+     0.1033,
+     0.0806,
+     0.0575
+    ],
+    "lr": [
+     0.2245,
+     0.4182,
+     0.069,
+     0.0019,
+     0.1101,
+     0.0953,
+     0.0811
+    ],
+    "b1": [
+     0.2267,
+     0.3967,
+     0.0906,
+     0.0024,
+     0.107,
+     0.08,
+     0.0966
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.15,
+    "lr": 0.19,
+    "b1": 0.24
+   },
+   "loss": {
+    "xgb": 6.513,
+    "lr": 6.284,
+    "b1": 6.0351
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.077,
+     "push": -0.299
+    },
+    {
+     "f": "bowl_dot_pct_3s",
+     "value": 0.306,
+     "push": -0.173
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.234,
+     "push": -0.149
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.079,
+     "push": -0.13
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 4055.0,
+     "push": -0.105
+    }
+   ],
+   "hypothesis": "",
+   "need": 7,
+   "balls_left": 10,
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.077,
+     "push": -0.299
+    },
+    {
+     "f": "bowl_dot_pct_3s",
+     "value": 0.306,
+     "push": -0.173
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.234,
+     "push": -0.149
+    }
+   ],
+   "group_push": {
+    "batter history": -0.429,
+    "venue & season": -0.274,
+    "bowler history": -0.22,
+    "momentum": -0.069,
+    "matchup & base rates": -0.069,
+    "bowler spell": -0.043,
+    "player type": 0.016,
+    "partnership": 0.029,
+    "scorecard": 0.032,
+    "delivery": 0.078,
+    "striker": 0.08,
+    "chase": 0.109
+   }
+  },
+  {
+   "id": 294699,
+   "lists": {
+    "top10_loss": 5
+   },
+   "match_id": 1535462,
+   "innings": 1,
+   "batting": "Royal Challengers Bengaluru",
+   "over": "19.3",
+   "score": "242/5",
+   "batter": "JM Sharma",
+   "bowler": "M Prasidh Krishna",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.1177,
+     0.2901,
+     0.0942,
+     0.0015,
+     0.1532,
+     0.1776,
+     0.1655
+    ],
+    "lr": [
+     0.1472,
+     0.3146,
+     0.0744,
+     0.0017,
+     0.157,
+     0.1572,
+     0.1479
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.15,
+    "lr": 0.17,
+    "b1": 0.26
+   },
+   "loss": {
+    "xgb": 6.4697,
+    "lr": 6.3702,
+    "b1": 5.9427
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.091,
+     "push": -0.377
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 1.0,
+     "push": -0.181
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.071,
+     "push": -0.174
+    },
+    {
+     "f": "team_runs_last12",
+     "value": 34.0,
+     "push": 0.166
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.237,
+     "push": -0.129
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.091,
+     "push": -0.377
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 1.0,
+     "push": -0.181
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.071,
+     "push": -0.174
+    }
+   ],
+   "group_push": {
+    "batter history": -0.748,
+    "striker": -0.187,
+    "venue & season": -0.18,
+    "partnership": -0.108,
+    "bowler spell": -0.069,
+    "matchup & base rates": -0.068,
+    "delivery": -0.057,
+    "bowler history": -0.016,
+    "player type": -0.006,
+    "chase": 0.047,
+    "scorecard": 0.053,
+    "momentum": 0.36
+   }
+  },
+  {
+   "id": 292747,
+   "lists": {
+    "top10_loss": 6
+   },
+   "match_id": 1529306,
+   "innings": 1,
+   "batting": "Chennai Super Kings",
+   "over": "18.4",
+   "score": "164/6",
+   "batter": "AJ Hosein",
+   "bowler": "Sakib Hussain",
+   "free_hit": false,
+   "new_batter": true,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.2239,
+     0.44,
+     0.0834,
+     0.0016,
+     0.0946,
+     0.0532,
+     0.1034
+    ],
+    "lr": [
+     0.282,
+     0.4239,
+     0.0699,
+     0.0018,
+     0.1003,
+     0.0384,
+     0.0837
+    ],
+    "b1": [
+     0.2172,
+     0.4001,
+     0.0941,
+     0.0027,
+     0.1111,
+     0.0727,
+     0.1021
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.16,
+    "lr": 0.18,
+    "b1": 0.27
+   },
+   "loss": {
+    "xgb": 6.4591,
+    "lr": 6.3269,
+    "b1": 5.8978
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.08,
+     "push": -0.318
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 2.25,
+     "push": 0.198
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.062,
+     "push": -0.16
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.186,
+     "push": -0.153
+    },
+    {
+     "f": "c_team_balls",
+     "value": 111.0,
+     "push": -0.115
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.08,
+     "push": -0.318
+    },
+    {
+     "f": "bat_out_pct_3s",
+     "value": 0.062,
+     "push": -0.16
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.186,
+     "push": -0.153
+    }
+   ],
+   "group_push": {
+    "batter history": -0.495,
+    "venue & season": -0.361,
+    "matchup & base rates": -0.09,
+    "delivery": -0.07,
+    "striker": -0.049,
+    "bowler history": -0.036,
+    "momentum": -0.007,
+    "player type": 0.01,
+    "chase": 0.029,
+    "partnership": 0.064,
+    "bowler spell": 0.071,
+    "scorecard": 0.198
+   }
+  },
+  {
+   "id": 294203,
+   "lists": {
+    "top10_loss": 7
+   },
+   "match_id": 1529312,
+   "innings": 1,
+   "batting": "Rajasthan Royals",
+   "over": "19.3",
+   "score": "192/8",
+   "batter": "N Burger",
+   "bowler": "SN Thakur",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "3",
+   "p": {
+    "xgb": [
+     0.1903,
+     0.3322,
+     0.0843,
+     0.0029,
+     0.1268,
+     0.0557,
+     0.2078
+    ],
+    "lr": [
+     0.1625,
+     0.3755,
+     0.0686,
+     0.0017,
+     0.1333,
+     0.076,
+     0.1824
+    ],
+    "b1": [
+     0.3173,
+     0.353,
+     0.0712,
+     0.0033,
+     0.0938,
+     0.051,
+     0.1103
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 0.29,
+    "lr": 0.17,
+    "b1": 0.33
+   },
+   "loss": {
+    "xgb": 5.8517,
+    "lr": 6.3933,
+    "b1": 5.7251
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 2.0,
+     "push": 0.177
+    },
+    {
+     "f": "bowl_dot_pct_3s",
+     "value": 0.288,
+     "push": -0.172
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 0.857,
+     "push": -0.141
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.223,
+     "push": -0.121
+    },
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.045,
+     "push": 0.107
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bowl_dot_pct_3s",
+     "value": 0.288,
+     "push": -0.172
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 0.857,
+     "push": -0.141
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.223,
+     "push": -0.121
+    }
+   ],
+   "group_push": {
+    "venue & season": -0.333,
+    "bowler history": -0.192,
+    "striker": -0.154,
+    "delivery": -0.074,
+    "matchup & base rates": -0.065,
+    "player type": 0.002,
+    "batter history": 0.017,
+    "chase": 0.029,
+    "bowler spell": 0.102,
+    "momentum": 0.109,
+    "partnership": 0.111,
+    "scorecard": 0.193
+   }
+  },
+  {
+   "id": 283617,
+   "lists": {
+    "top10_loss": 8,
+    "top10_vs_B1": 9,
+    "top3_per_outcome": 16
+   },
+   "match_id": 1529268,
+   "innings": 1,
+   "batting": "Kolkata Knight Riders",
+   "over": "17.6",
+   "score": "166/8",
+   "batter": "Kartik Tyagi",
+   "bowler": "Mohammed Siraj",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.426,
+     0.3418,
+     0.0607,
+     0.0025,
+     0.0749,
+     0.0186,
+     0.0754
+    ],
+    "lr": [
+     0.3758,
+     0.3649,
+     0.0501,
+     0.0016,
+     0.0872,
+     0.0244,
+     0.0959
+    ],
+    "b1": [
+     0.3173,
+     0.353,
+     0.0712,
+     0.0033,
+     0.0938,
+     0.051,
+     0.1103
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 1.86,
+    "lr": 2.44,
+    "b1": 5.1
+   },
+   "loss": {
+    "xgb": 3.9822,
+    "lr": 3.7142,
+    "b1": 2.9754
+   },
+   "why": [
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.266
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 113.588,
+     "push": -0.242
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.176
+    },
+    {
+     "f": "c_team_runs",
+     "value": 166.0,
+     "push": 0.155
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 2.0,
+     "push": -0.141
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.266
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 113.588,
+     "push": -0.242
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.176
+    }
+   ],
+   "group_push": {
+    "batter history": -0.293,
+    "partnership": -0.293,
+    "scorecard": -0.239,
+    "striker": -0.206,
+    "player type": -0.06,
+    "bowler spell": -0.05,
+    "chase": -0.043,
+    "matchup & base rates": -0.038,
+    "momentum": -0.036,
+    "bowler history": -0.002,
+    "delivery": 0.028,
+    "venue & season": 0.137
+   }
+  },
+  {
+   "id": 288165,
+   "lists": {
+    "top10_loss": 9,
+    "top10_vs_B1": 3,
+    "top3_per_outcome": 17
+   },
+   "match_id": 1529287,
+   "innings": 1,
+   "batting": "Mumbai Indians",
+   "over": "19.4",
+   "score": "151/7",
+   "batter": "TA Boult",
+   "bowler": "A Kamboj",
+   "free_hit": false,
+   "new_batter": true,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.217,
+     0.4208,
+     0.0961,
+     0.003,
+     0.0782,
+     0.0213,
+     0.1636
+    ],
+    "lr": [
+     0.2714,
+     0.3894,
+     0.0636,
+     0.0017,
+     0.0917,
+     0.0303,
+     0.152
+    ],
+    "b1": [
+     0.2172,
+     0.4001,
+     0.0941,
+     0.0027,
+     0.1111,
+     0.0727,
+     0.1021
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 2.13,
+    "lr": 3.03,
+    "b1": 7.27
+   },
+   "loss": {
+    "xgb": 3.8485,
+    "lr": 3.4982,
+    "b1": 2.6214
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 1.0,
+     "push": 0.332
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 107.558,
+     "push": -0.322
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.312
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.239
+    },
+    {
+     "f": "c_team_runs",
+     "value": 151.0,
+     "push": 0.173
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_sr_phase",
+     "value": 107.558,
+     "push": -0.322
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.312
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.239
+    }
+   ],
+   "group_push": {
+    "batter history": -0.436,
+    "striker": -0.305,
+    "partnership": -0.303,
+    "momentum": -0.073,
+    "player type": -0.071,
+    "delivery": -0.046,
+    "matchup & base rates": -0.037,
+    "chase": -0.03,
+    "bowler spell": -0.003,
+    "venue & season": 0.046,
+    "bowler history": 0.061,
+    "scorecard": 0.173
+   }
+  },
+  {
+   "id": 278944,
+   "lists": {
+    "top10_loss": 10,
+    "top10_vs_B1": 2,
+    "top3_per_outcome": 18
+   },
+   "match_id": 1527677,
+   "innings": 2,
+   "batting": "Punjab Kings",
+   "over": "18.1",
+   "score": "147/7",
+   "batter": "XC Bartlett",
+   "bowler": "M Prasidh Krishna",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.2857,
+     0.4591,
+     0.074,
+     0.0021,
+     0.0826,
+     0.0227,
+     0.0738
+    ],
+    "lr": [
+     0.2847,
+     0.377,
+     0.0583,
+     0.0017,
+     0.1043,
+     0.049,
+     0.125
+    ],
+    "b1": [
+     0.2267,
+     0.3967,
+     0.0906,
+     0.0024,
+     0.107,
+     0.08,
+     0.0966
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 2.27,
+    "lr": 4.9,
+    "b1": 8.0
+   },
+   "loss": {
+    "xgb": 3.7843,
+    "lr": 3.015,
+    "b1": 2.5255
+   },
+   "why": [
+    {
+     "f": "bat_sr_phase",
+     "value": 113.894,
+     "push": -0.257
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 4.0,
+     "push": 0.154
+    },
+    {
+     "f": "partnership_runs",
+     "value": 3.0,
+     "push": -0.131
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 2.0,
+     "push": -0.128
+    },
+    {
+     "f": "c_team_runs",
+     "value": 147.0,
+     "push": 0.124
+    }
+   ],
+   "hypothesis": "",
+   "need": 16,
+   "balls_left": 12,
+   "pushed_away": [
+    {
+     "f": "bat_sr_phase",
+     "value": 113.894,
+     "push": -0.257
+    },
+    {
+     "f": "partnership_runs",
+     "value": 3.0,
+     "push": -0.131
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 2.0,
+     "push": -0.128
+    }
+   ],
+   "group_push": {
+    "batter history": -0.347,
+    "chase": -0.177,
+    "partnership": -0.132,
+    "striker": -0.124,
+    "player type": -0.071,
+    "momentum": -0.051,
+    "matchup & base rates": -0.047,
+    "bowler spell": -0.016,
+    "delivery": -0.013,
+    "venue & season": 0.021,
+    "bowler history": 0.033,
+    "scorecard": 0.057
+   }
+  },
+  {
+   "id": 291521,
+   "lists": {
+    "top10_vs_B1": 4
+   },
+   "match_id": 1529301,
+   "innings": 1,
+   "batting": "Punjab Kings",
+   "over": "19.6",
+   "score": "200/8",
+   "batter": "Vishnu Vinod",
+   "bowler": "JJ Bumrah",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "0",
+   "p": {
+    "xgb": [
+     0.0949,
+     0.3199,
+     0.1312,
+     0.0053,
+     0.1239,
+     0.0685,
+     0.2562
+    ],
+    "lr": [
+     0.1437,
+     0.3451,
+     0.076,
+     0.0017,
+     0.1248,
+     0.0753,
+     0.2333
+    ],
+    "b1": [
+     0.3173,
+     0.353,
+     0.0712,
+     0.0033,
+     0.0938,
+     0.051,
+     0.1103
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 9.49,
+    "lr": 14.37,
+    "b1": 31.73
+   },
+   "loss": {
+    "xgb": 2.3553,
+    "lr": 1.9398,
+    "b1": 1.1479
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.5,
+     "push": -0.786
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.381
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 112.207,
+     "push": 0.088
+    },
+    {
+     "f": "c_team_runs",
+     "value": 200.0,
+     "push": -0.078
+    },
+    {
+     "f": "team_dots_last12",
+     "value": 0.0,
+     "push": -0.072
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.5,
+     "push": -0.786
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.381
+    },
+    {
+     "f": "c_team_runs",
+     "value": 200.0,
+     "push": -0.078
+    }
+   ],
+   "group_push": {
+    "scorecard": -1.263,
+    "momentum": -0.092,
+    "chase": -0.068,
+    "venue & season": -0.068,
+    "matchup & base rates": -0.024,
+    "striker": -0.021,
+    "bowler spell": -0.01,
+    "delivery": -0.005,
+    "player type": -0.002,
+    "bowler history": 0.01,
+    "partnership": 0.013,
+    "batter history": 0.021
+   }
+  },
+  {
+   "id": 284620,
+   "lists": {
+    "top10_vs_B1": 5
+   },
+   "match_id": 1529272,
+   "innings": 1,
+   "batting": "Punjab Kings",
+   "over": "16.6",
+   "score": "208/5",
+   "batter": "Shashank Singh",
+   "bowler": "M Siddharth",
+   "free_hit": false,
+   "new_batter": true,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.3089,
+     0.503,
+     0.0482,
+     0.0016,
+     0.0683,
+     0.0308,
+     0.0391
+    ],
+    "lr": [
+     0.2539,
+     0.5146,
+     0.0658,
+     0.0017,
+     0.082,
+     0.0384,
+     0.0436
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.08,
+    "lr": 3.84,
+    "b1": 9.2
+   },
+   "loss": {
+    "xgb": 3.4813,
+    "lr": 3.2605,
+    "b1": 2.3865
+   },
+   "why": [
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.329
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.306
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 191.252,
+     "push": 0.288
+    },
+    {
+     "f": "c_team_runs",
+     "value": 208.0,
+     "push": 0.246
+    },
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.085,
+     "push": 0.213
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.329
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.306
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.205
+    }
+   ],
+   "group_push": {
+    "partnership": -0.406,
+    "striker": -0.34,
+    "scorecard": -0.291,
+    "momentum": -0.087,
+    "delivery": -0.068,
+    "chase": -0.052,
+    "matchup & base rates": -0.018,
+    "bowler spell": 0.011,
+    "player type": 0.018,
+    "venue & season": 0.023,
+    "bowler history": 0.106,
+    "batter history": 0.53
+   }
+  },
+  {
+   "id": 280124,
+   "lists": {
+    "top10_vs_B1": 6
+   },
+   "match_id": 1527682,
+   "innings": 2,
+   "batting": "Gujarat Titans",
+   "over": "15.4",
+   "score": "164/7",
+   "batter": "K Rabada",
+   "bowler": "JC Archer",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.3234,
+     0.4381,
+     0.0548,
+     0.0022,
+     0.0832,
+     0.0276,
+     0.0708
+    ],
+    "lr": [
+     0.3136,
+     0.45,
+     0.0491,
+     0.0017,
+     0.0929,
+     0.0384,
+     0.0543
+    ],
+    "b1": [
+     0.2267,
+     0.3967,
+     0.0906,
+     0.0024,
+     0.107,
+     0.08,
+     0.0966
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 2.76,
+    "lr": 3.84,
+    "b1": 8.0
+   },
+   "loss": {
+    "xgb": 3.5911,
+    "lr": 3.2598,
+    "b1": 2.5255
+   },
+   "why": [
+    {
+     "f": "bat_sr_phase",
+     "value": 117.069,
+     "push": -0.216
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 2.0,
+     "push": -0.152
+    },
+    {
+     "f": "partnership_runs",
+     "value": 3.0,
+     "push": -0.138
+    },
+    {
+     "f": "c_team_runs",
+     "value": 164.0,
+     "push": 0.117
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 1.0,
+     "push": -0.115
+    }
+   ],
+   "hypothesis": "",
+   "need": 47,
+   "balls_left": 27,
+   "pushed_away": [
+    {
+     "f": "bat_sr_phase",
+     "value": 117.069,
+     "push": -0.216
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 2.0,
+     "push": -0.152
+    },
+    {
+     "f": "partnership_runs",
+     "value": 3.0,
+     "push": -0.138
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.306,
+    "partnership": -0.168,
+    "batter history": -0.147,
+    "striker": -0.115,
+    "player type": -0.057,
+    "matchup & base rates": -0.037,
+    "delivery": -0.021,
+    "momentum": -0.007,
+    "bowler spell": -0.005,
+    "bowler history": 0.02,
+    "chase": 0.037,
+    "venue & season": 0.137
+   }
+  },
+  {
+   "id": 285829,
+   "lists": {
+    "top10_vs_B1": 7
+   },
+   "match_id": 1529277,
+   "innings": 1,
+   "batting": "Gujarat Titans",
+   "over": "15.5",
+   "score": "160/2",
+   "batter": "Washington Sundar",
+   "bowler": "JR Hazlewood",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "6",
+   "p": {
+    "xgb": [
+     0.2398,
+     0.4639,
+     0.0766,
+     0.0022,
+     0.1253,
+     0.038,
+     0.0542
+    ],
+    "lr": [
+     0.2249,
+     0.4712,
+     0.0716,
+     0.002,
+     0.1261,
+     0.052,
+     0.0523
+    ],
+    "b1": [
+     0.1514,
+     0.4125,
+     0.0978,
+     0.0017,
+     0.1506,
+     0.1066,
+     0.0794
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.8,
+    "lr": 5.2,
+    "b1": 10.66
+   },
+   "loss": {
+    "xgb": 3.2705,
+    "lr": 2.9569,
+    "b1": 2.2386
+   },
+   "why": [
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.242
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 171.082,
+     "push": 0.237
+    },
+    {
+     "f": "c_team_runs",
+     "value": 160.0,
+     "push": 0.194
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.193
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.19
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.242
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.193
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.19
+    }
+   ],
+   "group_push": {
+    "partnership": -0.313,
+    "striker": -0.221,
+    "scorecard": -0.175,
+    "momentum": -0.065,
+    "player type": -0.061,
+    "chase": -0.044,
+    "matchup & base rates": -0.036,
+    "bowler spell": 0.005,
+    "delivery": 0.033,
+    "bowler history": 0.042,
+    "venue & season": 0.096,
+    "batter history": 0.397
+   }
+  },
+  {
+   "id": 285089,
+   "lists": {
+    "top10_vs_B1": 8,
+    "top3_per_outcome": 7
+   },
+   "match_id": 1529274,
+   "innings": 1,
+   "batting": "Sunrisers Hyderabad",
+   "over": "15.1",
+   "score": "183/2",
+   "batter": "Abhishek Sharma",
+   "bowler": "L Ngidi",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "2",
+   "p": {
+    "xgb": [
+     0.1751,
+     0.3981,
+     0.0356,
+     0.0012,
+     0.1679,
+     0.1572,
+     0.0649
+    ],
+    "lr": [
+     0.1628,
+     0.3811,
+     0.0499,
+     0.0016,
+     0.1627,
+     0.1848,
+     0.057
+    ],
+    "b1": [
+     0.1514,
+     0.4125,
+     0.0978,
+     0.0017,
+     0.1506,
+     0.1066,
+     0.0794
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.56,
+    "lr": 4.99,
+    "b1": 9.78
+   },
+   "loss": {
+    "xgb": 3.3353,
+    "lr": 2.9974,
+    "b1": 2.3252
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.147,
+     "push": -0.476
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.228,
+     "push": -0.165
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 3.75,
+     "push": 0.126
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.321,
+     "push": -0.11
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 3317.0,
+     "push": -0.072
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.147,
+     "push": -0.476
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.228,
+     "push": -0.165
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.321,
+     "push": -0.11
+    }
+   ],
+   "group_push": {
+    "batter history": -0.509,
+    "venue & season": -0.225,
+    "striker": -0.079,
+    "bowler history": -0.025,
+    "player type": -0.013,
+    "delivery": -0.005,
+    "momentum": -0.0,
+    "partnership": 0.001,
+    "matchup & base rates": 0.003,
+    "bowler spell": 0.005,
+    "chase": 0.007,
+    "scorecard": 0.098
+   }
+  },
+  {
+   "id": 295175,
+   "lists": {
+    "top10_vs_B1": 10,
+    "top3_per_outcome": 8
+   },
+   "match_id": 1535464,
+   "innings": 1,
+   "batting": "Rajasthan Royals",
+   "over": "15.5",
+   "score": "152/5",
+   "batter": "V Suryavanshi",
+   "bowler": "JO Holder",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "2",
+   "p": {
+    "xgb": [
+     0.1949,
+     0.3796,
+     0.0359,
+     0.0016,
+     0.152,
+     0.1649,
+     0.0711
+    ],
+    "lr": [
+     0.1984,
+     0.352,
+     0.0558,
+     0.0016,
+     0.1536,
+     0.1643,
+     0.0743
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.59,
+    "lr": 5.58,
+    "b1": 9.67
+   },
+   "loss": {
+    "xgb": 3.328,
+    "lr": 2.8868,
+    "b1": 2.3358
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.194,
+     "push": -0.491
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.207,
+     "push": -0.126
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.371,
+     "push": -0.115
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 3647.0,
+     "push": -0.084
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 5.2,
+     "push": 0.072
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.194,
+     "push": -0.491
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.207,
+     "push": -0.126
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.371,
+     "push": -0.115
+    }
+   ],
+   "group_push": {
+    "batter history": -0.535,
+    "venue & season": -0.17,
+    "bowler history": -0.032,
+    "striker": -0.029,
+    "momentum": -0.028,
+    "partnership": -0.017,
+    "player type": -0.012,
+    "delivery": -0.0,
+    "matchup & base rates": 0.009,
+    "bowler spell": 0.01,
+    "chase": 0.012,
+    "scorecard": 0.06
+   }
+  },
+  {
+   "id": 290549,
+   "lists": {
+    "top3_per_outcome": 1
+   },
+   "match_id": 1529297,
+   "innings": 1,
+   "batting": "Mumbai Indians",
+   "over": "19.6",
+   "score": "166/7",
+   "batter": "DL Chahar",
+   "bowler": "Rasikh Salam",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "0",
+   "p": {
+    "xgb": [
+     0.0814,
+     0.3551,
+     0.1397,
+     0.0031,
+     0.11,
+     0.0361,
+     0.2747
+    ],
+    "lr": [
+     0.1705,
+     0.4067,
+     0.0841,
+     0.0019,
+     0.1132,
+     0.0737,
+     0.15
+    ],
+    "b1": [
+     0.2172,
+     0.4001,
+     0.0941,
+     0.0027,
+     0.1111,
+     0.0727,
+     0.1021
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 8.14,
+    "lr": 17.05,
+    "b1": 21.72
+   },
+   "loss": {
+    "xgb": 2.5084,
+    "lr": 1.769,
+    "b1": 1.5268
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.333,
+     "push": -0.894
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.452
+    },
+    {
+     "f": "c_team_runs",
+     "value": 166.0,
+     "push": -0.087
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 1.0,
+     "push": 0.066
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": 0.061
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.333,
+     "push": -0.894
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.452
+    },
+    {
+     "f": "c_team_runs",
+     "value": 166.0,
+     "push": -0.087
+    }
+   ],
+   "group_push": {
+    "scorecard": -1.338,
+    "batter history": -0.105,
+    "bowler history": -0.083,
+    "chase": -0.074,
+    "venue & season": -0.052,
+    "matchup & base rates": -0.028,
+    "momentum": -0.022,
+    "bowler spell": -0.019,
+    "player type": -0.005,
+    "delivery": -0.003,
+    "striker": 0.0,
+    "partnership": 0.019
+   }
+  },
+  {
+   "id": 278382,
+   "lists": {
+    "top3_per_outcome": 2
+   },
+   "match_id": 1527675,
+   "innings": 1,
+   "batting": "Kolkata Knight Riders",
+   "over": "19.6",
+   "score": "220/4",
+   "batter": "Ramandeep Singh",
+   "bowler": "JJ Bumrah",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "0",
+   "p": {
+    "xgb": [
+     0.0879,
+     0.3513,
+     0.0957,
+     0.0017,
+     0.1195,
+     0.114,
+     0.2299
+    ],
+    "lr": [
+     0.1697,
+     0.3782,
+     0.0777,
+     0.0017,
+     0.1326,
+     0.1361,
+     0.1041
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 8.79,
+    "lr": 16.97,
+    "b1": 17.74
+   },
+   "loss": {
+    "xgb": 2.432,
+    "lr": 1.7738,
+    "b1": 1.7294
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.167,
+     "push": -0.884
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.384
+    },
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.124,
+     "push": 0.149
+    },
+    {
+     "f": "c_team_runs",
+     "value": 220.0,
+     "push": -0.1
+    },
+    {
+     "f": "team_dots_last12",
+     "value": 0.0,
+     "push": -0.075
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.167,
+     "push": -0.884
+    },
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.384
+    },
+    {
+     "f": "c_team_runs",
+     "value": 220.0,
+     "push": -0.1
+    }
+   ],
+   "group_push": {
+    "scorecard": -1.35,
+    "venue & season": -0.087,
+    "momentum": -0.077,
+    "chase": -0.054,
+    "partnership": -0.037,
+    "matchup & base rates": -0.023,
+    "bowler spell": -0.015,
+    "striker": -0.011,
+    "player type": -0.0,
+    "delivery": 0.004,
+    "batter history": 0.018,
+    "bowler history": 0.079
+   }
+  },
+  {
+   "id": 289360,
+   "lists": {
+    "top3_per_outcome": 3
+   },
+   "match_id": 1529292,
+   "innings": 1,
+   "batting": "Sunrisers Hyderabad",
+   "over": "19.2",
+   "score": "223/3",
+   "batter": "H Klaasen",
+   "bowler": "Vijaykumar Vyshak",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "0",
+   "p": {
+    "xgb": [
+     0.0919,
+     0.2834,
+     0.0963,
+     0.0017,
+     0.1886,
+     0.186,
+     0.1522
+    ],
+    "lr": [
+     0.1002,
+     0.3622,
+     0.0788,
+     0.0018,
+     0.1813,
+     0.1961,
+     0.0796
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 9.19,
+    "lr": 10.02,
+    "b1": 17.74
+   },
+   "loss": {
+    "xgb": 2.3875,
+    "lr": 2.3006,
+    "b1": 1.7294
+   },
+   "why": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.714,
+     "push": -0.672
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 197.432,
+     "push": -0.103
+    },
+    {
+     "f": "c_team_runs",
+     "value": 223.0,
+     "push": -0.09
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 57.0,
+     "push": -0.081
+    },
+    {
+     "f": "bowl_dot_pct_3s",
+     "value": 0.308,
+     "push": -0.061
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 0.714,
+     "push": -0.672
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 197.432,
+     "push": -0.103
+    },
+    {
+     "f": "c_team_runs",
+     "value": 223.0,
+     "push": -0.09
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.944,
+    "bowler history": -0.105,
+    "batter history": -0.104,
+    "momentum": -0.076,
+    "venue & season": -0.074,
+    "partnership": -0.067,
+    "striker": -0.067,
+    "chase": -0.044,
+    "bowler spell": -0.014,
+    "player type": -0.007,
+    "matchup & base rates": -0.007,
+    "delivery": 0.003
+   }
+  },
+  {
+   "id": 283626,
+   "lists": {
+    "top3_per_outcome": 4
+   },
+   "match_id": 1529268,
+   "innings": 1,
+   "batting": "Kolkata Knight Riders",
+   "over": "19.3",
+   "score": "174/9",
+   "batter": "C Green",
+   "bowler": "Rashid Khan",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "1",
+   "p": {
+    "xgb": [
+     0.2533,
+     0.1495,
+     0.0849,
+     0.0011,
+     0.1491,
+     0.2089,
+     0.1531
+    ],
+    "lr": [
+     0.1303,
+     0.3057,
+     0.0974,
+     0.0017,
+     0.1364,
+     0.1849,
+     0.1436
+    ],
+    "b1": [
+     0.3173,
+     0.353,
+     0.0712,
+     0.0033,
+     0.0938,
+     0.051,
+     0.1103
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 14.95,
+    "lr": 30.57,
+    "b1": 35.3
+   },
+   "loss": {
+    "xgb": 1.9005,
+    "lr": 1.1851,
+    "b1": 1.0412
+   },
+   "why": [
+    {
+     "f": "c_team_balls",
+     "value": 116.0,
+     "push": -0.297
+    },
+    {
+     "f": "balls_remaining",
+     "value": 4.0,
+     "push": -0.194
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 11.0,
+     "push": -0.176
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 191.603,
+     "push": -0.099
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 78.0,
+     "push": -0.071
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "c_team_balls",
+     "value": 116.0,
+     "push": -0.297
+    },
+    {
+     "f": "balls_remaining",
+     "value": 4.0,
+     "push": -0.194
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 11.0,
+     "push": -0.176
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.763,
+    "batter history": -0.23,
+    "partnership": -0.157,
+    "striker": -0.103,
+    "delivery": -0.031,
+    "bowler spell": -0.023,
+    "momentum": -0.013,
+    "player type": -0.007,
+    "matchup & base rates": -0.004,
+    "venue & season": 0.002,
+    "chase": 0.011,
+    "bowler history": 0.024
+   }
+  },
+  {
+   "id": 281313,
+   "lists": {
+    "top3_per_outcome": 5
+   },
+   "match_id": 1527688,
+   "innings": 2,
+   "batting": "Lucknow Super Giants",
+   "over": "19.6",
+   "score": "181/7",
+   "batter": "MD Choudhary",
+   "bowler": "VG Arora",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "1",
+   "p": {
+    "xgb": [
+     0.1236,
+     0.1573,
+     0.0768,
+     0.0012,
+     0.2348,
+     0.1947,
+     0.2116
+    ],
+    "lr": [
+     0.1601,
+     0.2719,
+     0.0871,
+     0.002,
+     0.1863,
+     0.1555,
+     0.1371
+    ],
+    "b1": [
+     0.2267,
+     0.3967,
+     0.0906,
+     0.0024,
+     0.107,
+     0.08,
+     0.0966
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 15.73,
+    "lr": 27.19,
+    "b1": 39.67
+   },
+   "loss": {
+    "xgb": 1.8493,
+    "lr": 1.3023,
+    "b1": 0.9245
+   },
+   "why": [
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.317
+    },
+    {
+     "f": "balls_remaining",
+     "value": 1.0,
+     "push": -0.175
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 9.0,
+     "push": -0.106
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 0.926,
+     "push": -0.095
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 166.215,
+     "push": -0.081
+    }
+   ],
+   "hypothesis": "",
+   "need": 1,
+   "balls_left": 1,
+   "pushed_away": [
+    {
+     "f": "c_team_balls",
+     "value": 119.0,
+     "push": -0.317
+    },
+    {
+     "f": "balls_remaining",
+     "value": 1.0,
+     "push": -0.175
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 9.0,
+     "push": -0.106
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.655,
+    "batter history": -0.255,
+    "striker": -0.145,
+    "partnership": -0.143,
+    "bowler history": -0.064,
+    "chase": -0.062,
+    "delivery": -0.061,
+    "player type": -0.026,
+    "bowler spell": -0.011,
+    "momentum": -0.008,
+    "venue & season": 0.012,
+    "matchup & base rates": 0.026
+   }
+  },
+  {
+   "id": 293250,
+   "lists": {
+    "top3_per_outcome": 6
+   },
+   "match_id": 1529308,
+   "innings": 1,
+   "batting": "Mumbai Indians",
+   "over": "19.5",
+   "score": "146/7",
+   "batter": "C Bosch",
+   "bowler": "Kartik Tyagi",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "1",
+   "p": {
+    "xgb": [
+     0.1375,
+     0.1947,
+     0.0932,
+     0.0022,
+     0.1737,
+     0.2382,
+     0.1606
+    ],
+    "lr": [
+     0.1243,
+     0.3056,
+     0.0898,
+     0.002,
+     0.1686,
+     0.1734,
+     0.1364
+    ],
+    "b1": [
+     0.2172,
+     0.4001,
+     0.0941,
+     0.0027,
+     0.1111,
+     0.0727,
+     0.1021
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 19.47,
+    "lr": 30.56,
+    "b1": 40.01
+   },
+   "loss": {
+    "xgb": 1.6365,
+    "lr": 1.1855,
+    "b1": 0.9161
+   },
+   "why": [
+    {
+     "f": "c_team_balls",
+     "value": 118.0,
+     "push": -0.262
+    },
+    {
+     "f": "balls_remaining",
+     "value": 2.0,
+     "push": -0.162
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 9.0,
+     "push": -0.122
+    },
+    {
+     "f": "bat_sr_phase",
+     "value": 170.125,
+     "push": -0.093
+    },
+    {
+     "f": "batter_bdry_run_pct",
+     "value": 0.774,
+     "push": -0.086
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "c_team_balls",
+     "value": 118.0,
+     "push": -0.262
+    },
+    {
+     "f": "balls_remaining",
+     "value": 2.0,
+     "push": -0.162
+    },
+    {
+     "f": "non_striker_pos",
+     "value": 9.0,
+     "push": -0.122
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.575,
+    "batter history": -0.277,
+    "partnership": -0.137,
+    "striker": -0.121,
+    "bowler history": -0.06,
+    "bowler spell": -0.017,
+    "player type": -0.008,
+    "venue & season": 0.005,
+    "chase": 0.009,
+    "delivery": 0.014,
+    "momentum": 0.028,
+    "matchup & base rates": 0.036
+   }
+  },
+  {
+   "id": 285097,
+   "lists": {
+    "top3_per_outcome": 9
+   },
+   "match_id": 1529274,
+   "innings": 1,
+   "batting": "Sunrisers Hyderabad",
+   "over": "16.2",
+   "score": "193/2",
+   "batter": "Abhishek Sharma",
+   "bowler": "T Natarajan",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "2",
+   "p": {
+    "xgb": [
+     0.1645,
+     0.3857,
+     0.0375,
+     0.0009,
+     0.1777,
+     0.148,
+     0.0856
+    ],
+    "lr": [
+     0.144,
+     0.3238,
+     0.0605,
+     0.0016,
+     0.1914,
+     0.2086,
+     0.07
+    ],
+    "b1": [
+     0.1514,
+     0.4125,
+     0.0978,
+     0.0017,
+     0.1506,
+     0.1066,
+     0.0794
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.75,
+    "lr": 6.05,
+    "b1": 9.78
+   },
+   "loss": {
+    "xgb": 3.2826,
+    "lr": 2.8051,
+    "b1": 2.3252
+   },
+   "why": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.147,
+     "push": -0.481
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 2.875,
+     "push": 0.162
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.228,
+     "push": -0.137
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.321,
+     "push": -0.132
+    },
+    {
+     "f": "venue_balls_3s",
+     "value": 3317.0,
+     "push": -0.081
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "bat_six_pct_3s",
+     "value": 0.147,
+     "push": -0.481
+    },
+    {
+     "f": "venue_bdry_pct_3s",
+     "value": 0.228,
+     "push": -0.137
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.321,
+     "push": -0.132
+    }
+   ],
+   "group_push": {
+    "batter history": -0.533,
+    "venue & season": -0.196,
+    "striker": -0.032,
+    "partnership": -0.014,
+    "bowler spell": -0.012,
+    "momentum": -0.005,
+    "delivery": -0.003,
+    "player type": -0.001,
+    "matchup & base rates": -0.001,
+    "bowler history": -0.001,
+    "chase": 0.014,
+    "scorecard": 0.086
+   }
+  },
+  {
+   "id": 294573,
+   "lists": {
+    "top3_per_outcome": 13
+   },
+   "match_id": 1529313,
+   "innings": 2,
+   "batting": "Kolkata Knight Riders",
+   "over": "17.6",
+   "score": "155/9",
+   "batter": "SR Dubey",
+   "bowler": "MA Starc",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "4",
+   "p": {
+    "xgb": [
+     0.4684,
+     0.3213,
+     0.0465,
+     0.0024,
+     0.0551,
+     0.022,
+     0.0843
+    ],
+    "lr": [
+     0.4782,
+     0.322,
+     0.035,
+     0.0017,
+     0.0838,
+     0.0259,
+     0.0534
+    ],
+    "b1": [
+     0.3484,
+     0.3456,
+     0.0621,
+     0.0013,
+     0.0844,
+     0.0542,
+     0.1041
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 5.51,
+    "lr": 8.38,
+    "b1": 8.44
+   },
+   "loss": {
+    "xgb": 2.8985,
+    "lr": 2.4794,
+    "b1": 2.472
+   },
+   "why": [
+    {
+     "f": "bat_pos",
+     "value": 11.0,
+     "push": -0.156
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 13.0,
+     "push": -0.148
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.121
+    },
+    {
+     "f": "c_team_balls",
+     "value": 107.0,
+     "push": -0.102
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.079
+    }
+   ],
+   "hypothesis": "",
+   "need": 49,
+   "balls_left": 13,
+   "pushed_away": [
+    {
+     "f": "bat_pos",
+     "value": 11.0,
+     "push": -0.156
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 13.0,
+     "push": -0.148
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.121
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.685,
+    "batter history": -0.215,
+    "momentum": -0.089,
+    "partnership": -0.077,
+    "striker": -0.073,
+    "matchup & base rates": -0.017,
+    "chase": -0.008,
+    "delivery": 0.016,
+    "bowler spell": 0.023,
+    "venue & season": 0.039,
+    "player type": 0.076,
+    "bowler history": 0.119
+   }
+  },
+  {
+   "id": 294574,
+   "lists": {
+    "top3_per_outcome": 14
+   },
+   "match_id": 1529313,
+   "innings": 2,
+   "batting": "Kolkata Knight Riders",
+   "over": "18.1",
+   "score": "159/9",
+   "batter": "CV Varun",
+   "bowler": "L Ngidi",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "4",
+   "p": {
+    "xgb": [
+     0.3954,
+     0.3832,
+     0.0458,
+     0.0018,
+     0.0611,
+     0.0352,
+     0.0775
+    ],
+    "lr": [
+     0.3909,
+     0.3826,
+     0.0395,
+     0.0016,
+     0.0789,
+     0.037,
+     0.0694
+    ],
+    "b1": [
+     0.3484,
+     0.3456,
+     0.0621,
+     0.0013,
+     0.0844,
+     0.0542,
+     0.1041
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 6.11,
+    "lr": 7.89,
+    "b1": 8.44
+   },
+   "loss": {
+    "xgb": 2.7958,
+    "lr": 2.5402,
+    "b1": 2.472
+   },
+   "why": [
+    {
+     "f": "bat_pos",
+     "value": 10.0,
+     "push": -0.145
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 12.0,
+     "push": -0.134
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 1.0,
+     "push": -0.106
+    },
+    {
+     "f": "c_team_balls",
+     "value": 108.0,
+     "push": -0.099
+    },
+    {
+     "f": "bowler_cat",
+     "value": "RA_Pace",
+     "push": 0.072
+    }
+   ],
+   "hypothesis": "",
+   "need": 45,
+   "balls_left": 12,
+   "pushed_away": [
+    {
+     "f": "bat_pos",
+     "value": 10.0,
+     "push": -0.145
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 12.0,
+     "push": -0.134
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 1.0,
+     "push": -0.106
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.599,
+    "batter history": -0.194,
+    "momentum": -0.065,
+    "striker": -0.048,
+    "matchup & base rates": -0.021,
+    "delivery": -0.014,
+    "partnership": -0.011,
+    "bowler spell": -0.002,
+    "chase": -0.001,
+    "venue & season": 0.023,
+    "player type": 0.08,
+    "bowler history": 0.111
+   }
+  },
+  {
+   "id": 294820,
+   "lists": {
+    "top3_per_outcome": 15
+   },
+   "match_id": 1535462,
+   "innings": 2,
+   "batting": "Gujarat Titans",
+   "over": "18.3",
+   "score": "156/9",
+   "batter": "M Prasidh Krishna",
+   "bowler": "B Kumar",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "4",
+   "p": {
+    "xgb": [
+     0.5009,
+     0.2852,
+     0.0361,
+     0.0023,
+     0.0622,
+     0.0287,
+     0.0846
+    ],
+    "lr": [
+     0.4018,
+     0.305,
+     0.04,
+     0.0016,
+     0.0894,
+     0.0509,
+     0.1113
+    ],
+    "b1": [
+     0.3484,
+     0.3456,
+     0.0621,
+     0.0013,
+     0.0844,
+     0.0542,
+     0.1041
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 6.22,
+    "lr": 8.94,
+    "b1": 8.44
+   },
+   "loss": {
+    "xgb": 2.7774,
+    "lr": 2.4148,
+    "b1": 2.472
+   },
+   "why": [
+    {
+     "f": "bat_pos",
+     "value": 11.0,
+     "push": -0.148
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.116
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 10.0,
+     "push": -0.1
+    },
+    {
+     "f": "c_team_balls",
+     "value": 110.0,
+     "push": -0.094
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.086
+    }
+   ],
+   "hypothesis": "",
+   "need": 99,
+   "balls_left": 10,
+   "pushed_away": [
+    {
+     "f": "bat_pos",
+     "value": 11.0,
+     "push": -0.148
+    },
+    {
+     "f": "c_batter_runs",
+     "value": 0.0,
+     "push": -0.116
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 10.0,
+     "push": -0.1
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.584,
+    "batter history": -0.206,
+    "striker": -0.082,
+    "partnership": -0.071,
+    "momentum": -0.07,
+    "chase": -0.03,
+    "matchup & base rates": -0.008,
+    "bowler spell": 0.002,
+    "delivery": 0.012,
+    "player type": 0.07,
+    "bowler history": 0.088,
+    "venue & season": 0.09
+   }
+  },
+  {
+   "id": 283600,
+   "lists": {
+    "top3_per_outcome": 19
+   },
+   "match_id": 1529268,
+   "innings": 1,
+   "batting": "Kolkata Knight Riders",
+   "over": "15.1",
+   "score": "148/5",
+   "batter": "RK Singh",
+   "bowler": "K Rabada",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "W",
+   "p": {
+    "xgb": [
+     0.2902,
+     0.4678,
+     0.0636,
+     0.0009,
+     0.105,
+     0.0377,
+     0.0347
+    ],
+    "lr": [
+     0.2375,
+     0.4667,
+     0.0644,
+     0.0016,
+     0.1238,
+     0.0559,
+     0.0501
+    ],
+    "b1": [
+     0.1774,
+     0.4247,
+     0.0967,
+     0.0026,
+     0.1298,
+     0.092,
+     0.0768
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.47,
+    "lr": 5.01,
+    "b1": 7.68
+   },
+   "loss": {
+    "xgb": 3.361,
+    "lr": 2.9943,
+    "b1": 2.5667
+   },
+   "why": [
+    {
+     "f": "bat_out_pct_phase",
+     "value": 0.08,
+     "push": 0.072
+    },
+    {
+     "f": "c_team_balls",
+     "value": 90.0,
+     "push": -0.069
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.059
+    },
+    {
+     "f": "partnership_balls",
+     "value": 1.0,
+     "push": -0.058
+    },
+    {
+     "f": "balls_since_last_wicket",
+     "value": 1.0,
+     "push": -0.055
+    }
+   ],
+   "hypothesis": "",
+   "pushed_away": [
+    {
+     "f": "c_team_balls",
+     "value": 90.0,
+     "push": -0.069
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 1.0,
+     "push": -0.059
+    },
+    {
+     "f": "partnership_balls",
+     "value": 1.0,
+     "push": -0.058
+    }
+   ],
+   "group_push": {
+    "scorecard": -0.182,
+    "partnership": -0.108,
+    "striker": -0.059,
+    "bowler spell": -0.054,
+    "chase": -0.032,
+    "momentum": -0.028,
+    "player type": -0.024,
+    "matchup & base rates": -0.021,
+    "delivery": -0.005,
+    "bowler history": 0.014,
+    "venue & season": 0.039,
+    "batter history": 0.054
+   }
+  },
+  {
+   "id": 290651,
+   "lists": {
+    "top3_per_outcome": 20
+   },
+   "match_id": 1529297,
+   "innings": 2,
+   "batting": "Royal Challengers Bengaluru",
+   "over": "15.6",
+   "score": "131/5",
+   "batter": "TH David",
+   "bowler": "C Bosch",
+   "free_hit": false,
+   "new_batter": true,
+   "outcome": "W",
+   "p": {
+    "xgb": [
+     0.3567,
+     0.4514,
+     0.0353,
+     0.0015,
+     0.0986,
+     0.0208,
+     0.0358
+    ],
+    "lr": [
+     0.4008,
+     0.3661,
+     0.0584,
+     0.0017,
+     0.0954,
+     0.0382,
+     0.0395
+    ],
+    "b1": [
+     0.195,
+     0.4284,
+     0.0917,
+     0.0028,
+     0.1216,
+     0.0862,
+     0.0744
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 3.58,
+    "lr": 3.95,
+    "b1": 7.44
+   },
+   "loss": {
+    "xgb": 3.3294,
+    "lr": 3.2324,
+    "b1": 2.599
+   },
+   "why": [
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.242,
+     "push": 0.086
+    },
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.063
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 5.0,
+     "push": 0.062
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.058
+    },
+    {
+     "f": "balls_since_last_wicket",
+     "value": 0.0,
+     "push": -0.057
+    }
+   ],
+   "hypothesis": "",
+   "need": 36,
+   "balls_left": 25,
+   "pushed_away": [
+    {
+     "f": "c_batter_balls",
+     "value": 0.0,
+     "push": -0.063
+    },
+    {
+     "f": "partnership_runs",
+     "value": 0.0,
+     "push": -0.058
+    },
+    {
+     "f": "balls_since_last_wicket",
+     "value": 0.0,
+     "push": -0.057
+    }
+   ],
+   "group_push": {
+    "partnership": -0.122,
+    "momentum": -0.119,
+    "striker": -0.098,
+    "chase": -0.093,
+    "scorecard": -0.05,
+    "matchup & base rates": -0.045,
+    "delivery": -0.026,
+    "player type": -0.002,
+    "venue & season": 0.007,
+    "bowler spell": 0.015,
+    "bowler history": 0.035,
+    "batter history": 0.103
+   }
+  },
+  {
+   "id": 285949,
+   "lists": {
+    "top3_per_outcome": 21
+   },
+   "match_id": 1529277,
+   "innings": 2,
+   "batting": "Royal Challengers Bengaluru",
+   "over": "15.3",
+   "score": "173/4",
+   "batter": "RM Patidar",
+   "bowler": "MJ Suthar",
+   "free_hit": false,
+   "new_batter": false,
+   "outcome": "W",
+   "p": {
+    "xgb": [
+     0.2826,
+     0.4411,
+     0.0489,
+     0.001,
+     0.094,
+     0.0923,
+     0.0401
+    ],
+    "lr": [
+     0.2229,
+     0.4594,
+     0.0638,
+     0.0016,
+     0.1037,
+     0.1033,
+     0.0453
+    ],
+    "b1": [
+     0.195,
+     0.4284,
+     0.0917,
+     0.0028,
+     0.1216,
+     0.0862,
+     0.0744
+    ]
+   },
+   "p_actual_pct": {
+    "xgb": 4.01,
+    "lr": 4.53,
+    "b1": 7.44
+   },
+   "loss": {
+    "xgb": 3.2157,
+    "lr": 3.0946,
+    "b1": 2.599
+   },
+   "why": [
+    {
+     "f": "required_run_rate",
+     "value": 7.071,
+     "push": -0.099
+    },
+    {
+     "f": "bat_out_pct_phase",
+     "value": 0.105,
+     "push": 0.09
+    },
+    {
+     "f": "partnership_balls",
+     "value": 2.0,
+     "push": -0.051
+    },
+    {
+     "f": "balls_per_wicket_remaining",
+     "value": 4.667,
+     "push": 0.05
+    },
+    {
+     "f": "bat_bdry_pct_3s",
+     "value": 0.226,
+     "push": 0.049
+    }
+   ],
+   "hypothesis": "",
+   "need": 33,
+   "balls_left": 28,
+   "pushed_away": [
+    {
+     "f": "required_run_rate",
+     "value": 7.071,
+     "push": -0.099
+    },
+    {
+     "f": "partnership_balls",
+     "value": 2.0,
+     "push": -0.051
+    },
+    {
+     "f": "balls_since_last_wicket",
+     "value": 2.0,
+     "push": -0.049
+    }
+   ],
+   "group_push": {
+    "chase": -0.126,
+    "partnership": -0.119,
+    "momentum": -0.079,
+    "bowler history": -0.07,
+    "player type": -0.033,
+    "striker": -0.02,
+    "bowler spell": -0.013,
+    "matchup & base rates": -0.012,
+    "delivery": -0.0,
+    "venue & season": 0.026,
+    "scorecard": 0.085,
+    "batter history": 0.09
+   }
+  }
+ ]
+}
