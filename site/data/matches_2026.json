@@ -1,0 +1,1242 @@
+{
+ "1527674": {
+  "no": 1,
+  "label": "Match 1",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "M Chinnaswamy Stadium",
+  "balls_all": 214,
+  "ll_xgb_all": 1.5242,
+  "gain_vs_b1_all": -0.1036,
+  "balls_death": 34,
+  "ll_xgb_death": 1.8212,
+  "gain_vs_b1_death": -0.1269
+ },
+ "1527675": {
+  "no": 2,
+  "label": "Match 2",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Mumbai Indians"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 235,
+  "ll_xgb_all": 1.5216,
+  "gain_vs_b1_all": -0.0486,
+  "balls_death": 55,
+  "ll_xgb_death": 1.4839,
+  "gain_vs_b1_death": 0.0104
+ },
+ "1527676": {
+  "no": 3,
+  "label": "Match 3",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Rajasthan Royals"
+  ],
+  "venue": "Barsapara Cricket Stadium, Guwahati",
+  "balls_all": 191,
+  "ll_xgb_all": 1.4379,
+  "gain_vs_b1_all": -0.0592,
+  "balls_death": 28,
+  "ll_xgb_death": 1.2256,
+  "gain_vs_b1_death": -0.1402
+ },
+ "1527677": {
+  "no": 4,
+  "label": "Match 4",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Punjab Kings"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 235,
+  "ll_xgb_all": 1.5024,
+  "gain_vs_b1_all": 0.0113,
+  "balls_death": 55,
+  "ll_xgb_death": 1.611,
+  "gain_vs_b1_death": 0.0602
+ },
+ "1527678": {
+  "no": 5,
+  "label": "Match 5",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Delhi Capitals"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 215,
+  "ll_xgb_all": 1.4503,
+  "gain_vs_b1_all": 0.0049,
+  "balls_death": 35,
+  "ll_xgb_death": 1.3971,
+  "gain_vs_b1_death": -0.0143
+ },
+ "1527679": {
+  "no": 6,
+  "label": "Match 6",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 216,
+  "ll_xgb_all": 1.5491,
+  "gain_vs_b1_all": -0.0832,
+  "balls_death": 36,
+  "ll_xgb_death": 1.4796,
+  "gain_vs_b1_death": -0.1066
+ },
+ "1527680": {
+  "no": 7,
+  "label": "Match 7",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Punjab Kings"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 232,
+  "ll_xgb_all": 1.556,
+  "gain_vs_b1_all": -0.028,
+  "balls_death": 52,
+  "ll_xgb_death": 1.7338,
+  "gain_vs_b1_death": 0.0054
+ },
+ "1527681": {
+  "no": 8,
+  "label": "Match 8",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Delhi Capitals"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 229,
+  "ll_xgb_all": 1.3767,
+  "gain_vs_b1_all": -0.0352,
+  "balls_death": 49,
+  "ll_xgb_death": 1.4876,
+  "gain_vs_b1_death": -0.0216
+ },
+ "1527682": {
+  "no": 9,
+  "label": "Match 9",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Gujarat Titans"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5683,
+  "gain_vs_b1_all": 0.0022,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5673,
+  "gain_vs_b1_death": 0.0544
+ },
+ "1527683": {
+  "no": 10,
+  "label": "Match 10",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 239,
+  "ll_xgb_all": 1.4169,
+  "gain_vs_b1_all": -0.0399,
+  "balls_death": 59,
+  "ll_xgb_death": 1.5862,
+  "gain_vs_b1_death": -0.0376
+ },
+ "1527684": {
+  "no": 11,
+  "label": "Match 11",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Chennai Super Kings"
+  ],
+  "venue": "M Chinnaswamy Stadium",
+  "balls_all": 238,
+  "ll_xgb_all": 1.5743,
+  "gain_vs_b1_all": -0.0604,
+  "balls_death": 58,
+  "ll_xgb_death": 1.531,
+  "gain_vs_b1_death": -0.0916
+ },
+ "1527685": {
+  "no": 12,
+  "label": "Match 12",
+  "scored": false,
+  "rain": true,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Punjab Kings"
+  ],
+  "venue": "Eden Gardens"
+ },
+ "1527686": {
+  "no": 13,
+  "label": "Match 13",
+  "scored": false,
+  "rain": true,
+  "teams": [
+   "Rajasthan Royals",
+   "Mumbai Indians"
+  ],
+  "venue": "Barsapara Cricket Stadium, Guwahati"
+ },
+ "1527687": {
+  "no": 14,
+  "label": "Match 14",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Delhi Capitals"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4304,
+  "gain_vs_b1_all": -0.0393,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5837,
+  "gain_vs_b1_death": -0.0751
+ },
+ "1527688": {
+  "no": 15,
+  "label": "Match 15",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4307,
+  "gain_vs_b1_all": -0.028,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5234,
+  "gain_vs_b1_death": -0.0587
+ },
+ "1527689": {
+  "no": 16,
+  "label": "Match 16",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Rajasthan Royals"
+  ],
+  "venue": "Barsapara Cricket Stadium, Guwahati",
+  "balls_all": 228,
+  "ll_xgb_all": 1.4418,
+  "gain_vs_b1_all": -0.0941,
+  "balls_death": 48,
+  "ll_xgb_death": 1.4747,
+  "gain_vs_b1_death": -0.1001
+ },
+ "1527690": {
+  "no": 17,
+  "label": "Match 17",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Punjab Kings"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 233,
+  "ll_xgb_all": 1.4483,
+  "gain_vs_b1_all": -0.0998,
+  "balls_death": 53,
+  "ll_xgb_death": 1.4443,
+  "gain_vs_b1_death": -0.0501
+ },
+ "1527691": {
+  "no": 18,
+  "label": "Match 18",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Delhi Capitals"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4887,
+  "gain_vs_b1_all": -0.0175,
+  "balls_death": 60,
+  "ll_xgb_death": 1.521,
+  "gain_vs_b1_death": 0.0117
+ },
+ "1527692": {
+  "no": 19,
+  "label": "Match 19",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Gujarat Titans"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 232,
+  "ll_xgb_all": 1.4616,
+  "gain_vs_b1_all": -0.0156,
+  "balls_death": 52,
+  "ll_xgb_death": 1.5337,
+  "gain_vs_b1_death": -0.038
+ },
+ "1527693": {
+  "no": 20,
+  "label": "Match 20",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Mumbai Indians"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 240,
+  "ll_xgb_all": 1.534,
+  "gain_vs_b1_all": -0.0579,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5366,
+  "gain_vs_b1_death": -0.0834
+ },
+ "1529264": {
+  "no": 21,
+  "label": "Match 21",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Rajasthan Royals"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 234,
+  "ll_xgb_all": 1.5176,
+  "gain_vs_b1_all": -0.0423,
+  "balls_death": 54,
+  "ll_xgb_death": 1.6778,
+  "gain_vs_b1_death": 0.0277
+ },
+ "1529265": {
+  "no": 22,
+  "label": "Match 22",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4351,
+  "gain_vs_b1_all": -0.0023,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5808,
+  "gain_vs_b1_death": 0.0123
+ },
+ "1529266": {
+  "no": 23,
+  "label": "Match 23",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "M Chinnaswamy Stadium",
+  "balls_all": 211,
+  "ll_xgb_all": 1.4831,
+  "gain_vs_b1_all": -0.0312,
+  "balls_death": 31,
+  "ll_xgb_death": 1.5573,
+  "gain_vs_b1_death": -0.0675
+ },
+ "1529267": {
+  "no": 24,
+  "label": "Match 24",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Punjab Kings"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 219,
+  "ll_xgb_all": 1.4349,
+  "gain_vs_b1_all": -0.0409,
+  "balls_death": 39,
+  "ll_xgb_death": 1.5436,
+  "gain_vs_b1_death": -0.1122
+ },
+ "1529268": {
+  "no": 25,
+  "label": "Match 25",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Gujarat Titans"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 238,
+  "ll_xgb_all": 1.5306,
+  "gain_vs_b1_all": -0.0228,
+  "balls_death": 58,
+  "ll_xgb_death": 1.5283,
+  "gain_vs_b1_death": 0.0069
+ },
+ "1529269": {
+  "no": 26,
+  "label": "Match 26",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Delhi Capitals"
+  ],
+  "venue": "M Chinnaswamy Stadium",
+  "balls_all": 239,
+  "ll_xgb_all": 1.4507,
+  "gain_vs_b1_all": -0.025,
+  "balls_death": 59,
+  "ll_xgb_death": 1.306,
+  "gain_vs_b1_death": -0.058
+ },
+ "1529270": {
+  "no": 27,
+  "label": "Match 27",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Chennai Super Kings"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5175,
+  "gain_vs_b1_all": -0.0311,
+  "balls_death": 60,
+  "ll_xgb_death": 1.534,
+  "gain_vs_b1_death": -0.0106
+ },
+ "1529271": {
+  "no": 28,
+  "label": "Match 28",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 238,
+  "ll_xgb_all": 1.3896,
+  "gain_vs_b1_all": -0.0214,
+  "balls_death": 58,
+  "ll_xgb_death": 1.5485,
+  "gain_vs_b1_death": -0.0791
+ },
+ "1529272": {
+  "no": 29,
+  "label": "Match 29",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Punjab Kings",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5174,
+  "gain_vs_b1_all": -0.0387,
+  "balls_death": 60,
+  "ll_xgb_death": 1.6081,
+  "gain_vs_b1_death": 0.0275
+ },
+ "1529273": {
+  "no": 30,
+  "label": "Match 30",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Gujarat Titans"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 215,
+  "ll_xgb_all": 1.4635,
+  "gain_vs_b1_all": -0.034,
+  "balls_death": 35,
+  "ll_xgb_death": 1.6118,
+  "gain_vs_b1_death": -0.0994
+ },
+ "1529274": {
+  "no": 31,
+  "label": "Match 31",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Delhi Capitals"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5278,
+  "gain_vs_b1_all": -0.0339,
+  "balls_death": 60,
+  "ll_xgb_death": 1.6317,
+  "gain_vs_b1_death": 0.0788
+ },
+ "1529275": {
+  "no": 32,
+  "label": "Match 32",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 228,
+  "ll_xgb_all": 1.4196,
+  "gain_vs_b1_all": -0.0158,
+  "balls_death": 48,
+  "ll_xgb_death": 1.654,
+  "gain_vs_b1_death": -0.0817
+ },
+ "1529276": {
+  "no": 33,
+  "label": "Match 33",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Mumbai Indians"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 234,
+  "ll_xgb_all": 1.3728,
+  "gain_vs_b1_all": -0.0411,
+  "balls_death": 54,
+  "ll_xgb_death": 1.448,
+  "gain_vs_b1_death": -0.1072
+ },
+ "1529277": {
+  "no": 34,
+  "label": "Match 34",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "M Chinnaswamy Stadium",
+  "balls_all": 233,
+  "ll_xgb_all": 1.4357,
+  "gain_vs_b1_all": -0.053,
+  "balls_death": 53,
+  "ll_xgb_death": 1.5154,
+  "gain_vs_b1_death": 0.006
+ },
+ "1529278": {
+  "no": 35,
+  "label": "Match 35",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Delhi Capitals",
+   "Punjab Kings"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 233,
+  "ll_xgb_all": 1.4818,
+  "gain_vs_b1_all": -0.1005,
+  "balls_death": 53,
+  "ll_xgb_death": 1.4978,
+  "gain_vs_b1_death": -0.0583
+ },
+ "1529279": {
+  "no": 36,
+  "label": "Match 36",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Sunrisers Hyderabad"
+  ],
+  "venue": "Sawai Mansingh Stadium",
+  "balls_all": 231,
+  "ll_xgb_all": 1.5972,
+  "gain_vs_b1_all": -0.0589,
+  "balls_death": 51,
+  "ll_xgb_death": 1.7374,
+  "gain_vs_b1_death": 0.0099
+ },
+ "1529280": {
+  "no": 37,
+  "label": "Match 37",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Gujarat Titans"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 220,
+  "ll_xgb_all": 1.4395,
+  "gain_vs_b1_all": -0.0266,
+  "balls_death": 40,
+  "ll_xgb_death": 1.76,
+  "gain_vs_b1_death": -0.0347
+ },
+ "1529281": {
+  "no": 38,
+  "label": "Match 38",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 240,
+  "ll_xgb_all": 1.408,
+  "gain_vs_b1_all": -0.0327,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5826,
+  "gain_vs_b1_death": -0.0804
+ },
+ "1529282": {
+  "no": 39,
+  "label": "Match 39",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Delhi Capitals",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 138,
+  "ll_xgb_all": 1.3677,
+  "gain_vs_b1_all": -0.0863,
+  "balls_death": 9,
+  "ll_xgb_death": 1.2684,
+  "gain_vs_b1_death": -0.2497
+ },
+ "1529283": {
+  "no": 40,
+  "label": "Match 40",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Punjab Kings",
+   "Rajasthan Royals"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 236,
+  "ll_xgb_all": 1.4466,
+  "gain_vs_b1_all": -0.0767,
+  "balls_death": 56,
+  "ll_xgb_death": 1.5639,
+  "gain_vs_b1_death": -0.0714
+ },
+ "1529284": {
+  "no": 41,
+  "label": "Match 41",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Sunrisers Hyderabad"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 232,
+  "ll_xgb_all": 1.5125,
+  "gain_vs_b1_all": -0.0756,
+  "balls_death": 52,
+  "ll_xgb_death": 1.5478,
+  "gain_vs_b1_death": -0.0303
+ },
+ "1529285": {
+  "no": 42,
+  "label": "Match 42",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Gujarat Titans"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 211,
+  "ll_xgb_all": 1.5177,
+  "gain_vs_b1_all": -0.0184,
+  "balls_death": 31,
+  "ll_xgb_death": 1.4456,
+  "gain_vs_b1_death": -0.0528
+ },
+ "1529286": {
+  "no": 43,
+  "label": "Match 43",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Delhi Capitals"
+  ],
+  "venue": "Sawai Mansingh Stadium",
+  "balls_all": 235,
+  "ll_xgb_all": 1.5023,
+  "gain_vs_b1_all": -0.0791,
+  "balls_death": 55,
+  "ll_xgb_death": 1.5292,
+  "gain_vs_b1_death": -0.105
+ },
+ "1529287": {
+  "no": 44,
+  "label": "Match 44",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Chennai Super Kings"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 229,
+  "ll_xgb_all": 1.4304,
+  "gain_vs_b1_all": -0.0211,
+  "balls_death": 49,
+  "ll_xgb_death": 1.5324,
+  "gain_vs_b1_death": 0.0256
+ },
+ "1529288": {
+  "no": 45,
+  "label": "Match 45",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 224,
+  "ll_xgb_all": 1.3935,
+  "gain_vs_b1_all": -0.049,
+  "balls_death": 44,
+  "ll_xgb_death": 1.5548,
+  "gain_vs_b1_death": -0.0284
+ },
+ "1529289": {
+  "no": 46,
+  "label": "Match 46",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Punjab Kings",
+   "Gujarat Titans"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 239,
+  "ll_xgb_all": 1.4551,
+  "gain_vs_b1_all": -0.0353,
+  "balls_death": 59,
+  "ll_xgb_death": 1.555,
+  "gain_vs_b1_death": -0.0658
+ },
+ "1529290": {
+  "no": 47,
+  "label": "Match 47",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Mumbai Indians"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 232,
+  "ll_xgb_all": 1.4694,
+  "gain_vs_b1_all": -0.0785,
+  "balls_death": 52,
+  "ll_xgb_death": 1.5143,
+  "gain_vs_b1_death": 0.0138
+ },
+ "1529291": {
+  "no": 48,
+  "label": "Match 48",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Delhi Capitals",
+   "Chennai Super Kings"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 225,
+  "ll_xgb_all": 1.3827,
+  "gain_vs_b1_all": -0.0222,
+  "balls_death": 45,
+  "ll_xgb_death": 1.4488,
+  "gain_vs_b1_death": -0.0335
+ },
+ "1529292": {
+  "no": 49,
+  "label": "Match 49",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Punjab Kings"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4957,
+  "gain_vs_b1_all": -0.0531,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5275,
+  "gain_vs_b1_death": -0.0613
+ },
+ "1529293": {
+  "no": 50,
+  "label": "Match 50",
+  "scored": false,
+  "rain": true,
+  "teams": [
+   "Lucknow Super Giants",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow"
+ },
+ "1529294": {
+  "no": 51,
+  "label": "Match 51",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Delhi Capitals",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 206,
+  "ll_xgb_all": 1.373,
+  "gain_vs_b1_all": -0.0709,
+  "balls_death": 30,
+  "ll_xgb_death": 1.384,
+  "gain_vs_b1_death": -0.1222
+ },
+ "1529295": {
+  "no": 52,
+  "label": "Match 52",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Rajasthan Royals"
+  ],
+  "venue": "Sawai Mansingh Stadium",
+  "balls_all": 219,
+  "ll_xgb_all": 1.5968,
+  "gain_vs_b1_all": -0.0171,
+  "balls_death": 39,
+  "ll_xgb_death": 1.7121,
+  "gain_vs_b1_death": 0.0559
+ },
+ "1529296": {
+  "no": 53,
+  "label": "Match 53",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Chennai Super Kings"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 236,
+  "ll_xgb_all": 1.5313,
+  "gain_vs_b1_all": -0.0592,
+  "balls_death": 56,
+  "ll_xgb_death": 1.6056,
+  "gain_vs_b1_death": -0.0248
+ },
+ "1529297": {
+  "no": 54,
+  "label": "Match 54",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Shaheed Veer Narayan Singh International Stadium",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4719,
+  "gain_vs_b1_all": -0.0217,
+  "balls_death": 60,
+  "ll_xgb_death": 1.724,
+  "gain_vs_b1_death": 0.0495
+ },
+ "1529298": {
+  "no": 55,
+  "label": "Match 55",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Punjab Kings",
+   "Delhi Capitals"
+  ],
+  "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
+  "balls_all": 234,
+  "ll_xgb_all": 1.5227,
+  "gain_vs_b1_all": 0.0019,
+  "balls_death": 54,
+  "ll_xgb_death": 1.6659,
+  "gain_vs_b1_death": -0.0295
+ },
+ "1529299": {
+  "no": 56,
+  "label": "Match 56",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Sunrisers Hyderabad"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 209,
+  "ll_xgb_all": 1.4762,
+  "gain_vs_b1_all": -0.0182,
+  "balls_death": 30,
+  "ll_xgb_death": 1.5231,
+  "gain_vs_b1_death": 0.0003
+ },
+ "1529300": {
+  "no": 57,
+  "label": "Match 57",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Shaheed Veer Narayan Singh International Stadium",
+  "balls_all": 235,
+  "ll_xgb_all": 1.4116,
+  "gain_vs_b1_all": -0.045,
+  "balls_death": 55,
+  "ll_xgb_death": 1.5876,
+  "gain_vs_b1_death": 0.0177
+ },
+ "1529301": {
+  "no": 58,
+  "label": "Match 58",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Punjab Kings",
+   "Mumbai Indians"
+  ],
+  "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
+  "balls_all": 239,
+  "ll_xgb_all": 1.5011,
+  "gain_vs_b1_all": -0.0223,
+  "balls_death": 59,
+  "ll_xgb_death": 1.6989,
+  "gain_vs_b1_death": -0.0815
+ },
+ "1529302": {
+  "no": 59,
+  "label": "Match 59",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Lucknow Super Giants"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 220,
+  "ll_xgb_all": 1.4829,
+  "gain_vs_b1_all": -0.045,
+  "balls_death": 40,
+  "ll_xgb_death": 1.6431,
+  "gain_vs_b1_death": -0.0799
+ },
+ "1529303": {
+  "no": 60,
+  "label": "Match 60",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Kolkata Knight Riders",
+   "Gujarat Titans"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5371,
+  "gain_vs_b1_all": -0.0479,
+  "balls_death": 60,
+  "ll_xgb_death": 1.6323,
+  "gain_vs_b1_death": -0.0077
+ },
+ "1529304": {
+  "no": 61,
+  "label": "Match 61",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Punjab Kings"
+  ],
+  "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
+  "balls_all": 240,
+  "ll_xgb_all": 1.4393,
+  "gain_vs_b1_all": -0.0665,
+  "balls_death": 60,
+  "ll_xgb_death": 1.5633,
+  "gain_vs_b1_death": -0.0346
+ },
+ "1529305": {
+  "no": 62,
+  "label": "Match 62",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Delhi Capitals"
+  ],
+  "venue": "Feroz Shah Kotla",
+  "balls_all": 236,
+  "ll_xgb_all": 1.4382,
+  "gain_vs_b1_all": -0.0349,
+  "balls_death": 56,
+  "ll_xgb_death": 1.4674,
+  "gain_vs_b1_death": -0.0321
+ },
+ "1529306": {
+  "no": 63,
+  "label": "Match 63",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Chennai Super Kings",
+   "Sunrisers Hyderabad"
+  ],
+  "venue": "MA Chidambaram Stadium, Chepauk",
+  "balls_all": 234,
+  "ll_xgb_all": 1.4678,
+  "gain_vs_b1_all": -0.0279,
+  "balls_death": 54,
+  "ll_xgb_death": 1.7638,
+  "gain_vs_b1_death": 0.0007
+ },
+ "1529307": {
+  "no": 64,
+  "label": "Match 64",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Rajasthan Royals"
+  ],
+  "venue": "Sawai Mansingh Stadium",
+  "balls_all": 235,
+  "ll_xgb_all": 1.5388,
+  "gain_vs_b1_all": -0.0437,
+  "balls_death": 55,
+  "ll_xgb_death": 1.6398,
+  "gain_vs_b1_death": 0.0316
+ },
+ "1529308": {
+  "no": 65,
+  "label": "Match 65",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Mumbai Indians",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 233,
+  "ll_xgb_all": 1.4337,
+  "gain_vs_b1_all": -0.0382,
+  "balls_death": 53,
+  "ll_xgb_death": 1.6717,
+  "gain_vs_b1_death": -0.1325
+ },
+ "1529309": {
+  "no": 66,
+  "label": "Match 66",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Chennai Super Kings"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 202,
+  "ll_xgb_all": 1.6008,
+  "gain_vs_b1_all": -0.0314,
+  "balls_death": 30,
+  "ll_xgb_death": 1.5189,
+  "gain_vs_b1_death": -0.0087
+ },
+ "1529310": {
+  "no": 67,
+  "label": "Match 67",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Sunrisers Hyderabad",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Rajiv Gandhi International Stadium, Uppal",
+  "balls_all": 240,
+  "ll_xgb_all": 1.557,
+  "gain_vs_b1_all": -0.0028,
+  "balls_death": 60,
+  "ll_xgb_death": 1.6707,
+  "gain_vs_b1_death": 0.0927
+ },
+ "1529311": {
+  "no": 68,
+  "label": "Match 68",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Lucknow Super Giants",
+   "Punjab Kings"
+  ],
+  "venue": "Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",
+  "balls_all": 228,
+  "ll_xgb_all": 1.4772,
+  "gain_vs_b1_all": -0.037,
+  "balls_death": 48,
+  "ll_xgb_death": 1.4935,
+  "gain_vs_b1_death": -0.0176
+ },
+ "1529312": {
+  "no": 69,
+  "label": "Match 69",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Mumbai Indians"
+  ],
+  "venue": "Wankhede Stadium",
+  "balls_all": 240,
+  "ll_xgb_all": 1.5079,
+  "gain_vs_b1_all": -0.0256,
+  "balls_death": 60,
+  "ll_xgb_death": 1.6466,
+  "gain_vs_b1_death": 0.0024
+ },
+ "1529313": {
+  "no": 70,
+  "label": "Match 70",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Delhi Capitals",
+   "Kolkata Knight Riders"
+  ],
+  "venue": "Eden Gardens",
+  "balls_all": 232,
+  "ll_xgb_all": 1.4686,
+  "gain_vs_b1_all": -0.0297,
+  "balls_death": 52,
+  "ll_xgb_death": 1.6321,
+  "gain_vs_b1_death": -0.0096
+ },
+ "1535462": {
+  "no": 71,
+  "label": "Qualifier 1",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Royal Challengers Bengaluru",
+   "Gujarat Titans"
+  ],
+  "venue": "Himachal Pradesh Cricket Association Stadium, Dharamsala",
+  "balls_all": 237,
+  "ll_xgb_all": 1.4683,
+  "gain_vs_b1_all": -0.0735,
+  "balls_death": 57,
+  "ll_xgb_death": 1.5527,
+  "gain_vs_b1_death": -0.1247
+ },
+ "1535463": {
+  "no": 72,
+  "label": "Eliminator",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Sunrisers Hyderabad"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 236,
+  "ll_xgb_all": 1.5906,
+  "gain_vs_b1_all": -0.1054,
+  "balls_death": 56,
+  "ll_xgb_death": 1.5907,
+  "gain_vs_b1_death": -0.0412
+ },
+ "1535464": {
+  "no": 73,
+  "label": "Qualifier 2",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Rajasthan Royals",
+   "Gujarat Titans"
+  ],
+  "venue": "Maharaja Yadavindra Singh International Cricket Stadium, Mullanpur",
+  "balls_all": 232,
+  "ll_xgb_all": 1.5213,
+  "gain_vs_b1_all": -0.0484,
+  "balls_death": 52,
+  "ll_xgb_death": 1.5534,
+  "gain_vs_b1_death": -0.1721
+ },
+ "1535465": {
+  "no": 74,
+  "label": "Final",
+  "scored": true,
+  "rain": false,
+  "teams": [
+   "Gujarat Titans",
+   "Royal Challengers Bengaluru"
+  ],
+  "venue": "Narendra Modi Stadium, Ahmedabad",
+  "balls_all": 228,
+  "ll_xgb_all": 1.4087,
+  "gain_vs_b1_all": -0.0374,
+  "balls_death": 48,
+  "ll_xgb_death": 1.5032,
+  "gain_vs_b1_death": -0.0376
+ }
+}

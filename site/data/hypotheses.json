@@ -1,0 +1,322 @@
+{
+ "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json.",
+ "reading_pushes": "Each feature 'pushes' XGBoost's prediction toward or away from what actually happened. Pushes are in log-probability units and add up to the gap between XGBoost's final prediction and its starting guess for an average ball. As a rough guide, a push of -0.3 cuts the chance of what happened by about a quarter, -0.7 roughly halves it, and -1.4 cuts it to about a quarter. These are the model's reasons for its prediction, not causes of what happened on the field.",
+ "mechanisms": {
+  "A": {
+   "title": "Big hitters at boundary-friendly grounds aren't expected to run twos or threes",
+   "balls": 10,
+   "text": "Ten balls ended in a three or a two, and XGBoost gave them almost no chance: 0.08-0.29% for the threes and 3.6-3.8% for the twos, against B1's 0.24-0.33% and 9.7-9.8%. On almost all of them, the biggest pushes against what happened came from the batter's history (above all how often he hits sixes) and from how often the ground gives up boundaries. Our hypothesis: the model has learned, correctly on average, that big hitters at small grounds score in boundaries and singles rather than twos and threes, so it moves probability away from twos and threes exactly when someone like Abhishek Sharma or V Suryavanshi is on strike. Threes are also rare for every model (about 0.3% of balls), and the label counts every run on the ball, so a three can be byes, leg-byes or an overthrow that no feature can see; part of each three is plain chance, and what XGBoost adds on top is its confidence in the batter's and the ground's profile.",
+   "check": "S4b check A (H1): do batters in the top quarter for six rate run more twos and threes than XGBoost predicts across the 2026 death?"
+  },
+  "B": {
+   "title": "A new batter is expected to play himself in",
+   "balls": 6,
+   "text": "Six sixes were hit by batters who had only just come in: five within their first three balls (at least two off the very first ball), and Kartik Tyagi before he or his partnership had scored a run. XGBoost gave them 1.9-3.8%, against B1's 5.1-10.7%. The new-batter state pushed hardest against the six: no runs yet in the partnership, and no balls or runs yet for the batter. Our hypothesis: in the training seasons a new batter usually took a ball or two before attacking, so the model cuts the six chance on a batter's first balls, while in 2026, when sixes rose to 8.5% of balls, more batters attacked straight away. For Shashank Singh and Washington Sundar, their own batting history pushed toward the six (+0.53 and +0.40), but the new-batter state outweighed it. For the lower-order batters (Kartik Tyagi, TA Boult, XC Bartlett, K Rabada), a weak strike rate at the death over the last three seasons pushed against the six as well, so the model was doubly sure.",
+   "check": "S4b check B (H1): across the 2026 death, do batters in their first three balls, and batters at 8-11, hit more sixes than XGBoost predicts?"
+  },
+  "C": {
+   "title": "The last balls of an innings are read as an all-out slog",
+   "balls": 10,
+   "text": "On the final one to four balls of an innings, and with nine wickets down, the scorecard features dominate: very few balls left per wicket in hand, the ball count itself (116-119 balls bowled), and the batting position of the striker and the non-striker. XGBoost read these balls as all-out slogs. It gave a dot on the last balls about 8-9.5%, where B1 gave 17-32% and the logistic regression 10-17%. For singles in the last four balls, a No. 9-11 at the non-striker's end also pushed the single down, as if the batter would refuse it to keep the strike. With nine down, a No. 10 or 11 hitting a four was rated 5.5-6.2% against B1's 8.4%. Our hypothesis: the finer scorecard, which brings most of XGBoost's gain at the death (82%), also makes it overconfident on the final balls, where batters still miss, defend, or take the single on offer.",
+   "check": "S4b check C (H1): does XGBoost under-predict dots and singles across the 20th over of 2026 (not just on these balls)? If so, this also explains part of the season-wide under-prediction of death dots."
+  },
+  "D": {
+   "title": "Wickets with no clear cause",
+   "balls": 3,
+   "text": "Three wickets early in the death (15.1-15.6, with four or five down) cost XGBoost about 3.5-4% each, against B1's 7.4-7.7%. No feature pushed hard (the largest group push is -0.18), and the batters' own history pushed toward the wicket, not away from it. XGBoost simply gives a ball early in the death with wickets in hand a lower wicket chance than B1's coarser cell does, and across the season that lower chance is about right: balls it rates at 4-6% for a wicket are out about 4-5% of the time (figure 5). So we read these three as chance, the cost of being right on average, not as a feature that misled the model.",
+   "check": null
+  }
+ },
+ "balls": [
+  {
+   "match_id": 1529305,
+   "innings": 2,
+   "over": "15.2",
+   "batter": "AR Patel",
+   "bowler": "AF Milne",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "The lowest-rated outcome of any 2026 death ball (0.08%). His six rate and a ground where 24% of balls go for boundaries pushed hardest (batter history -0.55, venue -0.42). Every model gave it under 0.3%."
+  },
+  {
+   "match_id": 1529296,
+   "innings": 1,
+   "over": "15.2",
+   "batter": "Himmat Singh",
+   "bowler": "Noor Ahmad",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "Every run he had scored so far came in boundaries, and his six rate pushed against a three too (batter history -0.45, striker -0.20). Every model gave it under 0.3%."
+  },
+  {
+   "match_id": 1529306,
+   "innings": 2,
+   "over": "16.4",
+   "batter": "Nithish Kumar Reddy",
+   "bowler": "A Kamboj",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "Here the ground mattered most (venue and season -0.41, batter history -0.21). Every model gave it under 0.3%."
+  },
+  {
+   "match_id": 1529308,
+   "innings": 2,
+   "over": "18.3",
+   "batter": "AS Roy",
+   "bowler": "WG Jacks",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "Batter history (-0.43), the ground (-0.27) and the bowler's dot-ball rate (-0.22) all pushed against a three. Every model gave it under 0.25%."
+  },
+  {
+   "match_id": 1535462,
+   "innings": 1,
+   "over": "19.3",
+   "batter": "JM Sharma",
+   "bowler": "M Prasidh Krishna",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "The strongest batter-history push in the list (-0.75): a frequent six-hitter whose runs so far had all come in boundaries. The innings' momentum pushed the other way (+0.36), not enough to matter."
+  },
+  {
+   "match_id": 1529306,
+   "innings": 1,
+   "over": "18.4",
+   "batter": "AJ Hosein",
+   "bowler": "Sakib Hussain",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "Batter history (-0.49) and the ground (-0.36) again. Every model gave it under 0.3%."
+  },
+  {
+   "match_id": 1529312,
+   "innings": 1,
+   "over": "19.3",
+   "batter": "N Burger",
+   "bowler": "SN Thakur",
+   "outcome": "3",
+   "mechanism": "A",
+   "line": "Not the batter this time: the ground (-0.33) and the bowler's history (-0.19) pushed against it. XGBoost (0.29%) was close to B1 (0.33%), so this one is almost pure chance."
+  },
+  {
+   "match_id": 1529274,
+   "innings": 1,
+   "over": "15.1",
+   "batter": "Abhishek Sharma",
+   "bowler": "L Ngidi",
+   "outcome": "2",
+   "mechanism": "A",
+   "line": "One of the season's biggest hitters (an estimated six rate of 14.7% over 2024-26 so far): batter history -0.51 left a two at 3.6%, against B1's 9.8%."
+  },
+  {
+   "match_id": 1535464,
+   "innings": 1,
+   "over": "15.5",
+   "batter": "V Suryavanshi",
+   "bowler": "JO Holder",
+   "outcome": "2",
+   "mechanism": "A",
+   "line": "The highest six rate of anyone in the list (an estimated 19.4% over 2024-26 so far): batter history -0.54 left a two at 3.6%, against B1's 9.7%."
+  },
+  {
+   "match_id": 1529274,
+   "innings": 1,
+   "over": "16.2",
+   "batter": "Abhishek Sharma",
+   "bowler": "T Natarajan",
+   "outcome": "2",
+   "mechanism": "A",
+   "line": "Seven balls later in the same innings, the same profile and the same miss (batter history -0.53; 3.8% against B1's 9.8%)."
+  },
+  {
+   "match_id": 1529268,
+   "innings": 1,
+   "over": "17.6",
+   "batter": "Kartik Tyagi",
+   "bowler": "Mohammed Siraj",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "A lower-order batter with no runs yet in the partnership (-0.27) and a death strike rate of 114 over the last three seasons (-0.24). XGBoost 1.9%, B1 5.1%."
+  },
+  {
+   "match_id": 1529287,
+   "innings": 1,
+   "over": "19.4",
+   "batter": "TA Boult",
+   "bowler": "A Kamboj",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "A six off the first ball he faced. His death strike rate of 108 over the last three seasons (-0.32) and facing his first ball (-0.31) made XGBoost give it 2.1%, against B1's 7.3%."
+  },
+  {
+   "match_id": 1527677,
+   "innings": 2,
+   "over": "18.1",
+   "batter": "XC Bartlett",
+   "bowler": "M Prasidh Krishna",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "His third ball. A death strike rate of 114 (-0.26) and the chase state (-0.18) pushed against it: 2.3%, against B1's 8.0%."
+  },
+  {
+   "match_id": 1529272,
+   "innings": 1,
+   "over": "16.6",
+   "batter": "Shashank Singh",
+   "bowler": "M Siddharth",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "A six off his first ball. His history pushed toward the six (+0.53), but the new-batter state outweighed it (partnership -0.41, striker -0.34): 3.1%, against B1's 9.2%."
+  },
+  {
+   "match_id": 1527682,
+   "innings": 2,
+   "over": "15.4",
+   "batter": "K Rabada",
+   "bowler": "JC Archer",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "His third ball, with a death strike rate of 117 over the last three seasons (-0.22) and seven down (scorecard -0.31): 2.8%, against B1's 8.0%."
+  },
+  {
+   "match_id": 1529277,
+   "innings": 1,
+   "over": "15.5",
+   "batter": "Washington Sundar",
+   "bowler": "JR Hazlewood",
+   "outcome": "6",
+   "mechanism": "B",
+   "line": "His second ball. History pushed toward the six (+0.40), the new partnership against it (-0.31): 3.8%, against B1's 10.7%."
+  },
+  {
+   "match_id": 1529301,
+   "innings": 1,
+   "over": "19.6",
+   "batter": "Vishnu Vinod",
+   "bowler": "JJ Bumrah",
+   "outcome": "0",
+   "mechanism": "C",
+   "line": "The last ball, two wickets left: few balls per wicket (-0.79) and ball 120 (-0.38) made a dot 9.5%, against B1's 31.7%. Bumrah's own record barely moved it (+0.01)."
+  },
+  {
+   "match_id": 1529297,
+   "innings": 1,
+   "over": "19.6",
+   "batter": "DL Chahar",
+   "bowler": "Rasikh Salam",
+   "outcome": "0",
+   "mechanism": "C",
+   "line": "The last ball with three wickets left: the scorecard group alone pushed -1.34. XGBoost 8.1%, B1 21.7%."
+  },
+  {
+   "match_id": 1527675,
+   "innings": 1,
+   "over": "19.6",
+   "batter": "Ramandeep Singh",
+   "bowler": "JJ Bumrah",
+   "outcome": "0",
+   "mechanism": "C",
+   "line": "The last ball with six wickets left (scorecard -1.35). XGBoost 8.8%, B1 17.7%, the LR 17.0%."
+  },
+  {
+   "match_id": 1529292,
+   "innings": 1,
+   "over": "19.2",
+   "batter": "H Klaasen",
+   "bowler": "Vijaykumar Vyshak",
+   "outcome": "0",
+   "mechanism": "C",
+   "line": "Five balls left and seven wickets in hand (-0.67), with a batter whose past strike rate in this phase is 197 on strike (-0.10). XGBoost 9.2%, B1 17.7%; the LR (10.0%) made the same call."
+  },
+  {
+   "match_id": 1529268,
+   "innings": 1,
+   "over": "19.3",
+   "batter": "C Green",
+   "bowler": "Rashid Khan",
+   "outcome": "1",
+   "mechanism": "C",
+   "line": "Nine down with the No. 11 at the other end (-0.18) and four balls left (-0.19): the model expected him to keep the strike. He took the single. XGBoost 15.0%, B1 35.3%."
+  },
+  {
+   "match_id": 1527688,
+   "innings": 2,
+   "over": "19.6",
+   "batter": "MD Choudhary",
+   "bowler": "VG Arora",
+   "outcome": "1",
+   "mechanism": "C",
+   "line": "The last ball of a chase, with a No. 9 at the other end (scorecard -0.66). XGBoost 15.7%, B1 39.7%."
+  },
+  {
+   "match_id": 1529308,
+   "innings": 1,
+   "over": "19.5",
+   "batter": "C Bosch",
+   "bowler": "Kartik Tyagi",
+   "outcome": "1",
+   "mechanism": "C",
+   "line": "Two balls left with a No. 9 at the other end (scorecard -0.57). XGBoost 19.5%, B1 40.0%."
+  },
+  {
+   "match_id": 1529313,
+   "innings": 2,
+   "over": "17.6",
+   "batter": "SR Dubey",
+   "bowler": "MA Starc",
+   "outcome": "4",
+   "mechanism": "C",
+   "line": "A No. 11 on 0 at nine down (scorecard -0.69). XGBoost 5.5%, B1 8.4%: a small miss, in the list only as one of the three lowest-rated fours."
+  },
+  {
+   "match_id": 1529313,
+   "innings": 2,
+   "over": "18.1",
+   "batter": "CV Varun",
+   "bowler": "L Ngidi",
+   "outcome": "4",
+   "mechanism": "C",
+   "line": "A No. 10 at nine down, in the same chase (scorecard -0.60). XGBoost 6.1%, B1 8.4%."
+  },
+  {
+   "match_id": 1535462,
+   "innings": 2,
+   "over": "18.3",
+   "batter": "M Prasidh Krishna",
+   "bowler": "B Kumar",
+   "outcome": "4",
+   "mechanism": "C",
+   "line": "A No. 11 on 0 at nine down (scorecard -0.58). XGBoost 6.2%, B1 8.4%."
+  },
+  {
+   "match_id": 1529268,
+   "innings": 1,
+   "over": "15.1",
+   "batter": "RK Singh",
+   "bowler": "K Rabada",
+   "outcome": "W",
+   "mechanism": "D",
+   "line": "Out on his second ball. No group pushed more than -0.18. XGBoost 3.5%, B1 7.7%."
+  },
+  {
+   "match_id": 1529297,
+   "innings": 2,
+   "over": "15.6",
+   "batter": "TH David",
+   "bowler": "C Bosch",
+   "outcome": "W",
+   "mechanism": "D",
+   "line": "Out first ball. No single push larger than -0.06, and his history pushed toward the wicket (+0.10). XGBoost 3.6%, B1 7.4%."
+  },
+  {
+   "match_id": 1529277,
+   "innings": 2,
+   "over": "15.3",
+   "batter": "RM Patidar",
+   "bowler": "MJ Suthar",
+   "outcome": "W",
+   "mechanism": "D",
+   "line": "A comfortable chase (7.1 an over needed, -0.10) with no strong push anywhere. XGBoost 4.0%, B1 7.4%."
+  }
+ ]
+}

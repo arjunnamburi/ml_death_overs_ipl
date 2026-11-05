@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Match replay</title>
+<meta name="description" content="Four 2026 IPL death overs, ball by ball: what XGBoost, logistic regression and the scorecard baseline predicted, and what happened.">
+<!-- COPY-PASTE: the match replay page. The logic is in js/replay.js. -->
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .match-pick { display: flex; gap: .5rem; flex-wrap: wrap; margin: .8rem 0; }
+  .match-pick button { text-align: left; line-height: 1.3; padding: .5rem .75rem; }
+  .match-pick button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .match-pick small { display: block; color: var(--ink-2); }
+  .strip { display: flex; flex-wrap: wrap; gap: 3px; margin: .6rem 0 1rem; }
+  .strip button {
+    min-width: 2.05rem; height: 2.05rem; padding: 0 .2rem; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--panel); color: var(--ink); font: 600 .82rem/1 system-ui, sans-serif; cursor: pointer; position: relative;
+  }
+  .strip button.extra { opacity: .55; font-weight: 500; }
+  .strip button.o6, .strip button.o4 { background: color-mix(in srgb, var(--xgb) 22%, var(--panel)); }
+  .strip button.oW { background: color-mix(in srgb, var(--bad) 25%, var(--panel)); }
+  .strip button.key::after { content: ""; position: absolute; top: 2px; right: 2px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .strip button[aria-current="true"] { outline: 2.5px solid var(--accent); outline-offset: 1px; }
+  .strip .over-break { width: 100%; height: 0; }
+  .strip .over-lab { font-size: .75rem; color: var(--ink-3); align-self: center; width: 3.2rem; }
+  .ball-head { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; }
+  .ball-head h3 { margin: 0; }
+  .outcome-big { font-size: 1.05rem; font-weight: 700; }
+  .losses { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .9rem; margin: .5rem 0; }
+  .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .chart .axis text { fill: var(--ink-2); font-size: 11px; }
+  .chart .grid line { stroke: var(--line); }
+  .chart .zero { stroke: var(--ink-3); }
+  .nav-ball { display: flex; gap: .4rem; align-items: center; margin-left: auto; }
+  .result { font-weight: 600; }
+</style>
+</head>
+<body data-root="../" data-page="replay">
+<main>
+<h1>Match replay</h1>
+<p class="lede">Four 2026 matches, from over 16 to the end of each innings. For every ball: the situation, what three models predicted, what happened, and why XGBoost thought what it did.</p>
+
+<details class="howto" open>
+  <summary>How to read this page</summary>
+  <ol>
+    <li><b>Pick a match</b> and an innings. The close chase (a tie) opens first.</li>
+    <li><b>The chart</b> shows each model's running total of log-loss <i>minus the scorecard baseline's</i>. Below zero means the model has done better than B1 so far. Lower is better. Hover to see each ball; click to open it.</li>
+    <li><b>The ball strip</b> has one square per delivery: the outcome (• = dot, W = wicket), with wides and no-balls faded. A small dot in the corner marks the five balls where XGBoost and B1 differed most. Use the arrow keys or the buttons to step through.</li>
+    <li><b>Each ball</b> shows the scorecard <i>before</i> the ball (what the models saw), the chance each model gave each outcome (the real outcome is outlined), the log-loss (lower is better), and the three features that moved XGBoost most.</li>
+  </ol>
+</details>
+
+<div class="match-pick" id="pick" role="group" aria-label="Match"></div>
+<div id="match"></div>
+</main>
+<script src="js/common.js"></script>
+<script src="js/ball.js"></script>
+<script src="js/replay.js"></script>
+</body>
+</html>

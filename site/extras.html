@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extras</title>
+<meta name="description" content="Extra results not promised in the proposal: which 2026 players and matches the model read best and worst, and the full feature-group ablation tables.">
+<!-- COPY-PASTE: the Extras page (things beyond the proposal). The logic is in js/extras.js. -->
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body data-root="../" data-page="extras">
+<main>
+<h1>Extras</h1>
+<p class="lede">Results that go beyond what the proposal promised. They were all looked at after the single 2026 scoring run, so they describe 2026; they don’t test anything, and nothing in the models was changed because of them.</p>
+
+<details class="howto" open>
+  <summary>How to read this page</summary>
+  <ul>
+    <li><b>Gain vs B1</b> is XGBoost’s log-loss minus the scorecard baseline’s, per ball, on that player’s or match’s balls. Negative means XGBoost read them better. The brackets are 95% intervals from resampling matches.</li>
+    <li><b>“vs expected”</b> compares what happened with what XGBoost expected on the same balls: runs, strike rate (runs per 100 balls), sixes and wickets. Positive means more than expected.</li>
+    <li><b>Ablation tables</b> show how much worse XGBoost got when a group of features was removed and the model refit. Positive means the group was helping.</li>
+  </ul>
+</details>
+
+<nav class="callout" aria-label="On this page"><b>On this page:</b> <a href="#players">Players</a> · <a href="#matches">Matches</a> · <a href="#ablations">Ablation detail</a></nav>
+
+<h2 id="players">Which players the model reads best and worst (2026)</h2>
+<p class="muted" id="players-summary"></p>
+<div class="tabs" role="tablist" id="ptabs">
+  <button role="tab" aria-selected="true" data-side="bat">Batters</button>
+  <button role="tab" aria-selected="false" data-side="bowl">Bowlers</button>
+</div>
+<div id="players-lists"></div>
+<ul class="muted" id="players-notes"></ul>
+
+<h2 id="matches">The most and least predictable 2026 matches</h2>
+<p>Ranked by XGBoost’s log-loss per ball over the whole match (more balls, so less noise than the death alone). Lower means easier to predict. The death-ball columns are shown for comparison.</p>
+<div id="matches-tables"></div>
+
+<h2 id="ablations">Ablation detail</h2>
+<p>The report shows the 2026 group and block results (<a href="../index.html#results">Results</a>). Here are the full tables, with 2025 next to 2026: the same refits, trained on 2008-2024 and scored on 2025. “Bonferroni” marks an interval that also clears the stricter bar for many comparisons at once.</p>
+<h3>Dropping one group at a time</h3>
+<div id="abl-groups"></div>
+<h3>Dropping a whole block</h3>
+<div id="abl-blocks"></div>
+<h3>Matchup history: batting hand vs bowling type</h3>
+<p class="muted">Does the matchup add anything on top of everything else? Dropping the two matchup-history columns, then also the four matchup-type base rates.</p>
+<div id="abl-matchup"></div>
+</main>
+<script src="js/common.js"></script>
+<script src="js/extras.js"></script>
+</body>
+</html>
