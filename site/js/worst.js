@@ -66,7 +66,7 @@
       '</tbody></table></div>';
     if (hy) {
       const mech = H.mechanisms[hy.mechanism];
-      h += '<p class="hyp1"><span class="letter sm">' + hy.mechanism + '</span><b>Hypothesis:</b> ' + esc(mech.title) + '.</p>';
+      h += '<p class="hyp1"><span class="letter sm">' + hy.mechanism + '</span><b>Hypothesis:</b> ' + esc(hy.short || mech.title) + '.</p>';
     }
     h += '<details class="why"><summary>Show why</summary>';
     if (hy) {

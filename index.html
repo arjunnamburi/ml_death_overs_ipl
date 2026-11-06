@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reading the Death Overs</title>
+<title>Ball-by-Ball Outcome Prediction in IPL</title>
 <meta name="description" content="How well can a model predict each ball of the IPL's death overs in a season it has never seen? Tested once on the 2026 season.">
 <!-- COPY-PASTE: the report page. Sections follow the proposal. Grey dashed boxes are written in Phase 5. -->
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
@@ -12,7 +12,7 @@
 <body data-root="" data-page="report">
 <main>
 <p class="muted">Arjun Namburi · Machine Learning (ES335)</p>
-<h1>Reading the Death Overs: Ball-by-Ball Outcome Prediction in the IPL</h1>
+<h1>Ball-by-Ball Outcome Prediction in IPL</h1>
 <p class="lede">For every legal ball in overs 16-20, the models give a probability to each of seven outcomes: a dot, 1, 2, 3, 4, 6 or a wicket. They were trained on 2008-2024, chosen on 2025 and scored once on the 2026 season.</p>
 
 <div class="headline">
@@ -61,7 +61,7 @@
 <h2 id="data">2. Data</h2>
 <ul>
   <li><b>Source:</b> ball-by-ball records of every IPL match from 2008 to 2026, from the Kaggle “IPL Dataset”.</li>
-  <li><b>Added:</b> each player’s batting hand and bowling type, labelled with the Gemini API and hand-checked for about 100 players.</li>
+  <li><b>Added:</b> each player’s batting hand and bowling type, labelled with the Gemini API and hand-checked for 100 players.</li>
   <li><b>Split by season,</b> because the game changes over time (Figure 1): train on 2008-2024, choose on 2025, test once on 2026.</li>
   <li><b>Left out:</b> wides and no-balls, which aren’t legal balls, and 50 rain-affected matches, which are scored separately in <a href="#errors">Errors</a>.</li>
 </ul>
@@ -70,8 +70,8 @@
 <tbody>
 <tr><td>Train</td><td>2008-2024</td><td>1,053</td><td>244,269</td><td>55,634</td><td class="l">Fitting the models.</td></tr>
 <tr><td>Validation</td><td>2025</td><td>69</td><td>15,809</td><td>3,466</td><td class="l">Choosing between models and settings.</td></tr>
-<tr><td>Test</td><td>2026</td><td>71</td><td>16,282</td><td>3,583</td><td class="l">Scored once, after the models were frozen.</td></tr>
 <tr><td>Refit for 2026</td><td>2008-2025</td><td>1,122</td><td>260,078</td><td>59,100</td><td class="l">The frozen models, refit before scoring 2026.</td></tr>
+<tr><td>Test</td><td>2026</td><td>71</td><td>16,282</td><td>3,583</td><td class="l">Scored once, after the models were frozen.</td></tr>
 </tbody>
 </table></div>
 <p class="muted" style="font-size:.88rem;margin-top:-.6rem">All deliveries: 295,553 in 1,243 matches. Left out: 11,092 wides and no-balls, and 50 rain-affected matches with 8,101 legal balls.</p>
@@ -94,12 +94,12 @@
   </div>
   <div class="legend"><span><span class="dot" style="background:#8f8e88;border-radius:2px"></span>2008-2025</span><span><span class="dot" style="background:var(--ink-2);border-radius:2px"></span>2026</span></div>
   <figcaption><b>Figure 2. The death overs are the hardest to predict.</b> Each panel shows how often each outcome happens in one phase. Entropy (under each panel, 2008-2025 → 2026) measures how evenly the outcomes are spread: the higher it is, the harder a ball is to guess. The death overs are the most even in both periods.</figcaption>
+  <ul class="figpoints">
+    <li>The game is changing season by season, so the test has to be on a later season, not a random sample.</li>
+    <li>The death overs have the widest spread of outcomes, which makes them the hardest phase to predict.</li>
+    <li>In 2026 the powerplay and middle overs traded dots for boundaries, but at the death dots actually rose a little.</li>
+  </ul>
 </figure>
-<ul class="key">
-  <li>The game is changing season by season, so the test has to be on a later season, not a random sample.</li>
-  <li>The death overs have the widest spread of outcomes, which makes them the hardest phase to predict.</li>
-  <li>In 2026 the powerplay and middle overs traded dots for boundaries, but at the death dots actually rose a little.</li>
-</ul>
 
 <!-- ================================================================ -->
 <h2 id="preprocessing">3. Preprocessing</h2>
@@ -107,11 +107,11 @@
   <li><b>The label</b> is one of seven outcomes on a legal ball: 0, 1, 2, 3, 4, 6 or W. It counts every run on the ball, including byes and leg-byes (5 runs count as 4, and 7 as 6).</li>
   <li><b>The death</b> is every legal ball after the first 90 legal balls of an innings, which is from over 16.</li>
   <li><b>Features are built only from earlier balls,</b> so nothing about the ball being predicted leaks in.</li>
-  <li><b>History features</b> (batter, bowler, matchup and venue) use a three-season window: the two previous seasons plus the current season before the match. Each rate is pulled toward the average for the player’s group, so a player with few balls stays close to that average. The strength of this pull was fixed at 100 balls; the proposal planned to choose it on 2025, but that check was dropped.</li>
+  <li><b>History features</b> (batter, bowler, matchup and venue) use a three-season window: the two previous seasons plus the current season before the match. Each rate is pulled toward the average for the player’s group, so a player with few balls stays close to that average. The strength of this pull was fixed at 100 balls, the same as in B1, rather than tuned, so that 2025 was kept for comparing the models.</li>
   <li><b>For the logistic regression,</b> the 87 features become 118 inputs: one column per category for the 5 categorical features, flags for missing values, clipping and standardising.</li>
-  <li>The proposal also planned recent-form features for players. They weren’t built.</li>
+  <li><b>No recent-form features</b> (a player’s last few matches) were built: such short windows hold too few balls and are too noisy, so the three-season history stands in for form.</li>
 </ul>
-<div class="placeholder">The 12 feature groups in plain words (scorecard, player type, momentum, chase pressure, striker, partnership, bowler spell, delivery, and the four history groups), with one example feature each.</div>
+<div class="placeholder">The 12 feature groups in plain words (scorecard, player type, momentum, chase pressure, striker, partnership, bowler spell, delivery, and the four history groups), with the three features that best describe each group.</div>
 
 <!-- ================================================================ -->
 <h2 id="methods">4. Baselines and Methods</h2>
@@ -125,7 +125,7 @@
 <tr><td><span class="dot xgb"></span>XGBoost (X-hist)</td><td class="l">All 87 features: 59 from the match so far and 28 from earlier matches.</td><td class="l">Depth 4, minimum child weight 100, learning rate 0.05, row and column sampling 0.8, and 301 trees.</td></tr>
 </tbody></table></div>
 <ul>
-  <li>XGBoost’s settings were tuned with 2024 held out (the proposal said 2025). For the final model, the number of trees was chosen on 2025, and the model was then refit on 2008-2025.</li>
+  <li>XGBoost’s settings were tuned with 2024 held out, so that 2025 stayed an untouched referee for comparing the models. For the final model, the number of trees was chosen on 2025, and the model was then refit on 2008-2025.</li>
 </ul>
 
 <h3>Calibration: Which Fix Each Model Uses</h3>
@@ -200,7 +200,7 @@
 <tbody><tr><td>XGBoost beats LR: death</td><td>3,583</td><td>−0.0084</td><td>[−0.0143, −0.0029]</td><td class="verdict-yes">confirmed</td></tr><tr><td>XGBoost beats LR: 6+ wickets down</td><td>1,721</td><td>−0.0141</td><td>[−0.0243, −0.0037]</td><td class="verdict-yes">confirmed</td></tr><tr><td>XGBoost beats LR: finishers</td><td>2,986</td><td>−0.0034</td><td>[−0.0096, +0.0028]</td><td class="verdict-no">not confirmed</td></tr><tr><td>XGBoost beats LR: easy chase RRR&lt;8</td><td>2,049</td><td>−0.0039</td><td>[−0.0093, +0.0010]</td><td class="verdict-no">not confirmed</td></tr><tr><td>XGBoost beats LR: 3-5 wickets down</td><td>5,661</td><td>+0.0011</td><td>[−0.0022, +0.0043]</td><td class="verdict-no">not confirmed</td></tr><tr><td>XGBoost beats B1: all balls</td><td>16,282</td><td>−0.0417</td><td>[−0.0482, −0.0358]</td><td class="verdict-yes">confirmed</td></tr></tbody>
 </table></div>
 
-<h3>Where the Gain Over B1 Comes From</h3>
+<h3>Where the Gain of XGBoost Over B1 Comes From</h3>
 <figure class="fig">
   <div class="panels p2">
     <div class="panel"><img data-fig="site/img/ladder_death" alt="At the death, a finer scorecard gives 82% of the gain and in-match context 17%; player type and history add nothing measurable." width="460" height="290" loading="lazy"><span class="plabel">(a) Death balls</span></div>
@@ -213,6 +213,7 @@
 <thead><tr><th>Step (each adds to the one above)</th><th>Death change</th><th>95% interval</th><th>Share</th><th>All-ball change</th><th>Share</th></tr></thead>
 <tbody><tr><td>Finer scorecard</td><td>−0.0278</td><td>[−0.0375, −0.0185]</td><td>82%</td><td>−0.0218</td><td>52%</td></tr><tr><td>+ batter and bowler type</td><td>−0.0004</td><td>[−0.0031, +0.0020]</td><td>1%</td><td>−0.0017</td><td>4%</td></tr><tr><td>+ in-match context</td><td>−0.0058</td><td>[−0.0100, −0.0017]</td><td>17%</td><td>−0.0062</td><td>15%</td></tr><tr><td>+ history of earlier matches (= XGBoost)</td><td>+0.0002</td><td>[−0.0044, +0.0047]</td><td>-1%</td><td>−0.0121</td><td>29%</td></tr></tbody>
 </table></div>
+<p class="finding"><b>History helps on all balls, but not at the death.</b> Adding the history of earlier matches gives 29% of XGBoost’s gain on all balls, with its interval clear of zero, but nothing at the death. The death interval is wide, yet it still rules out a gain as large as the all-ball one, and dropping all history later in this section agrees. A likely reason, not tested: at the death almost every batter swings hard, so the situation decides more and a player’s usual rates matter less.</p>
 
 <h3>Which Context Is Needed: Dropping One Group at a Time</h3>
 <figure class="fig">
@@ -246,11 +247,10 @@
 <p>The worst-predicted death balls fall into four patterns. Each is written up as a hypothesis on the <a href="site/worst.html">Worst-Predicted Balls page</a>, and the <a href="site/replay.html">Match Replay</a> shows four whole death overs ball by ball.</p>
 <ol>
   <li><b>Big hitters at boundary-friendly grounds aren’t expected to run twos or threes.</b></li>
-  <li><b>A new batter is expected to play himself in,</b> so early sixes surprise the model.</li>
+  <li><b>A new batter is expected to play himself in,</b> so early sixes surprise the model, most of all from tailenders.</li>
   <li><b>The last balls of an innings are read as an all-out slog,</b> so dots and singles surprise it.</li>
   <li><b>Some wickets have no clear cause</b> and look like chance.</li>
 </ol>
-<p>The proposal promised one list ranked by XGBoost’s loss. The page adds two more: the balls where XGBoost lost most to B1, and the worst three of each outcome.</p>
 <p><b>Free hits:</b> XGBoost gives a free-hit ball about a 6% chance of a wicket, although a batter can only be run out on a free hit. The logistic regression does better on these balls.</p>
 
 <h3>Rain-Affected Matches, Scored Separately</h3>
@@ -289,7 +289,7 @@
 
 <!-- ================================================================ -->
 <h2 id="ai">11. AI Assistance</h2>
-<p>Claude (Anthropic) helped write the code, check the results and draft the text for this project and this website. The Gemini API was used to label each player’s batting hand and bowling type, which were then hand-checked for about 100 players.</p>
+<p>Claude (Anthropic) helped write the code, check the results and draft the text for this project and this website. The Gemini API was used to label each player’s batting hand and bowling type, which were then hand-checked for 100 players.</p>
 
 </article>
 </div>

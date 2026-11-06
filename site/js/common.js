@@ -47,7 +47,7 @@
   header.className = 'top';
   header.innerHTML =
     '<div class="top-inner">' +
-    '<a class="brand" href="' + ROOT + 'index.html">Reading the Death Overs</a>' +
+    '<a class="brand" href="' + ROOT + 'index.html">Ball-by-Ball Outcome Prediction in IPL</a>' +
     '<nav class="nav" aria-label="Pages">' +
     PAGES.map(([id, name, href]) =>
       '<a href="' + href + '"' + (id === PAGE ? ' aria-current="page"' : '') + '>' + name + '</a>').join('') +
