@@ -57,12 +57,9 @@
     }).join('') + '</div>';
   }
 
-  const PUSH_GUIDE = 'Bars to the right pushed XGBoost toward what happened; bars to the left pushed it away. ' +
-    'Rough guide: −0.3 cuts the chance by about a quarter, −0.7 about halves it, −1.4 cuts it to about a quarter. Hover a bar for the exact multiplier.';
-
   function outcomeWords(o) {
     return { '0': 'Dot ball', '1': '1 run', '2': '2 runs', '3': '3 runs', '4': 'Four', '6': 'Six', 'W': 'Wicket' }[o] || o;
   }
 
-  window.BALL = { scorecard, probBars, pushBars, PUSH_GUIDE, outcomeWords };
+  window.BALL = { scorecard, probBars, pushBars, outcomeWords };
 })();

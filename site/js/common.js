@@ -1,6 +1,6 @@
 /* COPY-PASTE: shared code for every page.
    - the light/dark theme (follows the system, with a toggle that is remembered)
-   - the header, navigation and footer (one copy here, so every page matches)
+   - the header and navigation (one copy here, so every page matches)
    - small helpers: loading JSON and CSV, number formats, match names, feature labels, the tooltip
    Each page sets <body data-root="..." data-page="..."> so links work from the home page and from site/. */
 
@@ -22,9 +22,10 @@
   function applyTheme(t) {
     if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme;
     const eff = effectiveTheme();
-    // every figure has a light and a dark version: <img data-fig="fig1_drift_by_season">
+    // every figure has a light and a dark version: <img data-fig="site/img/drift_sixes"> (or "fig1_..." for img/)
     document.querySelectorAll('img[data-fig]').forEach(img => {
-      img.src = ROOT + 'img/' + img.dataset.fig + '_' + eff + '.svg';
+      const f = img.dataset.fig;
+      img.src = ROOT + (f.includes('/') ? '' : 'img/') + f + '_' + eff + '.svg';
     });
     const btn = document.querySelector('.theme-btn');
     if (btn) {
@@ -35,18 +36,18 @@
   }
   media.addEventListener('change', () => applyTheme(storedTheme()));
 
-  /* ---------- header and footer ---------- */
+  /* ---------- header ---------- */
   const PAGES = [
     ['report', 'Report', ROOT + 'index.html'],
-    ['replay', 'Match replay', ROOT + 'site/replay.html'],
-    ['worst', 'Worst-predicted balls', ROOT + 'site/worst.html'],
+    ['replay', 'Match Replay', ROOT + 'site/replay.html'],
+    ['worst', 'Worst-Predicted Balls', ROOT + 'site/worst.html'],
     ['extras', 'Extras', ROOT + 'site/extras.html'],
   ];
   const header = document.createElement('header');
   header.className = 'top';
   header.innerHTML =
     '<div class="top-inner">' +
-    '<a class="brand" href="' + ROOT + 'index.html">Predicting IPL death overs</a>' +
+    '<a class="brand" href="' + ROOT + 'index.html">Reading the Death Overs</a>' +
     '<nav class="nav" aria-label="Pages">' +
     PAGES.map(([id, name, href]) =>
       '<a href="' + href + '"' + (id === PAGE ? ' aria-current="page"' : '') + '>' + name + '</a>').join('') +
@@ -57,16 +58,6 @@
     saveTheme(next); applyTheme(next);
   });
 
-  const footer = document.createElement('footer');
-  footer.innerHTML =
-    '<div class="inner">' +
-    '<p><b>Arjun Namburi</b> · Machine Learning (ES335) · ' +
-    '<a href="' + REPO + '">Code and data on GitHub</a> · ' +
-    '<a href="' + REPO + '/tree/main/notebooks">Notebooks</a></p>' +
-    '<p>Ball-by-ball data: the Kaggle “IPL Dataset” (2008-2026). Batting hand and bowling type were labelled with the Gemini API and hand-checked for about 100 players.</p>' +
-    '<p><b>AI assistance:</b> Claude (Anthropic) helped write the code, check the results and draft the text for this project and this site.</p>' +
-    '</div>';
-  body.append(footer);
 
   applyTheme(storedTheme());
   // the 'how to read' boxes start open on a laptop and closed on a phone
