@@ -1,0 +1,12 @@
+check,slice,outcomes,balls,matches,actual_pct,xgb_pct,b1_pct,gap_pts,low,high,reading,bonferroni
+A,Batters in the top quarter for six rate,2+3,905,57,6.9613,6.9078,9.6915,0.0535,-1.7978,2.0408,can't tell,False
+A,All other batters,2+3,2678,71,7.2069,7.6664,9.2472,-0.4595,-1.4452,0.5666,can't tell,False
+A,"Top quarter for six rate, at a top-quarter boundary ground",2+3,172,13,2.3256,7.3745,9.7662,-5.049,-7.103,-2.7715,over-predicted,True
+B,First three balls faced,6,670,71,5.2239,5.5433,7.7778,-0.3195,-1.9371,1.2251,can't tell,False
+B,Batters at No. 8-11,6,813,56,5.6581,7.4897,6.6731,-1.8316,-3.2676,-0.3937,over-predicted,False
+B,"First three balls, No. 8-11",6,346,56,4.9133,4.3874,6.6682,0.5259,-1.4983,2.6368,can't tell,False
+B,"First three balls, No. 1-7",6,324,59,5.5556,6.7778,8.9628,-1.2222,-3.4976,1.2397,can't tell,False
+C,20th over,0,546,68,17.2161,15.5499,22.2285,1.6662,-1.2353,4.8602,can't tell,False
+C,20th over,1,546,68,29.8535,29.2968,40.092,0.5567,-3.6979,4.8402,can't tell,False
+C,Overs 16-19 (for comparison),0,3037,71,22.5881,20.259,20.4812,2.3291,0.9694,3.6503,under-predicted,True
+D,"Over 16, five or fewer down",W,640,68,5.9375,6.2241,7.4729,-0.2866,-2.005,1.7406,can't tell,False

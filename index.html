@@ -251,6 +251,12 @@
   <li><b>The last balls of an innings are read as an all-out slog,</b> so dots and singles surprise it.</li>
   <li><b>Some wickets have no clear cause</b> and look like chance.</li>
 </ol>
+<p><b>Checked across the season.</b> Each pattern was then tested on all 3,583 death balls of 2026, comparing how often the outcome happened with how often XGBoost predicted it:</p>
+<ul>
+  <li><b>Patterns 1-3 don’t hold up.</b> Big hitters ran twos and threes, new batters hit sixes, and the last over gave dots and singles about as often as XGBoost predicted. The worst balls behind them look like rare outcomes, not blind spots in the model.</li>
+  <li><b>Pattern 4 does.</b> Early in the death with wickets in hand, XGBoost’s wicket chance matches what happened.</li>
+  <li><b>The one season-wide miss</b> is the dot gap: XGBoost under-predicts dots across overs 16-19, not just in the last over (Figure 6).</li>
+</ul>
 <p><b>Free hits:</b> XGBoost gives a free-hit ball about a 6% chance of a wicket, although a batter can only be run out on a free hit. The logistic regression does better on these balls.</p>
 
 <h3>Rain-Affected Matches, Scored Separately</h3>
@@ -282,7 +288,7 @@
 <h2 id="reproduce">10. Reproduction Steps</h2>
 <ol>
   <li>Get the code from <a href="https://github.com/arjunnamburi/ml_death_overs_ipl">github.com/arjunnamburi/ml_death_overs_ipl</a>. The frozen state is tagged <code>test-2026</code>.</li>
-  <li>Run the notebooks in <code>notebooks/</code> in this order: <code>features</code>, <code>models</code>, <code>test_2026</code>, <code>post_freeze_checks</code>, <code>analysis_nb</code>, <code>error_analysis</code>, <code>site_export</code>, <code>site_build</code> and <code>site_figures</code>.</li>
+  <li>Run the notebooks in <code>notebooks/</code> in this order: <code>features</code>, <code>models</code>, <code>test_2026</code>, <code>post_freeze_checks</code>, <code>analysis_nb</code>, <code>error_analysis</code>, <code>site_export</code>, <code>site_build</code>, <code>site_figures</code> and <code>h1_checks</code>.</li>
   <li>The tables are in <code>data/</code>, and the site’s own data and figures are in <code>site/data/</code> and <code>site/img/</code>.</li>
 </ol>
 <div class="placeholder">Which files live only on Google Drive (the feature table and the model files), how to get the raw data, and the package versions (XGBoost 3.4.1).</div>
