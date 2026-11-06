@@ -113,25 +113,38 @@
   <li><b>No recent-form features</b> (a player’s last few matches) were built: such short windows hold too few balls and are too noisy, so the three-season history stands in for form.</li>
 </ul>
 <h3>The 12 Feature Groups</h3>
+<p>Click a group to see its three most important features. <button type="button" class="linkish" id="grp-all">Show all</button></p>
 <div class="table-wrap"><table class="prose">
-<thead><tr><th class="l">Group (features)</th><th class="l">What it describes</th><th class="l">Three examples</th></tr></thead>
+<thead><tr><th class="l">Group (features)</th><th class="l">What it describes</th></tr></thead>
 <tbody>
-<tr><td colspan="3" class="l grp"><b>In-match: 59 features from the match so far</b></td></tr>
-<tr><td class="l">Scorecard (17)</td><td class="l">The match state: score, balls, wickets and batting positions.</td><td class="l">Balls left per wicket in hand; Legal balls bowled so far; Team score.</td></tr>
-<tr><td class="l">Player type (3)</td><td class="l">Batting hand and bowling type.</td><td class="l">Bowling type; Batting hand vs bowling type; Batting hand.</td></tr>
-<tr><td class="l">Chase pressure (6)</td><td class="l">What the chasing side still needs.</td><td class="l">Required run rate; Required rate minus current rate; Target.</td></tr>
-<tr><td class="l">Momentum (12)</td><td class="l">The last 6 and 12 balls of the innings.</td><td class="l">Dot balls in the last 12 balls; Balls since the last wicket; Wickets in the last 6 balls.</td></tr>
-<tr><td class="l">Striker form (5)</td><td class="l">How the striker has batted so far today.</td><td class="l">Share of the striker’s runs from boundaries; Striker’s dots in their last 6 balls; Striker’s runs off their last 6 balls.</td></tr>
-<tr><td class="l">Partnership (7)</td><td class="l">The current pair at the crease.</td><td class="l">Partnership runs; Non-striker’s batting position; Partnership balls.</td></tr>
-<tr><td class="l">Bowler spell (7)</td><td class="l">How the bowler has bowled so far today.</td><td class="l">Runs off the bowler’s previous over; Overs since the bowler last bowled; Bowler’s economy today.</td></tr>
-<tr><td class="l">Delivery (2)</td><td class="l">The ball itself.</td><td class="l">Previous ball’s outcome; Free hit.</td></tr>
-<tr><td colspan="3" class="l grp"><b>History: 28 features from earlier matches</b></td></tr>
-<tr><td class="l">Batter history (9)</td><td class="l">The striker’s last three seasons.</td><td class="l">Striker’s past strike rate in this phase; Striker’s six rate; Striker’s boundary rate.</td></tr>
-<tr><td class="l">Bowler history (8)</td><td class="l">The bowler’s last three seasons.</td><td class="l">Bowler’s dot-ball rate; Bowler’s boundary rate conceded; Bowler’s boundary rate against this batting hand.</td></tr>
-<tr><td class="l">Matchup and base rates (4)</td><td class="l">League averages for this kind of matchup.</td><td class="l">League economy for this bowling type and phase; League boundary rate for this matchup and phase; League wicket rate for this matchup and phase.</td></tr>
-<tr><td class="l">Venue and season (7)</td><td class="l">The ground and the season.</td><td class="l">Venue boundary rate, last three seasons; League run rate this season so far; Balls played at this venue, last three seasons.</td></tr>
+<tr><td colspan="2" class="l grp"><b>In-match: 59 features from the match so far</b></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Scorecard (17)</button></td><td class="l">The match state: score, balls, wickets and batting positions.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Balls left per wicket in hand</li><li>Legal balls bowled so far</li><li>Team score</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Player type (3)</button></td><td class="l">Batting hand and bowling type.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Bowling type</li><li>Batting hand vs bowling type</li><li>Batting hand</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Chase pressure (6)</button></td><td class="l">What the chasing side still needs.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Required run rate</li><li>Required rate minus current rate</li><li>Target</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Momentum (12)</button></td><td class="l">The last 6 and 12 balls of the innings.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Dot balls in the last 12 balls</li><li>Balls since the last wicket</li><li>Wickets in the last 6 balls</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Striker form (5)</button></td><td class="l">How the striker has batted so far today.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Share of the striker’s runs from boundaries</li><li>Striker’s dots in their last 6 balls</li><li>Striker’s runs off their last 6 balls</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Partnership (7)</button></td><td class="l">The current pair at the crease.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Partnership runs</li><li>Non-striker’s batting position</li><li>Partnership balls</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Bowler spell (7)</button></td><td class="l">How the bowler has bowled so far today.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Runs off the bowler’s previous over</li><li>Overs since the bowler last bowled</li><li>Bowler’s economy today</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Delivery (2)</button></td><td class="l">The ball itself.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 2 features:</span><ol><li>Previous ball’s outcome</li><li>Free hit</li></ol></td></tr>
+<tr><td colspan="2" class="l grp"><b>History: 28 features from earlier matches</b></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Batter history (9)</button></td><td class="l">The striker’s last three seasons.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Striker’s past strike rate in this phase</li><li>Striker’s six rate</li><li>Striker’s boundary rate</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Bowler history (8)</button></td><td class="l">The bowler’s last three seasons.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Bowler’s dot-ball rate</li><li>Bowler’s boundary rate conceded</li><li>Bowler’s boundary rate against this batting hand</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Matchup and base rates (4)</button></td><td class="l">League averages for this kind of matchup.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>League economy for this bowling type and phase</li><li>League boundary rate for this matchup and phase</li><li>League wicket rate for this matchup and phase</li></ol></td></tr>
+<tr class="grp-row"><td class="l"><button type="button" class="grp-btn" aria-expanded="false"><span class="chev" aria-hidden="true">&#9662;</span>Venue and season (7)</button></td><td class="l">The ground and the season.</td></tr>
+<tr class="grp-ex" hidden><td colspan="2" class="l"><span class="muted">Top 3 features:</span><ol><li>Venue boundary rate, last three seasons</li><li>League run rate this season so far</li><li>Balls played at this venue, last three seasons</li></ol></td></tr>
 </tbody></table></div>
-<p class="muted" style="font-size:.88rem;margin-top:-.6rem">The examples are the three features in each group that moved XGBoost most, on average, at the 2026 death. Delivery has only two features.</p>
+<p class="muted" style="font-size:.88rem;margin-top:-.6rem">The features shown are the three in each group that moved XGBoost most, on average, at the 2026 death. Delivery has only two features.</p>
 
 <!-- ================================================================ -->
 <h2 id="methods">4. Baselines and Methods</h2>
@@ -284,8 +297,8 @@
 </ol>
 <p><b>Checked across the season.</b> Each pattern was then tested on all 3,583 death balls of 2026, comparing how often the outcome happened with how often XGBoost predicted it:</p>
 <ul>
-  <li><b>Patterns 1-3 don’t hold up.</b> Big hitters ran twos and threes, new batters hit sixes, and the last over gave dots and singles about as often as XGBoost predicted. The worst balls behind them look like rare outcomes, not blind spots in the model.</li>
-  <li><b>Pattern 4 does.</b> Early in the death with wickets in hand, XGBoost’s wicket chance matches what happened.</li>
+  <li><b>Patterns 1-3 don’t show up across the season.</b> Big hitters ran twos and threes, new batters hit sixes, and the last over gave dots and singles about as often as XGBoost predicted. The worst balls behind them are more likely rare outcomes than blind spots in the model.</li>
+  <li><b>Pattern 4 matches the season.</b> Early in the death with wickets in hand, XGBoost’s wicket chance matches what happened.</li>
   <li><b>The one season-wide miss</b> is the dot gap: XGBoost under-predicts dots across overs 16-19, not just in the last over (Figure 6).</li>
 </ul>
 <p><b>Free hits:</b> XGBoost gives a free-hit ball about a 6% chance of a wicket, although a batter can only be run out on a free hit. The logistic regression does better on these balls.</p>
@@ -298,7 +311,7 @@
 <p class="muted" style="font-size:.88rem;margin-top:-.6rem">* Too few matches for a reliable interval (one match gives none). Most of these matches are from the training seasons, so their gain is optimistic; only 8 are from 2025-2026.</p>
 <h3>What the Errors Say</h3>
 <ul>
-  <li><b>The worst balls are rare outcomes,</b> such as threes, sixes from new batters and dots on the final balls. Checked across the season, none of the patterns behind them is a systematic blind spot.</li>
+  <li><b>The worst balls are rare outcomes,</b> such as threes, sixes from new batters and dots on the final balls. Checked across the season, none of the patterns behind them showed up as a blind spot.</li>
   <li><b>The one systematic miss is too few dots at the death.</b> A calibration step fitted on death balls alone could fix it.</li>
   <li><b>Free hits could be handled by a rule</b> rather than learned: only a run-out can dismiss the batter, and there are too few free hits for the model to learn that.</li>
 </ul>
@@ -357,6 +370,14 @@
 </main>
 <script src="site/js/common.js"></script>
 <script>
+// feature groups: click a group to show its top features
+(function () {
+  const btns = [...document.querySelectorAll('.grp-btn')], all = document.getElementById('grp-all');
+  const set = (b, open) => { b.setAttribute('aria-expanded', open); b.closest('tr').nextElementSibling.hidden = !open; };
+  const sync = () => { if (all) all.textContent = btns.every(b => b.getAttribute('aria-expanded') === 'true') ? 'Hide all' : 'Show all'; };
+  btns.forEach(b => b.addEventListener('click', () => { set(b, b.getAttribute('aria-expanded') !== 'true'); sync(); }));
+  if (all) all.addEventListener('click', () => { const open = all.textContent === 'Show all'; btns.forEach(b => set(b, open)); sync(); });
+})();
 // highlight the section being read in the table of contents
 (function () {
   const links = [...document.querySelectorAll('.toc a[href^="#"]')];

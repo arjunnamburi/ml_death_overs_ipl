@@ -120,7 +120,7 @@
         mine.map(b => esc(b.batter) + ' (' + esc(b.outcome === 'W' ? 'wicket' : b.outcome) + ')').join(', ') + '</p>' +
         '<p>' + esc(m.text) + '</p>' +
         (m.check ? '<div class="checked"><p><b>Checked on all 2026 death balls:</b> ' + esc(m.check.replace(/^S4b check [A-D] \([^)]*\):\s*/, '')) + '</p>' +
-          (m.verdict ? '<p><span class="verdict ' + (m.verdict === 'Not supported' ? 'no' : 'yes') + '">' + esc(m.verdict) + '.</span> ' + esc(m.result) + '</p>' : '') + '</div>' : '') + '</article>';
+          (m.verdict ? '<p><span class="verdict ' + (m.verdict.indexOf('Not') === 0 ? 'no' : 'yes') + '">' + esc(m.verdict) + '.</span> ' + esc(m.result) + '</p>' : '') + '</div>' : '') + '</article>';
     }).join('');
   }
 })();
