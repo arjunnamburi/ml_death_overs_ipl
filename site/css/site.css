@@ -230,3 +230,4 @@ p.finding { margin-top: .4rem; }
   .brand { font-size: .92rem; white-space: normal; flex: 1 1 0; min-width: 0; }
   .theme-btn { flex: none; }
 }
+.grp { background: var(--panel); }
