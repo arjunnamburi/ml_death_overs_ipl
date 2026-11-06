@@ -1,30 +1,38 @@
 {
- "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json. Nov 6 (round 2): mechanism texts shortened; tailender balls in B got a \"short\" one-line summary and a line that says so.",
+ "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json. Nov 6 (round 2): mechanism texts shortened; tailender balls in B got a \"short\" one-line summary and a line that says so. Nov 6: H1 checks run (notebooks/h1_checks.ipynb, site/data/h1_checks_2026.csv); each mechanism has verdict and result.",
  "reading_pushes": "Each feature 'pushes' XGBoost's prediction toward or away from what actually happened. Pushes are in log-probability units and add up to the gap between XGBoost's final prediction and its starting guess for an average ball. As a rough guide, a push of -0.3 cuts the chance of what happened by about a quarter, -0.7 roughly halves it, and -1.4 cuts it to about a quarter. These are the model's reasons for its prediction, not causes of what happened on the field.",
  "mechanisms": {
   "A": {
    "title": "Big hitters at boundary-friendly grounds aren't expected to run twos or threes",
    "balls": 10,
    "text": "Twos and threes by big hitters at grounds that give up many boundaries got almost no chance from XGBoost. The batter's six rate and the ground's boundary rate pushed hardest against them. Our hypothesis: the model learned, correctly on average, that such batters score in boundaries and singles, so it moves probability away from twos and threes when they are on strike. Threes are also rare for every model, and some come from byes or overthrows that no feature can see.",
-   "check": "S4b check A (H1): do batters in the top quarter for six rate run more twos and threes than XGBoost predicts across the 2026 death?"
+   "check": "S4b check A (H1): do batters in the top quarter for six rate run more twos and threes than XGBoost predicts across the 2026 death?",
+   "verdict": "Not seen across the season",
+   "result": "Across the 2026 death, batters in the top quarter for six rate ran twos and threes about as often as XGBoost predicted (7.0% against 6.9%). At grounds with many boundaries they ran even fewer than it predicted. So the twos and threes on this page are more likely rare events than a blind spot."
   },
   "B": {
    "title": "A new batter is expected to play himself in",
    "balls": 6,
    "text": "Sixes hit by batters who had only just come in. Having no runs or balls yet, for the batter and for the partnership, pushed hardest against the six. Our hypothesis: in earlier seasons a new batter usually took a ball or two before attacking, while in 2026 more of them attacked at once. When the new batter was also a tailender (Kartik Tyagi, TA Boult, XC Bartlett, K Rabada), his low strike rate at the death pushed against the six as well, so the model was doubly sure.",
-   "check": "S4b check B (H1): across the 2026 death, do batters in their first three balls, and batters at 8-11, hit more sixes than XGBoost predicts?"
+   "check": "S4b check B (H1): across the 2026 death, do batters in their first three balls, and batters at 8-11, hit more sixes than XGBoost predicts?",
+   "verdict": "Not seen across the season",
+   "result": "Batters in their first three balls hit sixes about as often as XGBoost predicted (5.2% against 5.5%), and so did new batters at No. 8-11 (4.9% against 4.4%). So these sixes are more likely rare events than a blind spot."
   },
   "C": {
    "title": "The last balls of an innings are read as an all-out slog",
    "balls": 10,
    "text": "The final balls of an innings, often with nine down. The scorecard features dominate: few balls left per wicket, the ball count and the batting positions. XGBoost read these balls as all-out slogs and gave a dot far less chance than B1. Our hypothesis: the finer scorecard that brings most of XGBoost's gain also makes it overconfident here, where batters still miss, defend or take the single.",
-   "check": "S4b check C (H1): does XGBoost under-predict dots and singles across the 20th over of 2026 (not just on these balls)? If so, this also explains part of the season-wide under-prediction of death dots."
+   "check": "S4b check C (H1): does XGBoost under-predict dots and singles across the 20th over of 2026 (not just on these balls)? If so, this also explains part of the season-wide under-prediction of death dots.",
+   "verdict": "Not seen across the season",
+   "result": "In the 20th over, dots and singles came about as often as XGBoost predicted. Dots are under-predicted in overs 16-19 as well, so the last over doesn't seem special: it looks like part of the death-wide dot gap in Figure 6 of the report."
   },
   "D": {
    "title": "Wickets with no clear cause",
    "balls": 3,
    "text": "Three wickets early in the death, with wickets in hand. No feature pushed hard. XGBoost gives such balls a lower wicket chance than B1, and across the season that lower chance is about right (Figure 6 in the report). So we read these as chance, the cost of being right on average, not as a feature that misled the model.",
-   "check": null
+   "check": "S4b check D (added Nov 6): early in the death with wickets in hand, is XGBoost's wicket chance about right?",
+   "verdict": "Matches the season",
+   "result": "Early in the death with five or fewer down, wickets fell about as often as XGBoost predicted (5.9% against 6.2%), so its lower wicket chance there looks about right."
   }
  },
  "balls": [
