@@ -1,29 +1,29 @@
 {
- "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json.",
+ "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json. Nov 6 (round 2): mechanism texts shortened; tailender balls in B got a \"short\" one-line summary and a line that says so.",
  "reading_pushes": "Each feature 'pushes' XGBoost's prediction toward or away from what actually happened. Pushes are in log-probability units and add up to the gap between XGBoost's final prediction and its starting guess for an average ball. As a rough guide, a push of -0.3 cuts the chance of what happened by about a quarter, -0.7 roughly halves it, and -1.4 cuts it to about a quarter. These are the model's reasons for its prediction, not causes of what happened on the field.",
  "mechanisms": {
   "A": {
    "title": "Big hitters at boundary-friendly grounds aren't expected to run twos or threes",
    "balls": 10,
-   "text": "Ten balls ended in a three or a two, and XGBoost gave them almost no chance: 0.08-0.29% for the threes and 3.6-3.8% for the twos, against B1's 0.24-0.33% and 9.7-9.8%. On almost all of them, the biggest pushes against what happened came from the batter's history (above all how often he hits sixes) and from how often the ground gives up boundaries. Our hypothesis: the model has learned, correctly on average, that big hitters at small grounds score in boundaries and singles rather than twos and threes, so it moves probability away from twos and threes exactly when someone like Abhishek Sharma or V Suryavanshi is on strike. Threes are also rare for every model (about 0.3% of balls), and the label counts every run on the ball, so a three can be byes, leg-byes or an overthrow that no feature can see; part of each three is plain chance, and what XGBoost adds on top is its confidence in the batter's and the ground's profile.",
+   "text": "Twos and threes by big hitters at grounds that give up many boundaries got almost no chance from XGBoost. The batter's six rate and the ground's boundary rate pushed hardest against them. Our hypothesis: the model learned, correctly on average, that such batters score in boundaries and singles, so it moves probability away from twos and threes when they are on strike. Threes are also rare for every model, and some come from byes or overthrows that no feature can see.",
    "check": "S4b check A (H1): do batters in the top quarter for six rate run more twos and threes than XGBoost predicts across the 2026 death?"
   },
   "B": {
    "title": "A new batter is expected to play himself in",
    "balls": 6,
-   "text": "Six sixes were hit by batters who had only just come in: five within their first three balls (at least two off the very first ball), and Kartik Tyagi before he or his partnership had scored a run. XGBoost gave them 1.9-3.8%, against B1's 5.1-10.7%. The new-batter state pushed hardest against the six: no runs yet in the partnership, and no balls or runs yet for the batter. Our hypothesis: in the training seasons a new batter usually took a ball or two before attacking, so the model cuts the six chance on a batter's first balls, while in 2026, when sixes rose to 8.5% of balls, more batters attacked straight away. For Shashank Singh and Washington Sundar, their own batting history pushed toward the six (+0.53 and +0.40), but the new-batter state outweighed it. For the lower-order batters (Kartik Tyagi, TA Boult, XC Bartlett, K Rabada), a weak strike rate at the death over the last three seasons pushed against the six as well, so the model was doubly sure.",
+   "text": "Sixes hit by batters who had only just come in. Having no runs or balls yet, for the batter and for the partnership, pushed hardest against the six. Our hypothesis: in earlier seasons a new batter usually took a ball or two before attacking, while in 2026 more of them attacked at once. When the new batter was also a tailender (Kartik Tyagi, TA Boult, XC Bartlett, K Rabada), his low strike rate at the death pushed against the six as well, so the model was doubly sure.",
    "check": "S4b check B (H1): across the 2026 death, do batters in their first three balls, and batters at 8-11, hit more sixes than XGBoost predicts?"
   },
   "C": {
    "title": "The last balls of an innings are read as an all-out slog",
    "balls": 10,
-   "text": "On the final one to four balls of an innings, and with nine wickets down, the scorecard features dominate: very few balls left per wicket in hand, the ball count itself (116-119 balls bowled), and the batting position of the striker and the non-striker. XGBoost read these balls as all-out slogs. It gave a dot on the last balls about 8-9.5%, where B1 gave 17-32% and the logistic regression 10-17%. For singles in the last four balls, a No. 9-11 at the non-striker's end also pushed the single down, as if the batter would refuse it to keep the strike. With nine down, a No. 10 or 11 hitting a four was rated 5.5-6.2% against B1's 8.4%. Our hypothesis: the finer scorecard, which brings most of XGBoost's gain at the death (82%), also makes it overconfident on the final balls, where batters still miss, defend, or take the single on offer.",
+   "text": "The final balls of an innings, often with nine down. The scorecard features dominate: few balls left per wicket, the ball count and the batting positions. XGBoost read these balls as all-out slogs and gave a dot far less chance than B1. Our hypothesis: the finer scorecard that brings most of XGBoost's gain also makes it overconfident here, where batters still miss, defend or take the single.",
    "check": "S4b check C (H1): does XGBoost under-predict dots and singles across the 20th over of 2026 (not just on these balls)? If so, this also explains part of the season-wide under-prediction of death dots."
   },
   "D": {
    "title": "Wickets with no clear cause",
    "balls": 3,
-   "text": "Three wickets early in the death (15.1-15.6, with four or five down) cost XGBoost about 3.5-4% each, against B1's 7.4-7.7%. No feature pushed hard (the largest group push is -0.18), and the batters' own history pushed toward the wicket, not away from it. XGBoost simply gives a ball early in the death with wickets in hand a lower wicket chance than B1's coarser cell does, and across the season that lower chance is about right: balls it rates at 4-6% for a wicket are out about 4-5% of the time (figure 5). So we read these three as chance, the cost of being right on average, not as a feature that misled the model.",
+   "text": "Three wickets early in the death, with wickets in hand. No feature pushed hard. XGBoost gives such balls a lower wicket chance than B1, and across the season that lower chance is about right (Figure 6 in the report). So we read these as chance, the cost of being right on average, not as a feature that misled the model.",
    "check": null
   }
  },
@@ -136,7 +136,8 @@
    "bowler": "Mohammed Siraj",
    "outcome": "6",
    "mechanism": "B",
-   "line": "A lower-order batter with no runs yet in the partnership (-0.27) and a death strike rate of 114 over the last three seasons (-0.24). XGBoost 1.9%, B1 5.1%."
+   "line": "Kartik Tyagi is a tailender who had just come in: his strike rate at the death over the last three seasons is only 114 (−0.24), and there were no runs yet in the partnership (−0.27). XGBoost 1.9%, B1 5.1%.",
+   "short": "A new batter who is also a tailender isn't expected to hit a six"
   },
   {
    "match_id": 1529287,
@@ -146,7 +147,8 @@
    "bowler": "A Kamboj",
    "outcome": "6",
    "mechanism": "B",
-   "line": "A six off the first ball he faced. His death strike rate of 108 over the last three seasons (-0.32) and facing his first ball (-0.31) made XGBoost give it 2.1%, against B1's 7.3%."
+   "line": "A tailender's first ball, hit for six. His strike rate at the death over the last three seasons is only 108 (−0.32), and facing his first ball pushed against it too (−0.31): XGBoost 2.1%, against B1's 7.3%.",
+   "short": "A new batter who is also a tailender isn't expected to hit a six"
   },
   {
    "match_id": 1527677,
@@ -156,7 +158,8 @@
    "bowler": "M Prasidh Krishna",
    "outcome": "6",
    "mechanism": "B",
-   "line": "His third ball. A death strike rate of 114 (-0.26) and the chase state (-0.18) pushed against it: 2.3%, against B1's 8.0%."
+   "line": "A tailender on his third ball. His strike rate at the death is only 114 (−0.26), and the new partnership pushed against the six too (−0.13): 2.3%, against B1's 8.0%.",
+   "short": "A new batter who is also a tailender isn't expected to hit a six"
   },
   {
    "match_id": 1529272,
@@ -176,7 +179,8 @@
    "bowler": "JC Archer",
    "outcome": "6",
    "mechanism": "B",
-   "line": "His third ball, with a death strike rate of 117 over the last three seasons (-0.22) and seven down (scorecard -0.31): 2.8%, against B1's 8.0%."
+   "line": "A tailender on his third ball, with a strike rate at the death of only 117 over the last three seasons (−0.22) and seven down: 2.8%, against B1's 8.0%.",
+   "short": "A new batter who is also a tailender isn't expected to hit a six"
   },
   {
    "match_id": 1529277,

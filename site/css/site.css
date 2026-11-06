@@ -201,7 +201,7 @@ h2 { margin-top: 3.4rem; }
 h3 { margin-top: 2.2rem; }
 article ul li, article ol li { margin: .35rem 0; }
 .fig { margin: 2.2rem 0 2.8rem; }
-.panels { display: grid; gap: 1.6rem 1.8rem; align-items: end; }
+.panels { display: grid; gap: 1.6rem 1.8rem; align-items: start; }
 .panels.p4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .panels.p3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .panels.p2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -219,4 +219,14 @@ ul.key li { margin: .3rem 0; }
 @media (max-width: 700px) {
   .panels.p3, .panels.p2 { grid-template-columns: minmax(0, 1fr); }
   .panels.p3 .panel, .panels.p2 .panel { max-width: 26rem; margin: 0 auto; width: 100%; }
+}
+
+/* ---------- Nov 6, round 2: caption title on its own line, points under a figure, findings ---------- */
+.fig figcaption > b:first-child { display: block; margin-bottom: .3rem; color: var(--ink); }
+.fig ul.figpoints { margin: .7rem auto 0; max-width: var(--text-w); padding-left: 1.2rem; text-align: left; color: var(--ink); }
+.fig ul.figpoints li { margin: .3rem 0; }
+p.finding { margin-top: .4rem; }
+@media (max-width: 600px) {
+  .brand { font-size: .92rem; white-space: normal; flex: 1 1 0; min-width: 0; }
+  .theme-btn { flex: none; }
 }

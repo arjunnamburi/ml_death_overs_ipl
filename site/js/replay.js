@@ -12,6 +12,11 @@
   const NOTE = {
     1529281: 'The chase ended in a tie: Mohammed Shami hit the last ball for six to level the scores. KKR won the super over, which isn’t in the ball-by-ball data, so the replay ends on the last ball of the chase.',
   };
+  // why XGBoost did well or badly in the best and worst matches (read from the per-ball pushes; not tested)
+  const WHY = {
+    1535464: ['Why XGBoost did well here', 'Most of its gain came from sixes. D Ferreira hit three sixes in the last over, and XGBoost, which knew his strike rate at the death and his six rate, gave each one about 27% against B1’s 7%. In Gujarat’s chase the target was easy, so XGBoost rightly expected more dots.'],
+    1529310: ['Why XGBoost did badly here', 'A likely reading: both teams batted with big hitters (Ishan Kishan, TH David, RM Patidar) and the totals were huge, so XGBoost expected boundaries and gave the many singles, twos and dots too little chance. Most of its loss against B1 came from those balls. Bengaluru’s chase was out of reach, and their batters often rotated the strike instead of swinging. This fits patterns A and C on the Worst-Predicted Balls page.'],
+  };
   let M, SC, L, idx, cur = { match: null, inn: 0, ball: 0 };
 
   Promise.all([S.getJSON('data/replay/index.json'), S.getJSON('site/data/matches_2026.json'),
@@ -52,6 +57,7 @@
       '<p class="muted" style="margin:.2rem 0">' + esc(info.venue || R.venue) + ' · ' + esc(ROLE_TEXT[R.role] || R.role) + '</p>' +
       '<p class="result" style="margin:.2rem 0">' + totals + ' <span class="muted" style="font-weight:400">(scores at the end of each innings)</span></p>' +
       (NOTE[R.match_id] ? '<p style="margin:.4rem 0 0">' + esc(NOTE[R.match_id]) + '</p>' : '') +
+      (WHY[R.match_id] ? '<p style="margin:.4rem 0 0"><b>' + esc(WHY[R.match_id][0]) + ':</b> ' + esc(WHY[R.match_id][1]).replace('patterns A and C on the Worst-Predicted Balls page', 'patterns A and C on the <a href="worst.html#mechanisms">Worst-Predicted Balls page</a>') + '</p>' : '') +
       '<details style="margin-top:.4rem"><summary class="muted">How these four matches were picked</summary><p class="muted">' + esc(R.rule) + '</p></details></div>';
     h += '<div class="tabs" role="tablist">' + R.innings.map((i, k) =>
       '<button role="tab" aria-selected="' + (k === cur.inn) + '" data-k="' + k + '">' + (k === 0 ? '1st' : '2nd') + ' innings: ' + esc(i.batting) + '</button>').join('') + '</div>';
@@ -75,7 +81,8 @@
     let h = '<p>' + esc(inn.batting) + ' were ' + inn.start.runs + '/' + inn.start.wkts + ' after 15 overs' +
       (inn.target ? ', chasing ' + inn.target : '') + '. Over these ' + legal.length + ' legal balls, XGBoost finished <b>' + sideX + ' B1</b> (' +
       S.fmt.signed(last.gap_cum) + ' in total log-loss) and the logistic regression finished <b>' + sideL + ' B1</b> (' + S.fmt.signed(lrGap) + ').</p>';
-    h += '<div class="legend"><span><span class="dot xgb"></span>XGBoost minus B1</span><span><span class="dot lr"></span>Logistic regression minus B1</span><span class="muted">running total of log-loss; below zero = better than B1</span></div>';
+    h += '<div class="legend"><span><span class="dot xgb"></span>XGBoost minus B1</span><span><span class="dot lr"></span>Logistic regression minus B1</span></div>';
+    h += '<p class="muted chart-read">Each line is a model’s total log-loss so far minus B1’s. A line that falls from one ball to the next means that model beat B1 on that ball. Below zero, the model is ahead of B1 so far. Where the blue line is below the orange one, XGBoost is ahead of the logistic regression so far, by the gap between them.</p>';
     h += '<div class="chart" id="chart"></div>';
     h += '<div class="strip" id="strip" role="listbox" aria-label="Deliveries"></div>';
     h += '<div id="ball"></div>';
@@ -164,8 +171,8 @@
     if (drawChart.mark) drawChart.mark(k);
     const key = cur.match.match_id + '|' + inn.innings + '|' + b.over + '|' + inn.balls.slice(0, k).filter(x => x.over === b.over).length;
     const sc = SC[key];
-    let h = '<div class="card"><div class="ball-head"><h3>' + esc(b.over) + ' · ' + esc(b.bowler) + ' to ' + esc(b.batter) + '</h3>';
-    h += '<span class="outcome-big">' + (b.legal ? B.outcomeWords(b.outcome) : (b.extra === 'no-ball' ? 'No-ball' : 'Wide') + ', ' + b.runs + ' run' + (b.runs === 1 ? '' : 's')) + '</span>';
+    const out = b.legal ? b.outcome : (b.extra === 'no-ball' ? 'no-ball' : 'wide') + ', ' + b.runs + ' run' + (b.runs === 1 ? '' : 's');
+    let h = '<div class="card"><div class="ball-head"><h3>' + esc(b.over) + ' · ' + esc(b.bowler) + ' to ' + esc(b.batter) + ' · Outcome: ' + esc(out) + '</h3>';
     if (b.key) h += '<span class="tag own">Big difference between XGBoost and B1</span>';
     if (b.free_hit) h += '<span class="tag">Free hit</span>';
     if (b.new_batter) h += '<span class="tag">First ball faced</span>';
