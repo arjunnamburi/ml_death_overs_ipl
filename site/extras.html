@@ -8,6 +8,9 @@
 <!-- COPY-PASTE: the Extras page (things beyond the proposal). The logic is in js/extras.js. -->
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <link rel="stylesheet" href="css/site.css">
+<style>
+  .inf { margin: .2rem 0 .6rem; max-width: 52rem; }
+</style>
 </head>
 <body data-root="../" data-page="extras">
 <main>
@@ -23,10 +26,16 @@
   </ul>
 </details>
 
-<nav class="callout" aria-label="On this page"><b>On this page:</b> <a href="#players">Players</a> · <a href="#matches">Matches</a> · <a href="#ablations">Ablation detail</a></nav>
+<nav class="callout" aria-label="On this page"><b>On this page:</b> <a href="#players">Players</a> · <a href="#matches">Matches</a> · <a href="#ablations">Ablation Detail</a></nav>
 
-<h2 id="players">Which players the model reads best and worst (2026)</h2>
-<p class="muted" id="players-summary"></p>
+<h2 id="players">Which Players the Model Reads Best and Worst (2026)</h2>
+<p id="players-summary"></p>
+<ul class="key">
+  <li>The best-read batters are big hitters, such as Suryavanshi, Allen and Abhishek Sharma. Their history most likely tells XGBoost they hit sixes, which B1 can’t know.</li>
+  <li>The worst-read batters had slower seasons than their history suggested, such as Jaiswal and Washington Sundar.</li>
+  <li>For bowlers it runs the other way: the worst-read conceded far fewer runs than expected, such as Ngidi and Bhuvneshwar Kumar. The model barely tells bowlers apart.</li>
+  <li>No player, batter or bowler, is read clearly worse than by B1.</li>
+</ul>
 <div class="tabs" role="tablist" id="ptabs">
   <button role="tab" aria-selected="true" data-side="bat">Batters</button>
   <button role="tab" aria-selected="false" data-side="bowl">Bowlers</button>
@@ -34,17 +43,17 @@
 <div id="players-lists"></div>
 <ul class="muted" id="players-notes"></ul>
 
-<h2 id="matches">The most and least predictable 2026 matches</h2>
+<h2 id="matches">The Most and Least Predictable 2026 Matches</h2>
 <p>Ranked by XGBoost’s log-loss per ball over the whole match (more balls, so less noise than the death alone). Lower means easier to predict. The death-ball columns are shown for comparison.</p>
 <div id="matches-tables"></div>
 
-<h2 id="ablations">Ablation detail</h2>
+<h2 id="ablations">Ablation Detail</h2>
 <p>The report shows the 2026 group and block results (<a href="../index.html#results">Results</a>). Here are the full tables, with 2025 next to 2026: the same refits, trained on 2008-2024 and scored on 2025. “Bonferroni” marks an interval that also clears the stricter bar for many comparisons at once.</p>
-<h3>Dropping one group at a time</h3>
+<h3>Dropping One Group at a Time</h3>
 <div id="abl-groups"></div>
-<h3>Dropping a whole block</h3>
+<h3>Dropping a Whole Block</h3>
 <div id="abl-blocks"></div>
-<h3>Matchup history: batting hand vs bowling type</h3>
+<h3>Matchup History: Batting Hand vs Bowling Type</h3>
 <p class="muted">Does the matchup add anything on top of everything else? Dropping the two matchup-history columns, then also the four matchup-type base rates.</p>
 <div id="abl-matchup"></div>
 </main>

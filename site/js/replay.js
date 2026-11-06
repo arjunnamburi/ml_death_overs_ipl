@@ -71,9 +71,10 @@
     const legal = inn.balls.filter(b => b.legal);
     const last = legal[legal.length - 1];
     const lrGap = last.cum.lr - last.cum.b1;
+    const sideX = last.gap_cum < 0 ? 'ahead of' : 'behind', sideL = lrGap < 0 ? 'ahead of' : 'behind';
     let h = '<p>' + esc(inn.batting) + ' were ' + inn.start.runs + '/' + inn.start.wkts + ' after 15 overs' +
-      (inn.target ? ', chasing ' + inn.target : '') + '. Over these ' + legal.length + ' legal balls, XGBoost’s total log-loss was <b>' +
-      S.fmt.signed(last.gap_cum) + '</b> against B1’s and the logistic regression’s <b>' + S.fmt.signed(lrGap) + '</b> (negative = better than B1).</p>';
+      (inn.target ? ', chasing ' + inn.target : '') + '. Over these ' + legal.length + ' legal balls, XGBoost finished <b>' + sideX + ' B1</b> (' +
+      S.fmt.signed(last.gap_cum) + ' in total log-loss) and the logistic regression finished <b>' + sideL + ' B1</b> (' + S.fmt.signed(lrGap) + ').</p>';
     h += '<div class="legend"><span><span class="dot xgb"></span>XGBoost minus B1</span><span><span class="dot lr"></span>Logistic regression minus B1</span><span class="muted">running total of log-loss; below zero = better than B1</span></div>';
     h += '<div class="chart" id="chart"></div>';
     h += '<div class="strip" id="strip" role="listbox" aria-label="Deliveries"></div>';
@@ -163,24 +164,22 @@
     if (drawChart.mark) drawChart.mark(k);
     const key = cur.match.match_id + '|' + inn.innings + '|' + b.over + '|' + inn.balls.slice(0, k).filter(x => x.over === b.over).length;
     const sc = SC[key];
-    const R = cur.match, info = M[String(R.match_id)] || {};
     let h = '<div class="card"><div class="ball-head"><h3>' + esc(b.over) + ' · ' + esc(b.bowler) + ' to ' + esc(b.batter) + '</h3>';
     h += '<span class="outcome-big">' + (b.legal ? B.outcomeWords(b.outcome) : (b.extra === 'no-ball' ? 'No-ball' : 'Wide') + ', ' + b.runs + ' run' + (b.runs === 1 ? '' : 's')) + '</span>';
     if (b.key) h += '<span class="tag own">Big difference between XGBoost and B1</span>';
     if (b.free_hit) h += '<span class="tag">Free hit</span>';
     if (b.new_batter) h += '<span class="tag">First ball faced</span>';
     h += '<span class="nav-ball"><button class="btn" id="prev" aria-label="Previous ball">← Prev</button><button class="btn" id="next" aria-label="Next ball">Next →</button></span></div>';
-    h += B.scorecard(sc, b, info.teams ? info.teams.join(' vs ') : '');
+    h += B.scorecard(sc, b, '');
     if (!b.legal) {
       h += '<p class="muted">Not a legal ball, so no model predicts it. The same ball number is bowled again.</p>';
     } else {
+      h += '<p class="explain">' + explain(b) + '</p>';
       h += '<div class="grid2"><div><h4 style="margin:.3rem 0">What each model expected</h4>' + B.probBars(b.p, b.outcome) +
         '<div class="losses">' + ['xgb', 'lr', 'b1'].map(m => '<span data-tip="Log-loss = −log(chance given to what happened). Lower is better."><span class="dot ' + m + '"></span>' +
-          (m === 'b1' ? 'B1' : m === 'lr' ? 'Log. reg.' : 'XGBoost') + ' log-loss <b class="num">' + S.fmt.ll(b.loss[m]) + '</b></span>').join('') + '</div>' +
-        '<p class="muted" style="margin:.2rem 0">' + verdict(b) + '</p></div>';
+          (m === 'b1' ? 'B1' : m === 'lr' ? 'Log. reg.' : 'XGBoost') + ' log-loss <b class="num">' + (+b.loss[m]).toFixed(2) + '</b></span>').join('') + '</div></div>';
       h += '<div><h4 style="margin:.3rem 0">Why XGBoost thought so: the three biggest pushes</h4>' +
-        B.pushBars(b.why.map(w => ({ label: S.featLabel(L, w.f), sub: '= ' + S.featValue(L, w.f, w.value), push: w.push }))) +
-        '<p class="muted" style="font-size:.85rem">' + esc(B.PUSH_GUIDE) + '</p></div></div>';
+        B.pushBars(b.why.map(w => ({ label: S.featLabel(L, w.f), sub: '= ' + S.featValue(L, w.f, w.value), push: w.push }))) + '</div></div>';
     }
     h += '</div>';
     document.getElementById('ball').innerHTML = h;
@@ -190,10 +189,24 @@
     document.getElementById('next').onclick = () => showBall(k + 1);
   }
 
-  function verdict(b) {
-    const d = b.x_minus_b1;
-    if (Math.abs(d) < 0.05) return 'XGBoost and B1 scored about the same on this ball.';
-    return (d < 0 ? 'XGBoost did better than B1 on this ball by ' : 'B1 did better than XGBoost on this ball by ') + Math.abs(d).toFixed(2) + ' log-loss.';
+  // one plain sentence per ball: who gave what happened the higher chance, and the features
+  // that moved XGBoost most in the direction that decided the ball
+  const NOUN = { '0': 'a dot', '1': 'a single', '2': 'two runs', '3': 'three runs', '4': 'a four', '6': 'a six', 'W': 'a wicket' };
+  function explain(b) {
+    const k = S.OUTCOMES.indexOf(b.outcome), px = b.p.xgb[k], pb = b.p.b1[k], d = b.x_minus_b1;
+    const what = NOUN[b.outcome];
+    const feat = w => {
+      let lab = S.featLabel(L, w.f); if (/^[A-Z][a-z]/.test(lab)) lab = lab[0].toLowerCase() + lab.slice(1);
+      return esc(lab) + ' (' + esc(S.featValue(L, w.f, w.value)) + ')';
+    };
+    if (Math.abs(d) < 0.05) return 'XGBoost and B1 gave ' + what + ' about the same chance (' + S.fmt.pct(px) + ' and ' + S.fmt.pct(pb) + ').';
+    const better = d < 0, size = Math.abs(d) < 0.15 ? 'slightly ' : Math.abs(d) >= 0.5 ? 'much ' : '';
+    let t = 'XGBoost put ' + S.fmt.pct(px) + ' on ' + what + ' and B1 ' + S.fmt.pct(pb) + ', so <b>' +
+      (better ? 'XGBoost did ' + size + 'better' : 'B1 did ' + size + 'better') + '</b> on this ball. ';
+    const same = b.why.filter(w => better ? w.push > 0 : w.push < 0).slice(0, 2);
+    if (same.length) t += 'What ' + (better ? 'raised' : 'lowered') + ' XGBoost’s chance most: ' + same.map(feat).join(' and ') + '.';
+    else t += 'None of XGBoost’s three biggest pushes point that way; many small ones added up.';
+    return t;
   }
 
   document.addEventListener('keydown', e => {

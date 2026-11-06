@@ -192,3 +192,31 @@ footer p { margin: .3rem 0; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media print { .top, .toc, .theme-btn { display: none; } .with-toc { display: block; } }
+
+/* ---------- Nov 6: wider report, figure panels with labels below, more room ---------- */
+body[data-page="report"] main, body[data-page="extras"] main { max-width: 82rem; }
+body[data-page="report"] .top-inner, body[data-page="extras"] .top-inner { max-width: 82rem; }
+.with-toc { grid-template-columns: 12rem minmax(0, 1fr); gap: 3rem; }
+h2 { margin-top: 3.4rem; }
+h3 { margin-top: 2.2rem; }
+article ul li, article ol li { margin: .35rem 0; }
+.fig { margin: 2.2rem 0 2.8rem; }
+.panels { display: grid; gap: 1.6rem 1.8rem; align-items: end; }
+.panels.p4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.panels.p3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.panels.p2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.panel img { width: 100%; height: auto; display: block; }
+.plabel { display: block; text-align: center; font-size: .9rem; color: var(--ink); margin-top: .5rem; font-weight: 600; }
+.plabel span { font-weight: 400; color: var(--ink-2); }
+.fig .legend { justify-content: center; margin-top: 1rem; }
+.fig figcaption { margin: .9rem auto 0; max-width: var(--text-w); text-align: left; }
+ul.key { background: var(--panel); border-radius: var(--radius); padding: .8rem 1.2rem .8rem 2.2rem; margin: 1rem 0 1.6rem; max-width: var(--text-w); }
+ul.key li { margin: .3rem 0; }
+.howread { border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem 1.1rem; margin: 1.2rem 0; max-width: var(--text-w); }
+.howread b:first-child { display: block; margin-bottom: .3rem; }
+.sym { display: inline-block; vertical-align: middle; margin-right: .3rem; }
+@media (max-width: 1000px) { .panels.p4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .panels.p3, .panels.p2 { grid-template-columns: minmax(0, 1fr); }
+  .panels.p3 .panel, .panels.p2 .panel { max-width: 26rem; margin: 0 auto; width: 100%; }
+}

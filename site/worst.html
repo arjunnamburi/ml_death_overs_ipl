@@ -3,36 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Worst-predicted balls</title>
+<title>Worst-Predicted Balls</title>
 <meta name="description" content="The 2026 IPL death balls XGBoost predicted worst, with what pushed it away from what happened and a hypothesis for each.">
 <!-- COPY-PASTE: the worst-predicted balls page. The logic is in js/worst.js; the hypotheses are in data/hypotheses.json. -->
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <link rel="stylesheet" href="css/site.css">
 <style>
   .mech { border-left: 4px solid var(--accent); }
-  .mech .letter { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--accent); color: var(--bg); font-weight: 700; font-size: .9rem; margin-right: .4rem; }
+  .letter { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--accent); color: var(--bg); font-weight: 700; font-size: .9rem; margin-right: .4rem; }
+  .letter.sm { width: 1.3rem; height: 1.3rem; font-size: .75rem; vertical-align: 1px; }
+  .ball-card .meta .tag { margin-left: .3rem; }
+  table.mini { width: auto; font-size: .92rem; margin: .2rem 0 0; }
+  table.mini th, table.mini td { padding: .3rem .7rem; }
+  table.mini td.x { font-weight: 700; }
+  table.mini td.l { min-width: 0; }
+  @media (max-width: 600px) { table.mini { font-size: .85rem; } table.mini th, table.mini td { padding: .3rem .35rem; } }
+  .hyp1 { margin: .7rem 0 .2rem; }
+  details.why > summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: .95rem; margin-top: .5rem; width: fit-content; }
+  details.why[open] > summary { margin-bottom: .4rem; }
+  details.why h4 { margin: .9rem 0 .25rem; }
+  .small { font-size: .85rem; margin: .3rem 0 0; }
   .ball-card .meta { color: var(--ink-2); font-size: .9rem; margin: .1rem 0 .5rem; }
   .ball-card .rank { font-variant-numeric: tabular-nums; color: var(--ink-3); margin-right: .3rem; }
-  .chance { display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: .92rem; margin: .4rem 0; }
-  .chance b { font-variant-numeric: tabular-nums; }
   .hyp { background: var(--panel); border-radius: 8px; padding: .55rem .8rem; margin: .6rem 0; }
   .net { font-size: .9rem; margin: .3rem 0 .5rem; }
-  details.more summary { cursor: pointer; color: var(--accent); font-size: .92rem; margin-top: .4rem; }
 </style>
 </head>
 <body data-root="../" data-page="worst">
 <main>
-<h1>Worst-predicted balls</h1>
-<p class="lede">The 2026 death balls XGBoost got most wrong: what happened, what each model expected, what pushed XGBoost away from the real outcome, and a hypothesis for why.</p>
+<h1>Worst-Predicted Balls</h1>
+<p class="lede">The 2026 death balls XGBoost got most wrong, each with a hypothesis for why. Open a ball with <b>Show why</b> to see what pushed XGBoost away from the real outcome.</p>
 
 <details class="howto" open>
   <summary>How to read this page</summary>
   <ul>
     <li><b>Three lists</b> (the tabs): the ten balls with XGBoost’s highest log-loss; the ten where XGBoost lost most to the scorecard baseline (B1); and the worst three of each outcome. A ball can be in more than one list.</li>
-    <li><b>The chance line</b> gives the probability each model put on what actually happened. Log-loss is −log of XGBoost’s chance: 1% gives 4.6, 0.1% gives 6.9.</li>
+    <li><b>The small table</b> gives the chance each model put on what actually happened, and the log-loss that follows from it. The lower the chance, the higher the log-loss.</li>
     <li><b>The tag</b> says whose miss it was. <i>Rare for every model</i>: even B1 gave it under 1%. <i>XGBoost’s own miss</i>: B1 gave it at least twice XGBoost’s chance. <i>Shared miss</i>: everything else.</li>
-    <li><b>The push bars</b> show which groups of features moved XGBoost toward the real outcome (right) or away from it (left), starting from its guess for an average ball. They add up to the net push. Hover a bar for its multiplier.</li>
-    <li><b>The hypothesis</b> links to one of four shared explanations below the lists. Each is written once and shared by the balls it explains.</li>
+    <li><b>The hypothesis</b> is one of four patterns, explained below the lists. <b>Show why</b> gives the full reasoning for that ball.</li>
+    <li><b>The push bars</b> (inside <i>Show why</i>) show which features moved XGBoost toward what happened (right) or away from it (left), compared with its guess for an average ball. As a rough guide, −0.3 cuts the chance by about a quarter, −0.7 about halves it and −1.4 cuts it to about a quarter. Hover a bar for the exact figure.</li>
+    <li><b>Pushes are the model’s reasons,</b> not causes on the field.</li>
   </ul>
 </details>
 
@@ -42,11 +52,10 @@
   <button role="tab" aria-selected="false" data-list="top3_per_outcome">Worst 3 of each outcome</button>
 </div>
 <p class="muted" id="list-intro"></p>
-<div id="list"></div>
 <div class="note" id="list-note"></div>
+<div id="list"></div>
 
-<h2 id="mechanisms">Four hypotheses, shared across the balls</h2>
-<p class="muted" id="reading"></p>
+<h2 id="mechanisms">Four Hypotheses, Shared Across the Balls</h2>
 <div id="mechs"></div>
 </main>
 <script src="js/common.js"></script>

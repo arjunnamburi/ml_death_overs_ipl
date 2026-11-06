@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Match replay</title>
+<title>Match Replay</title>
 <meta name="description" content="Four 2026 IPL death overs, ball by ball: what XGBoost, logistic regression and the scorecard baseline predicted, and what happened.">
 <!-- COPY-PASTE: the match replay page. The logic is in js/replay.js. -->
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
@@ -35,11 +35,12 @@
   .chart .zero { stroke: var(--ink-3); }
   .nav-ball { display: flex; gap: .4rem; align-items: center; margin-left: auto; }
   .result { font-weight: 600; }
+  .explain { margin: .7rem 0 .4rem; max-width: 52rem; }
 </style>
 </head>
 <body data-root="../" data-page="replay">
 <main>
-<h1>Match replay</h1>
+<h1>Match Replay</h1>
 <p class="lede">Four 2026 matches, from over 16 to the end of each innings. For every ball: the situation, what three models predicted, what happened, and why XGBoost thought what it did.</p>
 
 <details class="howto" open>
@@ -48,7 +49,9 @@
     <li><b>Pick a match</b> and an innings. The close chase (a tie) opens first.</li>
     <li><b>The chart</b> shows each model's running total of log-loss <i>minus the scorecard baseline's</i>. Below zero means the model has done better than B1 so far. Lower is better. Hover to see each ball; click to open it.</li>
     <li><b>The ball strip</b> has one square per delivery: the outcome (• = dot, W = wicket), with wides and no-balls faded. A small dot in the corner marks the five balls where XGBoost and B1 differed most. Use the arrow keys or the buttons to step through.</li>
-    <li><b>Each ball</b> shows the scorecard <i>before</i> the ball (what the models saw), the chance each model gave each outcome (the real outcome is outlined), the log-loss (lower is better), and the three features that moved XGBoost most.</li>
+    <li><b>Each ball</b> shows the scorecard <i>before</i> the ball (what the models saw), one sentence on whether XGBoost or B1 did better, the chance each model gave each outcome (the real outcome is outlined) and the log-loss (lower is better).</li>
+    <li><b>The push bars</b> are the three features that moved XGBoost most, toward what happened (right) or away from it (left), compared with its guess for an average ball. As a rough guide, −0.3 cuts the chance by about a quarter, −0.7 about halves it and −1.4 cuts it to about a quarter. Hover a bar for the exact figure.</li>
+    <li><b>The sentence</b> names the features that moved XGBoost most in the direction that decided the ball. They explain XGBoost’s own number, not B1’s, and they are the model’s reasons, not causes on the field.</li>
   </ol>
 </details>
 
