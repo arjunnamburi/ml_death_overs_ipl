@@ -38,8 +38,8 @@
     document.querySelectorAll('#pick button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.id === id)));
     S.getJSON('data/replay/' + id + '.json').then(R => {
       cur = { match: R, inn: R.innings.length - 1, ball: 0 };
-      // open the chase at its last ball for the tie; otherwise the first ball of the last innings
-      cur.ball = id === 1529281 ? R.innings[cur.inn].balls.length - 1 : 0;
+      // open on the first death ball (15.1) of the last innings, so a visitor steps forward through the death overs
+      cur.ball = 0;
       renderMatch();
     });
   }
@@ -83,6 +83,7 @@
       S.fmt.signed(last.gap_cum) + ' in total log-loss) and the logistic regression finished <b>' + sideL + ' B1</b> (' + S.fmt.signed(lrGap) + ').</p>';
     h += '<div class="legend"><span><span class="dot xgb"></span>XGBoost minus B1</span><span><span class="dot lr"></span>Logistic regression minus B1</span></div>';
     h += '<p class="muted chart-read">Each line is a model’s total log-loss so far minus B1’s. A line that falls from one ball to the next means that model beat B1 on that ball. Below zero, the model is ahead of B1 so far. Where the blue line is below the orange one, XGBoost is ahead of the logistic regression so far, by the gap between them.</p>';
+    h += '<p class="chart-ylab">Running log-loss, model minus B1 (lower is better for the model)</p>';
     h += '<div class="chart" id="chart"></div>';
     h += '<div class="strip" id="strip" role="listbox" aria-label="Deliveries"></div>';
     h += '<div id="ball"></div>';
@@ -101,8 +102,8 @@
     inn.balls.forEach((b, k) => {
       const o = b.over.split('.')[0];
       if (o !== over) { if (over !== null) h += '<span class="over-break"></span>'; h += '<span class="over-lab">Over ' + (+o + 1) + '</span>'; over = o; }
-      const cls = (b.legal ? 'o' + b.outcome : 'extra') + (b.key ? ' key' : '');
-      const tip = b.over + ': ' + (b.legal ? B.outcomeWords(b.outcome) : (b.extra === 'no-ball' ? 'no-ball' : 'wide')) + (b.runs && !b.legal ? ', ' + b.runs + ' run' + (b.runs > 1 ? 's' : '') : '') +
+      const cls = (b.legal ? 'o' + b.outcome : 'extra') + (b.key ? ' key' : '') + (b.free_hit ? ' fh' : '');
+      const tip = b.over + ': ' + (b.legal ? B.outcomeWords(b.outcome) : (b.extra === 'no-ball' ? 'no-ball' : 'wide')) + (b.runs && !b.legal ? ', ' + b.runs + ' run' + (b.runs > 1 ? 's' : '') : '') + (b.free_hit ? ', free hit' : '') +
         (b.key ? ' (one of the 5 balls where XGBoost and B1 differed most)' : '');
       h += '<button role="option" class="' + cls + '" data-k="' + k + '" data-tip="' + esc(tip) + '" aria-label="' + esc(tip) + '">' + chip(b) + '</button>';
     });

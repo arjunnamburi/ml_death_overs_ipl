@@ -119,7 +119,7 @@
         '<p class="muted" style="margin-top:0">Shared by ' + mine.length + ' ball' + (mine.length === 1 ? '' : 's') + ': ' +
         mine.map(b => esc(b.batter) + ' (' + esc(b.outcome === 'W' ? 'wicket' : b.outcome) + ')').join(', ') + '</p>' +
         '<p>' + esc(m.text) + '</p>' +
-        (m.check ? '<div class="checked"><p><b>Checked on all 2026 death balls:</b> ' + esc(m.check.replace(/^S4b check [A-D] \([^)]*\):\s*/, '')) + '</p>' +
+        (m.check ? '<div class="checked"><p><b>Checked on all 2026 death balls:</b> ' + esc(m.check.replace(/^S4b check [A-E] \([^)]*\):\s*/, '')) + '</p>' +
           (m.verdict ? '<p><span class="verdict ' + (m.verdict.indexOf('Not') === 0 ? 'no' : 'yes') + '">' + esc(m.verdict) + '.</span> ' + esc(m.result) + '</p>' : '') + '</div>' : '') + '</article>';
     }).join('');
   }
