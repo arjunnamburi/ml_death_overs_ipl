@@ -1,14 +1,14 @@
 {
- "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json. Nov 6 (round 2): mechanism texts shortened; tailender balls in B got a \"short\" one-line summary and a line that says so. Nov 6: H1 checks run (notebooks/h1_checks.ipynb, site/data/h1_checks_2026.csv); each mechanism has verdict and result.",
- "reading_pushes": "Each feature 'pushes' XGBoost's prediction toward or away from what actually happened. Pushes are in log-probability units and add up to the gap between XGBoost's final prediction and its starting guess for an average ball. As a rough guide, a push of -0.3 cuts the chance of what happened by about a quarter, -0.7 roughly halves it, and -1.4 cuts it to about a quarter. These are the model's reasons for its prediction, not causes of what happened on the field.",
+ "_note": "Draft v2, Nov 5 (Claude, from the W5b pushes). Arjun to edit. The worst-balls page joins each ball on match_id + innings + over. Pushes are SHAP contributions in log-probability units, measured from XGBoost's own starting prediction. Site copy, Nov 5: two join keys corrected (Himmat Singh three, RK Singh wicket) to match worst_balls_death_2026.json. Nov 6 (round 2): mechanism texts shortened; tailender balls in B got a \"short\" one-line summary and a line that says so. Nov 6: H1 checks run (notebooks/h1_checks.ipynb, site/data/h1_checks_2026.csv); each mechanism has verdict and result. Nov 7 (site review): A split into A (threes, 7 balls) and E (twos by big hitters, 3 balls); checks A and E re-run in h1_checks.ipynb.",
+ "reading_pushes": "Each feature 'pushes' XGBoost's prediction toward or away from what actually happened. Pushes are in log-probability units and add up to the gap between XGBoost's final prediction and its starting guess for an average ball. As a rough guide (approximately, and for less likely outcomes), a push of -0.3 cuts the chance of what happened by about a quarter, -0.7 roughly halves it, and -1.4 cuts it to about a quarter. These are the model's reasons for its prediction, not causes of what happened on the field.",
  "mechanisms": {
   "A": {
-   "title": "Big hitters at boundary-friendly grounds aren't expected to run twos or threes",
-   "balls": 10,
-   "text": "Twos and threes by big hitters at grounds that give up many boundaries got almost no chance from XGBoost. The batter's six rate and the ground's boundary rate pushed hardest against them. Our hypothesis: the model learned, correctly on average, that such batters score in boundaries and singles, so it moves probability away from twos and threes when they are on strike. Threes are also rare for every model, and some come from byes or overthrows that no feature can see.",
-   "check": "S4b check A (H1): do batters in the top quarter for six rate run more twos and threes than XGBoost predicts across the 2026 death?",
-   "verdict": "Not seen across the season",
-   "result": "Across the 2026 death, batters in the top quarter for six rate ran twos and threes about as often as XGBoost predicted (7.0% against 6.9%). At grounds with many boundaries they ran even fewer than it predicted. So the twos and threes on this page are more likely rare events than a blind spot."
+   "title": "Threes are rare for every model",
+   "balls": 7,
+   "text": "Seven threes. Threes are about 1 in 500 death balls (7 of 3,583 in 2026), so every model gave each of these under about 0.35%. For most of them XGBoost's batter-history and ground features pushed further against a three (a frequent six-hitter, a ground where many balls go for boundaries), but the difference from B1 is small in absolute terms. Our hypothesis: these are rare events, the price of a model that is right on average, and some threes come from overthrows or misfields that no feature can see.",
+   "check": "S4b check A (H1, revised Nov 7): across all 2026 death balls, does XGBoost predict threes about as often as they happen?",
+   "verdict": "Matches the season",
+   "result": "Threes were 0.20% of 2026 death balls, and XGBoost predicted 0.16% (gap +0.03 points, 95% interval −0.11 to +0.21). With only seven threes the check can't rule out a small miss, but there is no sign of a blind spot."
   },
   "B": {
    "title": "A new batter is expected to play himself in",
@@ -33,6 +33,14 @@
    "check": "S4b check D (added Nov 6): early in the death with wickets in hand, is XGBoost's wicket chance about right?",
    "verdict": "Matches the season",
    "result": "Early in the death with five or fewer down, wickets fell about as often as XGBoost predicted (5.9% against 6.2%), so its lower wicket chance there looks about right."
+  },
+  "E": {
+   "title": "Set big hitters aren't expected to run twos",
+   "balls": 3,
+   "text": "Twos by two of the season's biggest hitters (Abhishek Sharma twice, V Suryavanshi). Their six rate pushed hardest against the two (batter history about −0.5), leaving a two at under 4%, against B1's nearly 10%. Our hypothesis: the model learned that frequent six-hitters score in boundaries and singles, so it moves probability away from twos when they are on strike.",
+   "check": "S4b check E (H1, added Nov 7): across the 2026 death, do batters in the top quarter for six rate run more twos than XGBoost predicts, once set (20 or more balls faced) or at any point?",
+   "verdict": "Not seen across the season",
+   "result": "Set big hitters ran twos about as often as XGBoost predicted (7.4% against 6.8%, 324 balls), and so did big hitters in general (7.0% against 6.8%). At grounds with many boundaries they ran far fewer twos than it predicted (2.3% against 7.2%, the one clear gap). So the model doesn't under-rate twos for big hitters, and these three are more likely rare events."
   }
  },
  "balls": [
@@ -113,7 +121,7 @@
    "batter": "Abhishek Sharma",
    "bowler": "L Ngidi",
    "outcome": "2",
-   "mechanism": "A",
+   "mechanism": "E",
    "line": "One of the season's biggest hitters (an estimated six rate of 14.7% over 2024-26 so far): batter history -0.51 left a two at 3.6%, against B1's 9.8%."
   },
   {
@@ -123,7 +131,7 @@
    "batter": "V Suryavanshi",
    "bowler": "JO Holder",
    "outcome": "2",
-   "mechanism": "A",
+   "mechanism": "E",
    "line": "The highest six rate of anyone in the list (an estimated 19.4% over 2024-26 so far): batter history -0.54 left a two at 3.6%, against B1's 9.7%."
   },
   {
@@ -133,7 +141,7 @@
    "batter": "Abhishek Sharma",
    "bowler": "T Natarajan",
    "outcome": "2",
-   "mechanism": "A",
+   "mechanism": "E",
    "line": "Seven balls later in the same innings, the same profile and the same miss (batter history -0.53; 3.8% against B1's 9.8%)."
   },
   {

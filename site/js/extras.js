@@ -1,6 +1,6 @@
 /* COPY-PASTE: the Extras page.
    Reads data/players_2026.json, data/ablation_groups.csv, data/ablation_blocks.csv, data/matchup_ablation.csv
-   (all made earlier) and site/data/matches_2026.json (site_build.ipynb). */
+   (all made earlier), site/data/matches_2026.json (site_build.ipynb) and site/data/feature_labels.json. */
 
 (function () {
   'use strict';
@@ -90,4 +90,15 @@
   S.getCSV('data/ablation_groups.csv').then(r => { document.getElementById('abl-groups').innerHTML = ablTable(r, 'group', GROUP); });
   S.getCSV('data/ablation_blocks.csv').then(r => { document.getElementById('abl-blocks').innerHTML = ablTable(r, 'block', GROUP); });
   S.getCSV('data/matchup_ablation.csv').then(r => { document.getElementById('abl-matchup').innerHTML = ablTable(r, 'dropped', null); });
+
+  /* ---------- all 87 features, by group ---------- */
+  const ORDER = ['scorecard', 'player type', 'chase pressure', 'momentum', 'striker form', 'partnership', 'bowler spell', 'delivery',
+    'batter history', 'bowler history', 'matchup and base rates', 'venue and season'];
+  S.getJSON('site/data/feature_labels.json').then(L => {
+    const by = {};
+    Object.entries(L.features).forEach(([k, v]) => (by[v.group] = by[v.group] || []).push([k, v.label]));
+    document.getElementById('features-all').innerHTML = ORDER.filter(g => by[g]).map(g =>
+      '<h3>' + esc(g[0].toUpperCase() + g.slice(1)) + ' (' + by[g].length + ')</h3><ul class="feat-list">' +
+      by[g].map(([k, lab]) => '<li>' + esc(lab) + ' <code>' + esc(k) + '</code></li>').join('') + '</ul>').join('');
+  }).catch(() => { document.getElementById('features-all').textContent = 'Could not load the feature list.'; });
 })();

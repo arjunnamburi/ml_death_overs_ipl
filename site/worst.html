@@ -45,8 +45,8 @@
     <li><b>Three lists</b> (the tabs): the ten balls with XGBoost’s highest log-loss; the ten where XGBoost lost most to the scorecard baseline (B1); and the worst three of each outcome. A ball can be in more than one list.</li>
     <li><b>The small table</b> gives the chance each model put on what actually happened, and the log-loss that follows from it. The lower the chance, the higher the log-loss.</li>
     <li><b>The tag</b> says whose miss it was. <i>Rare for every model</i>: even B1 gave it under 1%. <i>XGBoost’s own miss</i>: B1 gave it at least twice XGBoost’s chance. <i>Shared miss</i>: everything else.</li>
-    <li><b>The hypothesis</b> is one of four patterns, explained below the lists. <b>Show why</b> gives the full reasoning for that ball.</li>
-    <li><b>The push bars</b> (inside <i>Show why</i>) show which features moved XGBoost toward what happened (right) or away from it (left), compared with its guess for an average ball. As a rough guide, −0.3 cuts the chance by about a quarter, −0.7 about halves it and −1.4 cuts it to about a quarter. Hover a bar for the exact figure.</li>
+    <li><b>The hypothesis</b> is one of five patterns, explained below the lists. <b>Show why</b> gives the full reasoning for that ball.</li>
+    <li><b>The push bars</b> (inside <i>Show why</i>) show which features moved XGBoost toward what happened (right) or away from it (left), compared with its guess for an average ball. As a rough guide (approximately, and for less likely outcomes), −0.3 cuts the chance by about a quarter, −0.7 about halves it and −1.4 cuts it to about a quarter. Hover a bar for the exact figure.</li>
     <li><b>Pushes are the model’s reasons,</b> not causes on the field.</li>
   </ul>
 </details>
@@ -60,8 +60,8 @@
 <div class="note" id="list-note"></div>
 <div id="list"></div>
 
-<h2 id="mechanisms">Four Hypotheses, Shared Across the Balls</h2>
-<p>Each hypothesis was written from a handful of balls, then checked on all 3,583 death balls of 2026 (<a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/notebooks/h1_checks.ipynb">notebook</a>). Three of the four don’t show up as a pattern across the season, so the balls behind them are more likely rare outcomes than blind spots in the model. The fourth, wickets by chance, matches the season.</p>
+<h2 id="mechanisms">Five Hypotheses, Shared Across the Balls</h2>
+<p>Each hypothesis was written from a handful of balls, then checked on all 3,583 death balls of 2026 (<a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/notebooks/h1_checks.ipynb">notebook</a>). Three of the five (B, C and E) don’t show up as a pattern across the season, so the balls behind them are more likely rare outcomes than blind spots in the model. The other two, threes being rare for every model (A) and wickets by chance (D), match the season.</p>
 <div id="mechs"></div>
 </main>
 <script src="js/common.js"></script>

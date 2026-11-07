@@ -26,7 +26,7 @@
   </ul>
 </details>
 
-<nav class="callout" aria-label="On this page"><b>On this page:</b> <a href="#players">Players</a> · <a href="#matches">Matches</a> · <a href="#ablations">Ablation Detail</a></nav>
+<nav class="callout" aria-label="On this page"><b>On this page:</b> <a href="#players">Players</a> · <a href="#matches">Matches</a> · <a href="#ablations">Ablation Detail</a> · <a href="#features">All 87 Features</a></nav>
 
 <h2 id="players">Which Players the Model Reads Best and Worst (2026)</h2>
 <p id="players-summary"></p>
@@ -56,6 +56,13 @@
 <h3>Matchup History: Batting Hand vs Bowling Type</h3>
 <p class="muted">Does the matchup add anything on top of everything else? Dropping the two matchup-history columns, then also the four matchup-type base rates.</p>
 <div id="abl-matchup"></div>
+
+<h2 id="features">All 87 Features</h2>
+<p>Every feature XGBoost and the logistic regression use, by group, with its name in the notebooks. The report shows only the top three of each group. <code>impact_player_era</code> (in Venue and season) is 1 from 2023 on, so it is 1 on every 2026 ball.</p>
+<details class="tbl"><summary>Show all 87 features</summary>
+<div id="features-all"></div>
+</details>
+<style>.feat-list { columns: 2 18rem; margin: .3rem 0 1rem; } .feat-list li { break-inside: avoid; margin-bottom: .15rem; } .feat-list code { font-size: .78em; color: var(--ink-3); }</style>
 </main>
 <script src="js/common.js"></script>
 <script src="js/extras.js"></script>

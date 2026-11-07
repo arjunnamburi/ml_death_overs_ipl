@@ -101,6 +101,10 @@ main { max-width: var(--wide-w); margin: 0 auto; padding: 1.2rem 16px 3rem; }
 .howto { background: var(--panel); border-radius: var(--radius); padding: .8rem 1rem; margin: 1rem 0; max-width: var(--wide-w); }
 .howto summary { font-weight: 650; cursor: pointer; }
 .howto ol, .howto ul { margin: .5rem 0 .2rem; padding-left: 1.3rem; }
+details.tbl { margin: .6rem 0 1.2rem; }
+details.tbl > summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: .92rem; width: max-content; max-width: 100%; }
+details.tbl > summary:hover { text-decoration: underline; }
+details.tbl[open] > summary { margin-bottom: .6rem; }
 .note { border-left: 3px solid var(--accent); padding: .3rem .9rem; color: var(--ink-2); margin: 1rem 0; max-width: var(--text-w); }
 .callout { background: var(--panel); border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1rem 0; }
 .headline { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .8rem; margin: 1rem 0; }
