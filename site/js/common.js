@@ -183,3 +183,13 @@
   window.SITE = { ROOT, PAGE, REPO, getJSON, getCSV, fmt, short, MODELS, OUTCOMES, OUTCOME_NAME, matchName,
     featLabel, featValue, pushWords, esc, effectiveTheme };
 })();
+
+// when the page is printed or saved as a PDF, open every collapsed section, then close them again
+(function () {
+  let opened = [];
+  window.addEventListener('beforeprint', () => {
+    opened = [...document.querySelectorAll('details:not([open])')];
+    opened.forEach(d => { d.open = true; });
+  });
+  window.addEventListener('afterprint', () => { opened.forEach(d => { d.open = false; }); opened = []; });
+})();

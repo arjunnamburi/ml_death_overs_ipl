@@ -125,6 +125,13 @@ table.prose td { white-space: normal; vertical-align: top; }
 caption { caption-side: bottom; text-align: left; color: var(--ink-2); font-size: .85rem; padding-top: .4rem; white-space: normal; }
 .verdict-yes { color: var(--good); font-weight: 600; }
 .verdict-no { color: var(--bad); font-weight: 600; }
+.verdict-part { color: var(--ink); font-weight: 600; }
+a.btn { display: inline-block; text-decoration: none; }
+.howto.concept { border-left: 3px solid var(--accent); }
+.howto.concept summary { color: var(--accent); }
+.howto.concept[open] summary { margin-bottom: .2rem; }
+.howto.concept li { margin-bottom: .35rem; }
+.howto.concept li ul { margin: .3rem 0 0; }
 .verdict-mixed { color: var(--ink-2); font-weight: 600; }
 
 /* ---------- figures ---------- */
