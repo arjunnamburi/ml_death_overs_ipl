@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Extras</title>
-<meta name="description" content="Extra results not promised in the proposal: which 2026 players and matches the model read best and worst, and the full feature-group ablation tables.">
-<!-- COPY-PASTE: the Extras page (things beyond the proposal). The logic is in js/extras.js. -->
+<meta name="description" content="More detail on 2026: which 2026 players and matches the model read best and worst, and the full feature-group ablation tables.">
+<!-- COPY-PASTE: the Extras page (more detail on 2026). The logic is in js/extras.js. -->
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <link rel="stylesheet" href="css/site.css">
 <style>
@@ -15,7 +15,7 @@
 <body data-root="../" data-page="extras">
 <main>
 <h1>Extras</h1>
-<p class="lede">Results that go beyond what the proposal promised. They were all looked at after the single 2026 scoring run, so they describe 2026; they don’t test anything, and nothing in the models was changed because of them.</p>
+<p class="lede">More detail on 2026: which players and matches the model read best and worst, the full ablation tables, and every feature the models use. Like the other analyses after the test, they describe 2026 rather than test it, and nothing in the models was changed because of them.</p>
 
 <details class="howto" open>
   <summary>How to read this page</summary>
@@ -59,12 +59,19 @@
 
 <h2 id="features">All 87 Features</h2>
 <p>Every feature XGBoost and the logistic regression use, by group, with its name in the notebooks. The report shows only the top three of each group. <code>impact_player_era</code> (in Venue and season) is 1 from 2023 on, so it is 1 on every 2026 ball.</p>
-<details class="tbl"><summary>Show all 87 features</summary>
+<details class="tbl" id="features-details"><summary>Show all 87 features</summary>
 <div id="features-all"></div>
 </details>
 <style>.feat-list { columns: 2 18rem; margin: .3rem 0 1rem; } .feat-list li { break-inside: avoid; margin-bottom: .15rem; } .feat-list code { font-size: .78em; color: var(--ink-3); }</style>
 </main>
 <script src="js/common.js"></script>
 <script src="js/extras.js"></script>
+<script>
+// open the feature list when arriving from the report's "Show all" button
+(function () {
+  const open = () => { if (location.hash === '#features') { const d = document.getElementById('features-details'); if (d) d.open = true; } };
+  open(); window.addEventListener('hashchange', open);
+})();
+</script>
 </body>
 </html>
