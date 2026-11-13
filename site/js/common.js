@@ -168,20 +168,21 @@
     return typeof v === 'number' ? (Math.abs(v) >= 100 ? v.toFixed(0) : (+v.toFixed(3)).toString()) : String(v);
   }
 
-  // a push of x multiplies the odds-like chance by about e^x
+  // a push is a change in XGBoost's score (margin) for what happened, not in its chance:
+  // softmax turns all seven scores into chances together, so the chance also depends on the other six
   function pushWords(x) {
-    const m = Math.exp(x);
-    let w;
-    if (m >= 1.05) w = 'raises the chance of what happened by about ' + Math.round((m - 1) * 100) + '%';
-    else if (m <= 0.95) w = 'cuts the chance of what happened by about ' + Math.round((1 - m) * 100) + '%';
-    else w = 'barely changes the chance';
-    return '×' + m.toFixed(2) + ': ' + w;
+    if (Math.abs(x) < 0.005) return 'barely moves the score of what happened';
+    return (x > 0 ? 'raises' : 'lowers') + ' XGBoost’s score for what happened by ' + Math.abs(x).toFixed(2) + ' (a score, not a chance)';
   }
+
+  // XGBoost's chance of each outcome before any feature pushes: the softmax of the seven base values
+  // of pred_contribs for the 2026 model (the same for every ball), in %
+  const BASE_PCT = { '0': 30.46, '1': 39.95, '2': 6.65, '3': 0.31, '4': 12.23, '6': 5.27, 'W': 5.13 };
 
   function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
   window.SITE = { ROOT, PAGE, REPO, getJSON, getCSV, fmt, short, MODELS, OUTCOMES, OUTCOME_NAME, matchName,
-    featLabel, featValue, pushWords, esc, effectiveTheme };
+    featLabel, featValue, pushWords, BASE_PCT, esc, effectiveTheme };
 })();
 
 // when the page is printed or saved as a PDF, open every collapsed section, then close them again

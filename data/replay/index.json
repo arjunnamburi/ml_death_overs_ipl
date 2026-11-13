@@ -1,5 +1,5 @@
 {
- "rule": "Four 2026 matches, picked by a rule written on Nov 4 before any per-match death result was looked at. Eligible: matches where both innings reached over 16. Gain = XGBoost's mean death-ball log-loss minus B1's, over both innings. Picked in this order, each from the matches not yet picked: XGBoost's best (most negative gain); XGBoost's worst (most positive gain); typical (gain closest to the median of all eligible matches); close chase (a chase that reached the 20th over, with the smallest gap between the two innings totals; ties go to the earlier match).",
+ "rule": "Four 2026 matches, picked by a rule written on Nov 4. By then some whole-match results on all balls had been seen (the most and least predictable matches, and one match suggested during the error analysis), but no per-match death result had been looked at. Eligible: matches where both innings reached over 16. Gain = XGBoost's mean death-ball log-loss minus B1's, over both innings. Picked in this order, each from the matches not yet picked: XGBoost's best (most negative gain); XGBoost's worst (most positive gain); typical (gain closest to the median of all eligible matches); close chase (a chase that reached the 20th over, with the smallest gap between the two innings totals; ties go to the earlier match).",
  "matches": [
   {
    "match_id": 1535464,
