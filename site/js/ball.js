@@ -1,7 +1,7 @@
 /* COPY-PASTE: pieces shared by the replay and the worst-balls page.
    - scorecard(): the small scorecard table before a ball
    - probBars(): the chance each model gave each outcome, with the real outcome outlined
-   - pushBars(): bars for pushes toward (right) or away from (left) what happened, with the multiplier on hover */
+   - pushBars(): bars for pushes toward (right) or away from (left) what happened, with the push on hover */
 
 (function () {
   'use strict';
@@ -44,7 +44,7 @@
     return h + '</div>';
   }
 
-  // items: [{label, sub, push}], pushes in log-probability units
+  // items: [{label, sub, push}], pushes in XGBoost's score (margin) units, not log-probabilities
   function pushBars(items, scaleMax) {
     const max = scaleMax || Math.max(0.5, ...items.map(x => Math.abs(x.push)));
     return '<div class="pushes">' + items.map(x => {
@@ -52,7 +52,7 @@
       const cls = x.push >= 0 ? 'pos' : 'neg';
       const lab = (x.push >= 0 ? 'left:calc(50% + ' + w + '% + 4px)' : 'right:calc(50% + ' + w + '% + 4px)');
       return '<div>' + esc(x.label) + (x.sub ? ' <span class="muted">' + esc(x.sub) + '</span>' : '') + '</div>' +
-        '<div class="push-track" tabindex="0" data-tip="' + esc('Push ' + S.fmt.signed(x.push) + ' → ' + S.pushWords(x.push)) + '">' +
+        '<div class="push-track" tabindex="0" data-tip="' + esc('Push ' + S.fmt.signed(x.push) + ': ' + S.pushWords(x.push)) + '">' +
         '<i class="' + cls + '" style="width:' + w + '%"></i><b style="' + lab + '">' + S.fmt.signed(x.push) + '</b></div>';
     }).join('') + '</div>';
   }

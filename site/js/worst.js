@@ -73,8 +73,9 @@
       h += '<div class="hyp">' + esc(hy.line).replace(/(^|[\s(])-(\d)/g, '$1−$2') + ' <a href="#mech-' + hy.mechanism + '">Read pattern ' + hy.mechanism + ' →</a></div>';
     }
     h += '<h4>What pushed XGBoost, by feature group</h4>';
-    h += '<p class="net">Net push <b>' + S.fmt.signed(pos + neg) + '</b>: ' + S.fmt.signed(pos) + ' toward what happened and ' + S.fmt.signed(neg) +
-      ' away from it. <span class="muted">' + esc(S.pushWords(pos + neg).replace(/^×[\d.]+: /, '').replace(/^./, c => c.toUpperCase())) + ', compared with XGBoost’s guess for an average ball.</span></p>';
+    h += '<p class="net">Net push <b>' + S.fmt.signed(pos + neg) + '</b> on XGBoost’s score for what happened: ' + S.fmt.signed(pos) + ' toward it and ' + S.fmt.signed(neg) +
+      ' away from it. <span class="muted">A push changes a score, not a chance. Together with the pushes on the other six outcomes’ scores, they take XGBoost’s chance of what happened from ' +
+      S.fmt.pctv(S.BASE_PCT[b.outcome]) + ' at its starting point to ' + S.fmt.pctv(b.p_actual_pct.xgb) + ' here.</span></p>';
     const big = groups.filter(([, v]) => Math.abs(v) >= 0.05), small = groups.filter(([, v]) => Math.abs(v) < 0.05);
     h += B.pushBars(big.map(([g, v]) => ({ label: g.charAt(0).toUpperCase() + g.slice(1), push: v })), scale);
     if (small.length) h += '<p class="muted small">' + small.length + ' more group' + (small.length > 1 ? 's' : '') + ' pushed less than 0.05 each.</p>';
