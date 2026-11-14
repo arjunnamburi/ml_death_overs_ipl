@@ -1,11 +1,23 @@
 # Ball-by-Ball Outcome Prediction in the IPL Death Overs
 
-Can you predict what happens on a single death-over IPL ball (a dot, 1, 2, 3, 4, 6 or a wicket) before it is bowled? I built a model that gives a probability for each of the seven outcomes, froze it, and tested it once on the unseen 2026 season. **It predicts 2026 death-over balls 2.1% better than the basic match situation (phase, wickets fallen and innings), and most of that gain comes from reading the scorecard finely, not from knowing who is playing: all the detailed player context together adds only about 0.4% on top of a fine scorecard.**
 
-**Website (the full report):** https://arjunnamburi.github.io/ml_death_overs_ipl/
-**Frozen before the test:** tag [`freeze-v1`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/freeze-v1) (Oct 30, 2026) · **Single test run:** tag [`test-2026`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/test-2026) (Oct 31, 2026) · **How to run it:** [below](#how-to-run-it-end-to-end)
+## Research question
 
-I did this project as part of my Machine Learning course (ES335).
+Using only information available before each delivery, how well can the probabilities of the seven outcomes of a death-over IPL delivery (0, 1, 2, 3, 4 or 6 runs, or a wicket) be predicted for an unseen season (2026), and how much of that comes from detailed context (batter, bowler, matchup history, momentum, chase pressure) beyond the basic match situation of phase, wickets fallen and innings?
+
+In other words: how well can a model predict each ball of the last five overs of an IPL innings, and is it the match situation or the players that make it predictable?
+
+---
+
+## My approach
+
+1. **Data and labels.** I used every legal ball from 2008 to 2026, with seven outcome classes (0, 1, 2, 3, 4, 6, W). Rain-affected matches are set aside as a separate slice.
+2. **Features.** I built 87 features, each using only what was known before the ball, in three kinds: the scorecard; in-match context (momentum, chase pressure, partnership, the bowler's spell); and player and venue history from earlier matches, shrunk toward the player's type when there is little data.
+3. **Models.** A ladder from simple to complex: B0 (fixed outcome shares), B1 (shares by match situation), a multinomial logistic regression, then XGBoost. Each step's gain can be explained, and a model worse than B1 would point to a bug.
+4. **Testing honestly.** I tuned on 2024, chose models on 2025, froze every choice, and scored 2026 exactly once. Every comparison uses a paired bootstrap over whole matches.
+5. **Understanding the result.** Calibration, group ablations and a Shapley split, 22 situation slices, and the worst-predicted balls with each feature's contribution.
+6. **The website.** The report, a ball-by-ball replay of four 2026 matches, and the worst-predicted death balls with an explanation for each.
+
 
 ---
 
@@ -34,11 +46,31 @@ At the death, XGBoost is 2.1% better than B1, and it also beats the logistic reg
 
 An XGBoost model trained on the 17 scorecard features alone (B1+) is only 0.0060 behind the full model at the death (−0.0060 [−0.0124, +0.0005]), which one season can't tell from zero. Six of those 17 features are the current batter's and bowler's figures in the match, so how the features are grouped affects these shares.
 
-### The three claims in my proposal: 1 of 3 met
+---
+## Additional Information
 
-My proposal said: "On 2026 death-over balls, a useful answer means:"
+**Website (the full report):** https://arjunnamburi.github.io/ml_death_overs_ipl/ <br>
+**Frozen before the test:** tag [`freeze-v1`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/freeze-v1) (Oct 30, 2026)·<br>
+**Single test run:** tag [`test-2026`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/test-2026) (Oct 31, 2026)·<br>
+**How to run it:** [below](#how-to-run-it-end-to-end)
 
-| Claim (word for word from the proposal) | Verdict | Why |
+---
+
+## Website Information
+
+Website Link: https://arjunnamburi.github.io/ml_death_overs_ipl/
+
+This website covers the results and evaluation part of this project more extensively. It also includes a cool interactive tool to look at which model does better on every death ball of selected matches, along with the worst balls predicted. Please check it out.
+
+
+
+---
+
+## The three claims in my proposal: 1 of 3 met
+
+I made a project proposal on October 15th, about a month before I submitted this project. I did not train any models by then. In that, I said: "On 2026 death-over balls, a useful answer means:"
+
+| Claim | Verdict | Why |
 |---|---|---|
 | "(1) lower mean log-loss than a match-situation baseline, with the 95% paired bootstrap interval for the difference entirely below zero." | **Met** | XGBoost minus B1: −0.0338 [−0.0468, −0.0212]. |
 | "(2) calibrated probabilities: among balls given about a 10% wicket chance, about 10% are wickets, and likewise for each outcome;" | **Not met** | At the death, XGBoost predicts too few dots (2.2 points under) and too many wickets (1.0 point over), both outside error. 2026 had more death dots than 2025 (21.8% vs 19.2%). Temperature scaling doesn't close either gap. On all balls, 6 of 7 outcomes are within error. |
@@ -46,22 +78,6 @@ My proposal said: "On 2026 death-over balls, a useful answer means:"
 
 ---
 
-## Research question
-
-> Using only information available before each delivery, how well can the probabilities of the seven outcomes of a death-over IPL delivery (0, 1, 2, 3, 4 or 6 runs, or a wicket) be predicted for an unseen season (2026), and how much of that comes from detailed context (batter, bowler, matchup history, momentum, chase pressure) beyond the basic match situation of phase, wickets fallen and innings?
-
-In other words: how well can a model predict each ball of the last five overs of an IPL innings, and is it the match situation or the players that make it predictable?
-
-## My approach
-
-1. **Data and labels.** I used every legal ball from 2008 to 2026, with seven outcome classes (0, 1, 2, 3, 4, 6, W). Rain-affected matches are set aside as a separate slice.
-2. **Features.** I built 87 features, each using only what was known before the ball, in three kinds: the scorecard; in-match context (momentum, chase pressure, partnership, the bowler's spell); and player and venue history from earlier matches, shrunk toward the player's type when there is little data.
-3. **Models.** A ladder from simple to complex: B0 (fixed outcome shares), B1 (shares by match situation), a multinomial logistic regression, then XGBoost. Each step's gain can be explained, and a model worse than B1 would point to a bug.
-4. **Testing honestly.** I tuned on 2024, chose models on 2025, froze every choice, and scored 2026 exactly once. Every comparison uses a paired bootstrap over whole matches.
-5. **Understanding the result.** Calibration, group ablations and a Shapley split, 22 situation slices, and the worst-predicted balls with each feature's contribution.
-6. **The website.** The report, a ball-by-ball replay of four 2026 matches, and the worst-predicted death balls with an explanation for each.
-
----
 
 ## Important decisions
 
