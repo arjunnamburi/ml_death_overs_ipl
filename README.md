@@ -215,6 +215,8 @@ Steps 1 to 3 reproduce the headline. Steps 4 to 9 reproduce the analyses and the
 
 After `test_2026.ipynb`, `results_2026.csv` should show these death-ball log-losses: XGBoost 1.5680, logistic regression (vector-scaled) 1.5764, B1 1.6017, B0 1.6434. Its first check cell should print 244,269 training, 15,809 validation and 16,282 test balls.
 
+**Use a GPU runtime** (Runtime > Change runtime type > GPU). XGBoost was trained on a Colab GPU (`device='cuda'` in `models`, `test_2026`, `post_freeze_checks`, `error_analysis`, `review_checks` and `site_export`). On Nov 14, I reran the pipeline from `prog3.csv`. The feature table came out byte-identical, and on a GPU the 2026 XGBoost refit gave the same 301 trees and the same predictions. Without a GPU, XGBoost falls back to the CPU, which trains slightly different trees: the 2026 XGBoost log-loss moves by about 0.001 (all balls 1.4797 instead of 1.4787, death 1.5678 instead of 1.5680). That is enough to turn the all-balls XGBoost vs logistic regression comparison from "XGBoost better" to "can't tell", though the death results and all six pre-registered verdicts stay the same. The baselines and the logistic regression don't depend on the GPU. The saved model `xgb_X-hist_2026.json` in the data folder gives my exact 2026 predictions on either.
+
 ### Environment
 
 Python 3.13 in Google Colab. The packages the project imports, with exact versions, are in [`requirements.txt`](requirements.txt), taken from my Colab runtime on Nov 14, 2026. XGBoost is 3.4.1, the same version that ran the 2026 test. In Colab: `!pip install -r requirements.txt`.
