@@ -4,7 +4,7 @@ Can you predict what happens on a single death-over IPL ball (a dot, 1, 2, 3, 4,
 
 I did this project as part of my Machine Learning course (ES335).
 
-**[Website (full report)](https://arjunnamburi.github.io/ml_death_overs_ipl/)** · Frozen before the test: [`freeze-v1`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/freeze-v1) (Oct 30, 2026) · Single test run: [`test-2026`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/test-2026) (Oct 31, 2026) · [Data (Google Drive)](DRIVE_LINK) · [How to run it](#how-to-run-it-end-to-end)
+**[Website (full report)](https://arjunnamburi.github.io/ml_death_overs_ipl/)** · Frozen before the test: [`freeze-v1`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/freeze-v1) (Oct 30, 2026) · Single test run: [`test-2026`](https://github.com/arjunnamburi/ml_death_overs_ipl/tree/test-2026) (Oct 31, 2026) · [Data (Google Drive)](https://drive.google.com/drive/folders/16A6cz5QAymtBwujH6ZhJ_ZSF0Rq0aQUi) · [How to run it](#how-to-run-it-end-to-end)
 
 ---
 
@@ -181,7 +181,7 @@ DATA = '/content/drive/MyDrive/IPL PROJECT ALL DOCS/data/'
 
 ### 1. Get the data (choose one)
 
-**Option A, recommended: my data folder.** Download it from **[Google Drive data folder](DRIVE_LINK)** and put it in your own Google Drive at `MyDrive/IPL PROJECT ALL DOCS/data/` (or change `DATA` at the top of each notebook). It has the cleaned dataset (`prog3.csv`), the feature table, the saved models and every prediction file, so you can start at any step below. A shortcut to a shared folder is read-only, and the notebooks write files, so use a copy.
+**Option A, recommended: my data folder.** Download it from **[Google Drive data folder](https://drive.google.com/drive/folders/16A6cz5QAymtBwujH6ZhJ_ZSF0Rq0aQUi)** and put it in your own Google Drive at `MyDrive/IPL PROJECT ALL DOCS/data/` (or change `DATA` at the top of each notebook). It has the cleaned dataset (`prog3.csv`), the feature table, the saved models and every prediction file, so you can start at any step below. A shortcut to a shared folder is read-only, and the notebooks write files, so use a copy.
 
 **Option B: from the raw Kaggle data.** Download `IPL.csv` from the Kaggle [IPL Dataset](https://www.kaggle.com/datasets/chaitu20/ipl-dataset2008-2025) (CC0; despite its name it includes 2026), for example with `kagglehub.dataset_download('chaitu20/ipl-dataset2008-2025')`. Then run the data-preparation notebooks in `archive_notebooks/` (step 2). The Gemini step needs your own API key in a Colab secret named `GEM_API`, and a new run won't give exactly my labels, so use my corrected labels in `data/player_metadata_updated.csv` instead (saved as `player_metadata.csv`).
 
