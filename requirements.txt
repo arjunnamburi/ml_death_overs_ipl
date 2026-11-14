@@ -1,0 +1,13 @@
+# Packages this project imports, at the versions in my Google Colab runtime (checked Nov 14, 2026).
+# Python 3.13.18. XGBoost 3.4.1 is the same version that ran the single 2026 test on Oct 31, 2026.
+# In Colab: !pip install -r requirements.txt
+numpy==2.4.6
+pandas==2.2.3
+scipy==1.16.3
+scikit-learn==1.6.1
+xgboost==3.4.1
+matplotlib==3.10.0
+joblib==1.6.0
+pyarrow==23.0.1
+kagglehub==1.0.3       # only to download the raw data (Option B)
+google-genai==2.12.1   # only for the Gemini player labels in archive_notebooks/ML_Project_IPL.ipynb
