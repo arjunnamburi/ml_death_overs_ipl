@@ -217,7 +217,7 @@ After `test_2026.ipynb`, `results_2026.csv` should show these death-ball log-los
 
 ### Environment
 
-Python packages and exact versions are in `requirements.txt` (from my Colab session). XGBoost is 3.4.1. In Colab: `!pip install -r requirements.txt`.
+Python 3.13 in Google Colab. The packages the project imports, with exact versions, are in [`requirements.txt`](requirements.txt), taken from my Colab runtime on Nov 14, 2026. XGBoost is 3.4.1, the same version that ran the 2026 test. In Colab: `!pip install -r requirements.txt`.
 
 ---
 
