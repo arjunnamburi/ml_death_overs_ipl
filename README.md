@@ -15,7 +15,15 @@ Using only information available before each delivery, how well can the probabil
 In other words: how well can a model predict each ball of the last five overs of an IPL innings, and is it the match situation or the players that make it predictable?
 
 ---
+## My approach
 
+1. **Data and Labels.** I used every legal ball from 2008 to 2026, with seven outcome classes (0, 1, 2, 3, 4, 6, W). Rain-affected matches are set aside as a separate slice.
+2. **Features.** I built 87 features, each using only what was known before the ball, in three kinds: the scorecard; in-match context (momentum, chase pressure, partnership, the bowler's spell); and player and venue history from earlier matches, shrunk toward the player's type when there is little data.
+3. **Models.** A ladder from simple to complex: B0 (fixed outcome shares), B1 (shares by match situation), a multinomial logistic regression, then XGBoost. Each step's gain can be explained, and a model worse than B1 would point to a bug.
+4. **Tuning.** I tuned on 2024, chose models on 2025, froze every choice, and scored 2026 exactly once. Every comparison uses a paired bootstrap over whole matches.
+5. **Evaluation.** Calibration, group ablations and a Shapley split, 22 situation slices, and the worst-predicted balls with each feature's contribution.
+
+---
 ## Results on 2026 (the unseen test season)
 
 All scores are mean log-loss per legal ball (lower is better). Intervals are 95% match-level paired bootstrap intervals (2,000 resamples) for the difference from B1.
@@ -51,16 +59,6 @@ I made a project proposal on October 15th, about a month before I submitted this
 | "(2) calibrated probabilities: among balls given about a 10% wicket chance, about 10% are wickets, and likewise for each outcome;" | **Not met** | At the death, XGBoost predicts too few dots (2.2 points under) and too many wickets (1.0 point over), both outside error. 2026 had more death dots than 2025 (21.8% vs 19.2%). Temperature scaling doesn't close either gap. On all balls, 6 of 7 outcomes are within error. |
 | "(3) knowing which context matters: removing a feature group makes log-loss worse, with the paired interval above zero." | **Not met** | At the death, removing any one group doesn't make log-loss clearly worse, because the groups overlap and cover for each other. The Shapley shares in the second table above were needed to answer it. |
 
----
-
-## My approach
-
-1. **Data and labels.** I used every legal ball from 2008 to 2026, with seven outcome classes (0, 1, 2, 3, 4, 6, W). Rain-affected matches are set aside as a separate slice.
-2. **Features.** I built 87 features, each using only what was known before the ball, in three kinds: the scorecard; in-match context (momentum, chase pressure, partnership, the bowler's spell); and player and venue history from earlier matches, shrunk toward the player's type when there is little data.
-3. **Models.** A ladder from simple to complex: B0 (fixed outcome shares), B1 (shares by match situation), a multinomial logistic regression, then XGBoost. Each step's gain can be explained, and a model worse than B1 would point to a bug.
-4. **Testing honestly.** I tuned on 2024, chose models on 2025, froze every choice, and scored 2026 exactly once. Every comparison uses a paired bootstrap over whole matches.
-5. **Understanding the result.** Calibration, group ablations and a Shapley split, 22 situation slices, and the worst-predicted balls with each feature's contribution.
-6. **The website.** The report, a ball-by-ball replay of four 2026 matches, and the worst-predicted death balls with an explanation for each.
 
 ---
 
@@ -86,18 +84,12 @@ Every page also reads without JavaScript.
 - **No player names as features.** Players enter as types and as historical rates shrunk toward their type.
 - **All-overs vs death-only, decided by evidence.** One XGBoost model serves every ball, because trees can grow death-specific branches.
 
-**Five failures**
+**Four failures**
 - **Free hits:** XGBoost gives a 5.9% wicket chance on a free hit, because min_child_weight = 100 stops any wicket tree from splitting on such a rare flag.
 - **Lost chases:** it over-predicts sixes when the required rate is above 18 (12.0% vs 8.6%).
 - **The 2026 death shift:** more dots and fewer wickets than 2025, which every model missed, so claim 2 wasn't met.
 - **The detailed context matters less than I expected:** about 0.4% on top of a fine scorecard at the death.
-- **A data bug:** clipping at the 99.5th percentile silently turned every free hit into 0.
 
-**Four things I learned**
-- A comparison needs a paired interval, not two separate ones.
-- Calibration and discrimination are different jobs.
-- Trees beat a linear model only where effects multiply.
-- Every hyperparameter has side effects.
 
 <details>
 <summary><b>All important decisions</b></summary>
@@ -146,6 +138,8 @@ Every page also reads without JavaScript.
 - **Wrong player labels.** The Gemini labels had at least 19 batting-hand errors, which I found by cross-checking and fixed. One wrong bowling type (VG Arora labelled left-arm pace instead of right-arm) was found only after the test, so it stays in the frozen model.
 - **Clipping wiped out free hits.** Clipping features at their 99.5th percentile silently turned every free hit into 0, because a rare yes/no flag's 99.5th percentile is 0. I fixed it by clipping only features with more than 20 distinct values.
 - **Early free hits.** Before 2016 only front-foot no-balls gave a free hit, and the data can't tell no-ball types apart, so some early "free hits" weren't. I accepted this as small noise.
+- **A data bug:** clipping at the 99.5th percentile silently turned every free hit into 0.
+
 
 **Where the model fails, and what the claims showed**
 - **Scoring drift.** 2025 and 2026 have about 67% more sixes than the training seasons. Models trained on the past under-predict boundaries, and the season features only partly follow the change.
