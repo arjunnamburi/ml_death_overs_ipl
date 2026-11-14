@@ -454,16 +454,14 @@
 
 <!-- ================================================================ -->
 <h2 id="reproduce">10. Reproduction Steps</h2>
+<p>The full instructions are in the <a href="https://github.com/arjunnamburi/ml_death_overs_ipl#how-to-run-it-end-to-end">README on GitHub</a>. In short:</p>
 <ol>
-  <li>Get the code from <a href="https://github.com/arjunnamburi/ml_death_overs_ipl">github.com/arjunnamburi/ml_death_overs_ipl</a>. The frozen claims are tagged <code>freeze-v1</code> and the scoring run <code>test-2026</code>.</li>
-  <li>Run the notebooks in <code>notebooks/</code> in this order: <code>features</code>, <code>models</code>, <code>test_2026</code>, <code>post_freeze_checks</code>, <code>analysis_nb</code>, <code>error_analysis</code>, <code>site_export</code>, <code>site_build</code>, <code>site_figures</code>, <code>h1_checks</code> and <code>review_checks</code>.</li>
-  <li>The tables are in <code>data/</code>, and the site’s own data and figures are in <code>site/data/</code> and <code>site/img/</code>.</li>
+  <li><b>Get the data.</b> Copy the <a href="https://drive.google.com/drive/folders/16A6cz5QAymtBwujH6ZhJ_ZSF0Rq0aQUi">Google Drive data folder</a> into your own Drive (recommended: it has the cleaned data, the feature table, the frozen models and every prediction file). Or start from <code>IPL.csv</code> in the <a href="https://www.kaggle.com/datasets/chaitu20/ipl-dataset2008-2025">Kaggle “IPL Dataset” by Chaitanya</a> (CC0) and run the three data-preparation notebooks in <code>archive_notebooks/</code>, which produce <code>prog3.csv</code>.</li>
+  <li><b>Install the packages</b> in <code>requirements.txt</code> (Python 3.13 on Google Colab; XGBoost 3.4.1).</li>
+  <li><b>Run the notebooks</b> in <code>notebooks/</code> in this order: <code>features</code>, <code>models</code>, <code>test_2026</code> (these three reproduce the headline), then <code>post_freeze_checks</code>, <code>error_analysis</code>, <code>review_checks</code>, <code>analysis_nb</code>, <code>h1_checks</code>, and <code>site_export</code>, <code>site_build</code> and <code>site_figures</code> for this website.</li>
+  <li><b>Check the numbers.</b> <code>results_2026.csv</code> should show death-ball log-losses of 1.5680 (XGBoost), 1.5764 (logistic regression), 1.6017 (B1) and 1.6434 (B0).</li>
 </ol>
-<ul>
-  <li><b>Files kept on Google Drive</b> (too large for the repo): the feature table <code>ipl_features.parquet</code>, the fitted 2026 models <code>xgb_X-hist_2026.json</code> and <code>models_2026.joblib</code>, and the per-ball predictions <code>bundle_2026.parquet</code> and <code>push_death_2026.parquet</code>. The notebooks rebuild all of them.</li>
-  <li><b>Raw data:</b> <code>IPL.csv</code> from the <a href="https://www.kaggle.com/datasets/chaitu20/ipl-dataset2008-2025">Kaggle “IPL Dataset” by Chaitanya</a> (CC0). Run <code>features</code> on it first.</li>
-  <li><b>Packages:</b> XGBoost 3.4.1, scikit-learn, pandas, NumPy, SciPy and Matplotlib (all listed in <a href="#credits">Libraries and Data</a>). The notebooks were run on Google Colab.</li>
-</ul>
+<p>The frozen choices are tagged <code>freeze-v1</code> and the single scoring run <code>test-2026</code>. Packages are credited in <a href="#credits">Libraries and Data</a>.</p>
 
 <!-- ================================================================ -->
 <h2 id="ai">11. AI Assistance</h2>
