@@ -46,7 +46,7 @@
     <div class="hb-row hb-strong"><span class="hb-lab">XGBoost</span><span class="hb-track"><span class="hb-bar" style="--w:0.9184;background:var(--xgb);opacity:1"></span><span class="hb-val">4.6% <small>1.5680</small></span></span></div>
     <div class="hb-axis" aria-hidden="true"><span class="hb-lab"></span><span class="hb-ticks"><span style="--w:0.0">0%</span><span style="--w:0.2">1%</span><span style="--w:0.4">2%</span><span style="--w:0.6">3%</span><span style="--w:0.8">4%</span><span style="--w:1.0">5%</span></span></div>
   </div>
-  <figcaption><b>How much better each model predicts a 2026 death ball than B0</b>Each bar is how much lower the model’s log-loss is than B0’s, so longer is better; the small number is the log-loss itself (lower is better). 3,583 death balls from the 2026 season, scored once.</figcaption>
+  <figcaption><b>How much better each model predicts a 2026 death ball than B0</b>Each bar is how much lower the model’s log-loss is than B0’s, so longer is better; the small number is the log-loss itself (lower is better). 3,583 death balls from the 2026 season, scored once; XGBoost (scorecard only) was added after the test.</figcaption>
   <ul class="figpoints">
     <li><b>B0:</b> gives every ball the same chances, the outcome shares of all training balls.</li>
     <li><b>B1:</b> the shares for the ball’s situation: phase, wickets band and innings.</li>
@@ -57,6 +57,7 @@
 </figure>
 <p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/results_2026.csv"><code>data/results_2026.csv</code></a>; XGBoost (scorecard only) is the “scorecard state” row of <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/ladder_2026.csv"><code>data/ladder_2026.csv</code></a>.</p>
 
+<p class="muted" style="font-size:.9rem">Against B1, the scorecard baseline, XGBoost’s gain is 2.1%, the figure used in the Answer in Short.</p>
 <p class="muted" style="font-size:.9rem">In plain terms: on an average 2026 death ball, XGBoost gave what actually happened a 20.85% chance, against 20.15% for B1 (geometric means). 3,583 death balls in 71 matches.</p>
 <p class="muted" style="font-size:.9rem">Each section has collapsed <b>How it works</b> boxes that explain the methods behind it: what each one is, why it was used here instead of the alternative, and what it showed in this project.</p>
 
