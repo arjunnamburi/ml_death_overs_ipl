@@ -278,3 +278,12 @@ p.finding { margin-top: .4rem; }
 article > .lede:first-child { margin-top: 0; }
 .hero-fig { margin-top: .4rem; }
 .hero-fig .hbars, .hero-fig figcaption, .hero-fig ul.figpoints { margin-left: 0; margin-right: 0; }
+
+/* ---------- Nov 17: more compact pages (wider text, less vertical space) ---------- */
+:root { --text-w: 54rem; }
+main { padding-top: .6rem; }
+h1 { margin: .1em 0 .6em; }
+h2 { margin-top: 2.2rem; }
+h3 { margin-top: 1.5rem; }
+.fig { margin: 1.4rem 0 1.8rem; }
+.hero-fig { margin: .4rem 0 1.2rem; }
