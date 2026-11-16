@@ -243,6 +243,13 @@
 <p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/paired_2026.csv"><code>data/paired_2026.csv</code></a></p>
 </details>
 
+<p id="lr-gap"><b>Why the gap to the logistic regression is small.</b> Per death ball, XGBoost is 2.1% better than B1 but only 0.5% better than the logistic regression (0.2% on all balls). The logistic regression already gets 1.6% over B1, about three quarters of XGBoost’s gain. Three hypotheses, none of them tested here:</p>
+<ul>
+  <li><b>The features already combine things.</b> Many are ratios of two quantities, such as balls left per wicket in hand (<a href="#top-feature">the top feature</a>), the required run rate and runs needed per wicket. A model that only adds up feature effects then gets much of what trees find by combining features.</li>
+  <li><b>Calibration helps only the logistic regression.</b> Vector scaling improved it by 0.0095 per death ball, more than the whole 0.0084 gap; XGBoost has no calibration, because it made XGBoost worse on 2025. Against the uncalibrated logistic regression, XGBoost is 1.1% better at the death.</li>
+  <li><b>Little is left to win.</b> Knowing only the phase scores about 1.60 at the death (<a href="#data">Figure 2</a>), and the best model reaches 1.568. Most of what decides a death ball looks like chance to every model, so the room for any model to pull ahead is small.</li>
+</ul>
+<p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/metric_check_2026.csv"><code>data/metric_check_2026.csv</code></a> (the pct column) and <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/paired_2026.csv"><code>data/paired_2026.csv</code></a></p>
 <h3 id="slice-claims">Pre-Registered Slice Claims</h3>
 <p>Written down before the test in <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/freeze-v1/data/freeze.json">freeze.json</a>, which also fixes how they are tested: as part of 22 slices × 2 comparisons, with Bonferroni over those 44 tests (z ≈ 3.26). So a claim is confirmed only when its 44-test interval is entirely below zero; the plain 95% interval is shown too. Only the first claim is about death balls; the others cover all overs.</p>
 <div class="table-wrap"><table>
@@ -384,7 +391,7 @@
   <li>It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce.</li>
   <li>It drafted most of the text of this site and of the README.</li>
 </ul>
-<p>I chose the research question and directed every decision on this project; some, such as the How it works boxes, were Claude’s suggestions that I approved. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
+<p>I formulated the core research question and drove every architectural decision, critically evaluating AI-generated options to shape the final outcome. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
 <p>I used <b>Gemini</b> to label each player’s batting hand and bowling type: the Gemini API (<code>gemini-3.5-flash-lite</code>) was given batches of 100 player names and asked for JSON. The prompt is in <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/archive_notebooks/ML_Project_IPL.ipynb"><code>archive_notebooks/ML_Project_IPL.ipynb</code></a>. I checked 100 labels by hand and labelled the 15 players it missed myself.</p>
 <p>Which notebook code Claude wrote, and how I worked with it, is set out in the <a href="https://github.com/arjunnamburi/ml_death_overs_ipl#ai-use">README’s AI use section</a>.</p>
 
