@@ -242,7 +242,7 @@ The Kaggle "IPL Dataset" by Chaitanya (`IPL.csv`, CC0 public domain), with every
 
 ## AI use
 
-I used Claude (Anthropic) throughout the project. It wrote the code for the website, including the `site_build` and `site_figures` notebooks, and the `results_2025` notebook, which it ran in its own environment. It helped write the code in the other notebooks, and wrote the `review_checks` and `h1_checks` notebooks; it ran `h1_checks` itself. It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce, and it drafted most of the website's text and of this README.
+I used Claude (Anthropic) throughout the project. It wrote the code for the website, including the `site_build` and `site_figures` notebooks, and the `results_2025` notebook, which it ran in its own environment. It helped write the code in the other notebooks, and wrote the `review_checks` and `h1_checks` notebooks; it ran `h1_checks` itself. It restored `bowler_swap_check.ipynb` from my notes on Nov 17; its cells have not been re-run. It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce, and it drafted most of the website's text and of this README.
 
 I formulated the core research question. Some of the decisions that I made:
 
