@@ -54,6 +54,22 @@
     '<a href="https://github.com/arjunnamburi/ml_death_overs_ipl">Code on GitHub</a>' +
     '</nav><button class="theme-btn" type="button"></button></div>';
   body.prepend(header);
+
+  /* ---------- links ---------- */
+  // A link to another site, or in the text to another page of this site, opens in a new tab,
+  // so the reader keeps their place. Same-page section links, the menus and the "← Back" links stay in this tab.
+  const pagePath = p => p.replace(/index\.html$/, '');
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const url = new URL(a.getAttribute('href'), location.href);
+    if (url.origin === location.origin) {
+      if (a.closest('header.top, nav.toc') || a.textContent.trim().startsWith('←')) return;
+      if (pagePath(url.pathname) === pagePath(location.pathname)) return;
+    }
+    a.target = '_blank';
+    a.rel = 'noopener';
+  }, true);
   header.querySelector('.theme-btn').addEventListener('click', () => {
     const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
     saveTheme(next); applyTheme(next);
