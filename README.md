@@ -69,7 +69,7 @@ This website covers the results and evaluation part of this project more extensi
 - **[Report](https://arjunnamburi.github.io/ml_death_overs_ipl/):** the full write-up (data, preprocessing, methods, evaluation, results, errors, limitations), with 18 "How it works" boxes that explain each method and why I chose it.
 - **[Match Replay](https://arjunnamburi.github.io/ml_death_overs_ipl/site/replay.html):** four 2026 matches, ball by ball through the death overs, with XGBoost, the logistic regression and B1 side by side and what actually happened.
 - **[Worst-Predicted Balls](https://arjunnamburi.github.io/ml_death_overs_ipl/site/worst.html):** the 2026 death balls the model got most wrong, with each feature's push on the prediction and a hypothesis for each ball.
-- **[Extras](https://arjunnamburi.github.io/ml_death_overs_ipl/site/extras.html):** which players the model reads best and worst, the most and least predictable 2026 matches, the ablation detail, and all 87 features.
+- **[Extras](https://arjunnamburi.github.io/ml_death_overs_ipl/site/extras.html):** the detail behind the report (data checks, calibration options, what I tried and didn't adopt, the full slice, failure-mode, ablation and rain tables), which players and matches the model reads best and worst, and all 87 features.
 
 Every page also reads without JavaScript.
 
@@ -183,17 +183,17 @@ DATA = '/content/drive/MyDrive/IPL PROJECT ALL DOCS/data/'
 
 **Option A, recommended: my data folder.** Download it from **[Google Drive data folder](https://drive.google.com/drive/folders/16A6cz5QAymtBwujH6ZhJ_ZSF0Rq0aQUi)** and put it in your own Google Drive at `MyDrive/IPL PROJECT ALL DOCS/data/` (or change `DATA` at the top of each notebook). It has the cleaned dataset (`prog3.csv`), the feature table, the saved models and every prediction file, so you can start at any step below. A shortcut to a shared folder is read-only, and the notebooks write files, so use a copy.
 
-**Option B: from the raw Kaggle data.** Download `IPL.csv` from the Kaggle [IPL Dataset](https://www.kaggle.com/datasets/chaitu20/ipl-dataset2008-2025) (CC0; despite its name it includes 2026), for example with `kagglehub.dataset_download('chaitu20/ipl-dataset2008-2025')`. Then run the data-preparation notebooks in `archive_notebooks/` (step 2). The Gemini step needs your own API key in a Colab secret named `GEM_API`, and a new run won't give exactly my labels, so use my corrected labels in `data/player_metadata_updated.csv` instead (saved as `player_metadata.csv`).
+**Option B: from the raw Kaggle data.** Run the three data-preparation notebooks in `archive_notebooks/` (step 2), with `DATA` set to an empty folder in your Drive. The first one downloads `IPL.csv` from the Kaggle [IPL Dataset](https://www.kaggle.com/datasets/chaitu20/ipl-dataset2008-2025) (CC0; despite its name it includes 2026) into `DATA` if it isn't there. It uses my hand-checked player labels (`data/player_metadata_updated.csv`) by default. Calling the Gemini API instead (`RUN_GEMINI = True`) needs your own key in a Colab secret named `GEM_API`, and a new run won't give exactly my labels.
 
 ### 2. Data preparation (`archive_notebooks/`, Option B only)
 
 | Order | Notebook | Reads | Writes |
 |---|---|---|---|
-| 1 | `ML_Project_IPL.ipynb` | `IPL.csv` | cleaned columns, running totals, label; `player_metadata.csv` (Gemini) |
-| 2 | `ML_Project_IPL_2_with_renames.ipynb` | `prog1.csv` (the output of step 1) | `prog2.csv`, `prog2_renamed.csv` |
-| 3 | `ML_Project_IPL_3.ipynb` | `prog2_renamed.csv` | `prog3.csv`, `rain_affected_matches.csv` |
+| 1 | `ML_Project_IPL.ipynb` | `IPL.csv` (downloaded if missing), the player labels | `player_metadata.csv`, `prog1.csv` (cleaned columns, running totals, label, player labels) |
+| 2 | `ML_Project_IPL_2_with_renames.ipynb` | `prog1.csv` | `prog2.csv`, `prog2_renamed.csv` |
+| 3 | `ML_Project_IPL_3.ipynb` | `prog2_renamed.csv` | `prog3.csv`, `rain_affected_matches.csv`, and the md5 of `prog3.csv` (mine: `4f7dd268da911c286cf3fc0fad7ec8e2`) |
 
-`prog1.csv`, `prog2.csv` and `prog2_renamed.csv` are also in the Drive folder under `data/archive/`. `ML_Project_IPL_2.ipynb` and `ML_Project_sg1.ipynb` are earlier versions, replaced by `ML_Project_IPL_2_with_renames.ipynb` and `notebooks/features.ipynb`.
+Every file is read from and written to `DATA`. My own `prog1.csv`, `prog2.csv` and `prog2_renamed.csv` are in the Drive folder under `data/archive/`. `ML_Project_IPL_2.ipynb` and `ML_Project_sg1.ipynb` are earlier versions, replaced by `ML_Project_IPL_2_with_renames.ipynb` and `notebooks/features.ipynb`.
 
 ### 3. Main pipeline (`notebooks/`, in this order)
 
@@ -243,6 +243,33 @@ The Kaggle "IPL Dataset" by Chaitanya (`IPL.csv`, CC0 public domain), with every
 
 I used Claude (Anthropic) throughout the project. It ran checks on the dataset and on the exported results, helped write the code in the notebooks and for the website, and helped write the documentation and the website's text. I chose the research question and made every design decision. I ran and verified every notebook cell in Google Colab, hand-checked the player labels against ESPNcricinfo, and reviewed and merged every change to this repository. I used the Gemini API (`gemini-3.5-flash-lite`) to label each player's batting hand and bowling type, in batches of 100 names returning JSON; the prompt is in `archive_notebooks/ML_Project_IPL.ipynb`.
 
-## Libraries
+## Libraries and references
 
-XGBoost, scikit-learn, pandas, NumPy, SciPy, Matplotlib, PyArrow, joblib, kagglehub, the Google Gen AI SDK, and Google Colab. Full credits and references are in section 12 of the website.
+Everything below was used by the notebooks, except where noted.
+
+- **XGBoost** (Chen and Guestrin, 2016): the gradient-boosted trees, the B1+ and ablation refits, and the per-feature pushes (`pred_contribs`).
+- **TreeSHAP** (Lundberg et al., 2020): the method XGBoost uses to compute the pushes exactly for trees.
+- **scikit-learn** (Pedregosa et al., 2011): the logistic regression (`LogisticRegression`, L-BFGS) and log-loss (`log_loss`).
+- **pandas** (McKinney, 2010): the feature table and every data table.
+- **NumPy** (Harris et al., 2020): arrays, the bootstrap resampling and the scores.
+- **SciPy** (Virtanen et al., 2020): fitting temperature and vector scaling (`scipy.optimize`) and the Bonferroni z values (`scipy.stats.norm`).
+- **Matplotlib** (Hunter, 2007): every figure.
+- **PyArrow:** reading and writing the Parquet files, through pandas.
+- **joblib:** saving the fitted models.
+- **kagglehub:** downloading the dataset.
+- **Google Gen AI SDK** (`google-genai`) and the Gemini API: the player labels.
+- **Google Colab and IPython:** where the notebooks ran.
+- **Playwright:** used only to test the website, not imported in the notebooks.
+- **Data:** the Kaggle "IPL Dataset" by Chaitanya (CC0 public domain), and ESPNcricinfo player profiles for the hand check of the labels.
+
+The website itself is plain HTML, CSS and JavaScript, with no third-party libraries or web fonts.
+
+**References**
+
+- T. Chen and C. Guestrin. XGBoost: A Scalable Tree Boosting System. *Proceedings of KDD*, 785-794, 2016.
+- S. M. Lundberg, G. Erion, H. Chen, A. DeGrave, J. M. Prutkin, B. Nair, R. Katz, J. Himmelfarb, N. Bansal and S.-I. Lee. From local explanations to global understanding with explainable AI for trees. *Nature Machine Intelligence* 2, 56-67, 2020.
+- F. Pedregosa et al. Scikit-learn: Machine Learning in Python. *Journal of Machine Learning Research* 12, 2825-2830, 2011.
+- C. R. Harris et al. Array programming with NumPy. *Nature* 585, 357-362, 2020.
+- P. Virtanen et al. SciPy 1.0: fundamental algorithms for scientific computing in Python. *Nature Methods* 17, 261-272, 2020.
+- J. D. Hunter. Matplotlib: A 2D Graphics Environment. *Computing in Science & Engineering* 9(3), 90-95, 2007.
+- W. McKinney. Data Structures for Statistical Computing in Python. *Proceedings of the 9th Python in Science Conference*, 56-61, 2010.
