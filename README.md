@@ -138,7 +138,6 @@ Every page also reads without JavaScript.
 - **Wrong player labels.** The Gemini labels had at least 19 batting-hand errors, which I found by cross-checking and fixed. One wrong bowling type (VG Arora labelled left-arm pace instead of right-arm) was found only after the test, so it stays in the frozen model.
 - **Clipping wiped out free hits.** Clipping features at their 99.5th percentile silently turned every free hit into 0, because a rare yes/no flag's 99.5th percentile is 0. I fixed it by clipping only features with more than 20 distinct values.
 - **Early free hits.** Before 2016 only front-foot no-balls gave a free hit, and the data can't tell no-ball types apart, so some early "free hits" weren't. I accepted this as small noise.
-- **A data bug:** clipping at the 99.5th percentile silently turned every free hit into 0.
 
 
 **Where the model fails, and what the claims showed**
@@ -158,12 +157,12 @@ Every page also reads without JavaScript.
 <details>
 <summary><b>Everything I learned</b></summary>
 
-- **Log-loss has a floor set by the season itself.** "It is an IPL ball: 1.668. It is a death ball: 1.612." Knowing which question you're answering is half the score, and the entropy of the outcomes tells you how much is left to win.
+- **Log-loss has a floor set by the season itself.** "It is an IPL ball: 1.668. It is a death ball: 1.612." These are B0 on the 2025 death balls: predicting the outcome shares of all IPL balls scores 1.668, and predicting the shares of death balls only scores 1.612 (`B0` and `B0-death` in `data/results.csv`). Knowing which question you're answering is half the score, and the entropy of the outcomes tells you how much is left to win.
 - **A comparison needs a paired interval, not two separate ones.** Two models' intervals overlapped while the paired test was clear, because one match's luck hits both models.
 - **Calibration and discrimination are different jobs.** Calibration fixed the logistic regression's built-in overconfidence, but it couldn't fix XGBoost's season-level bias, which flipped direction between seasons.
 - **Trees beat a linear model only where effects multiply.** XGBoost's edge over the logistic regression is at the death (a planned result); 6+ wickets down clears only the plain 95% interval. These are the balls where wickets left, balls left and who is batting interact. Elsewhere a calibrated logistic regression was level.
 - **Every hyperparameter has side effects.** min_child_weight = 100 stopped overfitting, and it also made XGBoost blind to free-hit wickets.
-- **Most bugs were in the data, not the model.** The duplicated delivery, retired hurt, short overs and the clipping bug all came out of checks against slow, plain versions of the same calculation.
+- **Most bugs were in the data, not the model.** The duplicated delivery, retired hurt, the umpire-miscounted overs (4 with five legal balls and 4 with seven) and the clipping bug all came out of checks against slow, plain versions of the same calculation.
 - **Pre-registering made "not met" a result.** Two of my three claims weren't met, and that is reported rather than hidden.
 - **Scope is a decision.** I dropped the simulator I started with when a check I had set in advance said it would be flat.
 
@@ -204,8 +203,9 @@ Every file is read from and written to `DATA`. On Nov 16, 2026 I reran all three
 | 3 | `test_2026.ipynb` | Refits on 2008-2025 and scores 2026 once | `results_2026.csv`, `paired_2026.csv`, `preregistered_2026.csv`, `slices_2026.csv`, `ece_2026.csv`, `xgb_X-hist_2026.json` |
 | 4 | `post_freeze_checks.ipynb` | Group and block ablations, the death ladder, rain matches, temperature check | `ablation_*.csv`, `ladder_2026.csv`, `rain_scored*.csv`, `temperature_*.csv` |
 | 5 | `error_analysis.ipynb` | Worst-predicted balls and per-feature contributions | `worst_balls_2026.csv`, `push_*.csv`, `balls_2026_explained.parquet` |
-| 6 | `review_checks.ipynb` | Raw-data checks, the Shapley split (16 refits), B1+ | `shapley_2026.csv` |
+| 6 | `review_checks.ipynb` | Raw-data checks, the Shapley split (16 refits), B1+ | `site/data/shapley_2026.csv` |
 | 7 | `analysis_nb.ipynb` | 2025 player tables | `players_*_2025.csv` |
+| 7b | `results_2025.ipynb` | Scores the saved 2025 validation predictions of XGBoost, the logistic regression and B1, with paired differences; added on Nov 16 so the 2025 evidence for choosing the models has its own table (`results.csv` has only the baselines' rows) | `results_2025.csv`, `paired_2025.csv` |
 | 8 | `h1_checks.ipynb` | Checks the worst-ball hypotheses across the 2026 death | `site/data/h1_checks_2026.csv` |
 | 9 | `site_export.ipynb`, `site_build.ipynb`, `site_figures.ipynb` | Exports the website's data and draws its figures | `data/replay/`, `site/data/`, `site/img/`, `img/` |
 
@@ -213,7 +213,7 @@ Steps 1 to 3 reproduce the headline. Steps 4 to 9 reproduce the analyses and the
 
 ### 4. Check the numbers
 
-After `test_2026.ipynb`, `results_2026.csv` should show these death-ball log-losses: XGBoost 1.5680, logistic regression (vector-scaled) 1.5764, B1 1.6017, B0 1.6434. Its first check cell should print 244,269 training, 15,809 validation and 16,282 test balls.
+After `test_2026.ipynb`, `results_2026.csv` should show these death-ball log-losses: XGBoost 1.5680, logistic regression (vector-scaled) 1.5764, B1 1.6017, B0 1.6434. Its first check cell should print 244,269 training, 15,809 validation and 16,282 test balls. On 2025, `results_2025.csv` should show death-ball log-losses of XGBoost 1.5590, logistic regression 1.5722 and B1 1.6018, and its notebook checks each against the `logloss 2025` column of `results_2026.csv`.
 
 **Use a GPU runtime** (Runtime > Change runtime type > GPU). XGBoost was trained on a Colab GPU (`device='cuda'` in `models`, `test_2026`, `post_freeze_checks`, `error_analysis`, `review_checks` and `site_export`). On Nov 14, I reran the pipeline from `prog3.csv`. The feature table came out byte-identical, and on a GPU the 2026 XGBoost refit gave the same 301 trees and the same predictions. Without a GPU, XGBoost falls back to the CPU, which trains slightly different trees: the 2026 XGBoost log-loss moves by about 0.001 (all balls 1.4797 instead of 1.4787, death 1.5678 instead of 1.5680). That is enough to turn the all-balls XGBoost vs logistic regression comparison from "XGBoost better" to "can't tell", though the death results and all six pre-registered verdicts stay the same. The baselines and the logistic regression don't depend on the GPU. The saved model `xgb_X-hist_2026.json` in the data folder gives my exact 2026 predictions on either. On Nov 16, `post_freeze_checks` was rerun on a GPU and matched every saved table exactly. `review_checks` was rerun on a CPU: it reads the saved refit predictions (`shapley_preds_2026.npz`) rather than retraining, so it reproduced the published Shapley shares and the B1+ gap exactly.
 
@@ -241,7 +241,17 @@ The Kaggle "IPL Dataset" by Chaitanya (`IPL.csv`, CC0 public domain), with every
 
 ## AI use
 
-I used Claude (Anthropic) throughout the project. It wrote the code for the website, including the `site_build` and `site_figures` notebooks, which it ran in its own environment. It helped write the code in the other notebooks, and wrote the `review_checks` and `h1_checks` notebooks; it ran `h1_checks` itself. It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce, and it drafted most of the website's text and of this README. I formulated the core research question and drove every architectural decision, critically evaluating AI-generated options to shape the final outcome. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to this repository. I used the Gemini API (`gemini-3.5-flash-lite`) to label each player's batting hand and bowling type, in batches of 100 names returning JSON; the prompt is in `archive_notebooks/ML_Project_IPL.ipynb`. I checked 100 labels by hand and labelled the 15 players it missed myself.
+I used Claude (Anthropic) throughout the project. It wrote the code for the website, including the `site_build` and `site_figures` notebooks, and the `results_2025` notebook, which it ran in its own environment. It helped write the code in the other notebooks, and wrote the `review_checks` and `h1_checks` notebooks; it ran `h1_checks` itself. It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce, and it drafted most of the website's text and of this README.
+
+I formulated the core research question. Some of the decisions that I made:
+
+1. **Testing on a later season.** Train on 2008-2024, choose on 2025, and score 2026 once, instead of a random split. The game drifts (sixes nearly doubled since 2008), and a real model always predicts a season it hasn't seen.
+2. **Death-ball log-loss as the headline.** The question is about the death overs, and log-loss scores the probability given to all seven outcomes, not just whether the top guess was right.
+3. **Within-match features first, then history.** I trained the models without player and venue history and then with it, and report both, so the results show what history adds on its own: it helps on all balls but not measurably at the 2026 death.
+4. **Dropping the bowling simulator.** I set a 1-run bar in advance. Swapping death bowlers moved the result by only 0.11 runs, so I didn't build it.
+5. **Three worst-ball lists.** One top-20 by log-loss would be mostly threes, so I used the worst 10 by log-loss, the worst 10 against B1, and the worst 3 of each outcome.
+
+I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to this repository. I used the Gemini API (`gemini-3.5-flash-lite`) to label each player's batting hand and bowling type, in batches of 100 names returning JSON; the prompt is in `archive_notebooks/ML_Project_IPL.ipynb`. I checked 100 labels by hand and labelled the 15 players it missed myself.
 
 **How the notebook code was written.** Code cells that Claude wrote are labelled in their first line:
 
