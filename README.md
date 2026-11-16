@@ -193,7 +193,7 @@ DATA = '/content/drive/MyDrive/IPL PROJECT ALL DOCS/data/'
 | 2 | `ML_Project_IPL_2_with_renames.ipynb` | `prog1.csv` | `prog2.csv`, `prog2_renamed.csv` |
 | 3 | `ML_Project_IPL_3.ipynb` | `prog2_renamed.csv` | `prog3.csv`, `rain_affected_matches.csv`, and the md5 of `prog3.csv` (mine: `4f7dd268da911c286cf3fc0fad7ec8e2`) |
 
-Every file is read from and written to `DATA`. My own `prog1.csv`, `prog2.csv` and `prog2_renamed.csv` are in the Drive folder under `data/archive/`. `ML_Project_IPL_2.ipynb` and `ML_Project_sg1.ipynb` are earlier versions, replaced by `ML_Project_IPL_2_with_renames.ipynb` and `notebooks/features.ipynb`.
+Every file is read from and written to `DATA`. On Nov 16, 2026 I reran all three into an empty folder (`rebuild_check/`, which is why their `DATA` line points there), and the new `prog3.csv` was byte-identical to mine; `features.ipynb` then rebuilt a byte-identical `ipl_features.parquet` (its last cell prints both md5s). My own `prog1.csv`, `prog2.csv` and `prog2_renamed.csv` are in the Drive folder under `data/archive/`. `ML_Project_IPL_2.ipynb` and `ML_Project_sg1.ipynb` are earlier versions, replaced by `ML_Project_IPL_2_with_renames.ipynb` and `notebooks/features.ipynb`.
 
 ### 3. Main pipeline (`notebooks/`, in this order)
 
