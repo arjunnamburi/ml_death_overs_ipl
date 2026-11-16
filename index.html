@@ -19,7 +19,7 @@
   <div class="stat"><b>1.5680</b><span><span class="dot xgb"></span>XGBoost’s log-loss per 2026 death ball.</span></div>
   <div class="stat"><b>1.6017</b><span><span class="dot b1"></span>The scorecard baseline’s (B1).</span></div>
   <div class="stat"><b>2.1%</b><span>XGBoost’s gain over B1, clearly above zero.</span></div>
-  <div class="stat"><b>0.4%</b><span>What the detailed context adds beyond a finer reading of the scorecard (B1+), too small to tell from zero.</span></div>
+  <div class="stat"><b>0.4%</b><span>What the detailed context adds beyond a finer reading of the scorecard (B1+), too small to tell from zero. B1+ includes the batter’s and bowler’s figures in this match.</span></div>
 </div>
 <p class="muted" style="font-size:.9rem">In plain terms: on an average 2026 death ball, XGBoost gave what actually happened a 20.85% chance, against 20.15% for B1 (geometric means). 3,583 death balls in 71 matches.</p>
 <p class="muted" style="font-size:.9rem">Each section has collapsed <b>How it works</b> boxes that explain the methods behind it: what each one is, why it was used here instead of the alternative, and what it showed in this project.</p>
@@ -230,7 +230,7 @@
 <tbody><tr><td><span class="dot xgb"></span>XGBoost</td><td>1.5680</td><td>[1.5460, 1.5899]</td><td>0.7453</td><td>1.4787</td><td>0.7149</td><td>1.5590</td></tr><tr><td><span class="dot lr"></span>Logistic regression</td><td>1.5764</td><td>[1.5547, 1.5976]</td><td>0.7493</td><td>1.4813</td><td>0.7162</td><td>1.5722</td></tr><tr><td>Logistic regression, no calibration</td><td>1.5858</td><td>[1.5633, 1.6076]</td><td>0.7520</td><td>1.4844</td><td>0.7170</td><td>1.5772</td></tr><tr><td><span class="dot b1"></span>Scorecard baseline (B1)</td><td>1.6017</td><td>[1.5805, 1.6237]</td><td>0.7565</td><td>1.5204</td><td>0.7282</td><td>1.6018</td></tr><tr><td>Flat baseline (B0)</td><td>1.6434</td><td>[1.6195, 1.6676]</td><td>0.7693</td><td>1.5461</td><td>0.7421</td><td>1.6682</td></tr></tbody>
 </table></div>
 <p class="muted" style="font-size:.88rem;margin-top:-.6rem">3,583 death balls and 16,282 balls in all, from 71 matches. One scoring run, on Oct 31, after the models were frozen.</p>
-<p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/results_2026.csv"><code>data/results_2026.csv</code></a></p>
+<p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/results_2026.csv"><code>data/results_2026.csv</code></a>. The 2025 column with its intervals, and the paired 2025 differences, are in <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/results_2025.csv"><code>data/results_2025.csv</code></a> and <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/paired_2025.csv"><code>data/paired_2025.csv</code></a>.</p>
 
 <h3>Paired Differences (A Minus B; Negative Means A Is Better)</h3>
 <p>Every planned comparison favours the first model at the death and on all balls. All but one also clear the stricter Bonferroni interval: XGBoost against the logistic regression clears it at the death but not on all balls.</p>
@@ -386,12 +386,20 @@
 <h2 id="ai">11. AI Assistance</h2>
 <p>I used <b>Claude (Anthropic)</b> throughout the project:</p>
 <ul>
-  <li>It wrote the code for this website, including the <code>site_build</code> and <code>site_figures</code> notebooks, which it ran in its own environment.</li>
+  <li>It wrote the code for this website, including the <code>site_build</code> and <code>site_figures</code> notebooks, and the <code>results_2025</code> notebook, which it ran in its own environment.</li>
   <li>It helped write the code in the other notebooks, and wrote the <code>review_checks</code> and <code>h1_checks</code> notebooks; it ran <code>h1_checks</code> itself.</li>
   <li>It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce.</li>
   <li>It drafted most of the text of this site and of the README.</li>
 </ul>
-<p>I formulated the core research question and drove every architectural decision, critically evaluating AI-generated options to shape the final outcome. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
+<p>I formulated the core research question. Some of the decisions that I made:</p>
+<ol>
+  <li><b>Testing on a later season.</b> Train on 2008-2024, choose on 2025, and score 2026 once, instead of a random split. The game drifts (sixes nearly doubled since 2008), and a real model always predicts a season it hasn’t seen.</li>
+  <li><b>Death-ball log-loss as the headline.</b> The question is about the death overs, and log-loss scores the probability given to all seven outcomes, not just whether the top guess was right.</li>
+  <li><b>Within-match features first, then history.</b> I trained the models without player and venue history and then with it, and report both, so the results show what history adds on its own: it helps on all balls but not measurably at the 2026 death.</li>
+  <li><b>Dropping the bowling simulator.</b> I set a 1-run bar in advance. Swapping death bowlers moved the result by only 0.11 runs, so I didn’t build it.</li>
+  <li><b>Three worst-ball lists.</b> One top-20 by log-loss would be mostly threes, so I used the worst 10 by log-loss, the worst 10 against B1, and the worst 3 of each outcome.</li>
+</ol>
+<p>I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
 <p>I used <b>Gemini</b> to label each player’s batting hand and bowling type: the Gemini API (<code>gemini-3.5-flash-lite</code>) was given batches of 100 player names and asked for JSON. The prompt is in <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/archive_notebooks/ML_Project_IPL.ipynb"><code>archive_notebooks/ML_Project_IPL.ipynb</code></a>. I checked 100 labels by hand and labelled the 15 players it missed myself.</p>
 <p>Which notebook code Claude wrote, and how I worked with it, is set out in the <a href="https://github.com/arjunnamburi/ml_death_overs_ipl#ai-use">README’s AI use section</a>.</p>
 

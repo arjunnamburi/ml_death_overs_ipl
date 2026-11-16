@@ -70,9 +70,12 @@
   });
 
   /* ---------- ablations ---------- */
-  const verdictCell = r => {
+  // Rows whose Bonferroni bound sits within 0.00005 of zero (it rounds to 0.0000), checked from the interval in each CSV.
+  const BORDERLINE = ['2026|all_inmatch_context|death', '2025|all_history|death', '2026|+ matchup-type base rates|all'];
+  const verdictCell = (r, name) => {
     const helps = /helps/.test(r.verdict);
-    return '<span class="' + (helps ? 'verdict-yes' : 'verdict-mixed') + '">' + esc(r.verdict) + '</span>' + (r.bonferroni === 'True' ? ' <span class="tag">Bonferroni</span>' : '');
+    const tag = r.bonferroni !== 'True' ? '' : BORDERLINE.includes(r.season + '|' + name + '|' + r.balls) ? ' <span class="tag">Bonferroni (borderline)</span>' : ' <span class="tag">Bonferroni</span>';
+    return '<span class="' + (helps ? 'verdict-yes' : 'verdict-mixed') + '">' + esc(r.verdict) + '</span>' + tag;
   };
   const ablTable = (rows, nameKey, names) => {
     const keys = [...new Set(rows.map(r => r[nameKey]))];
@@ -83,7 +86,7 @@
       const a = rows.find(r => r[nameKey] === k && r.season === season && r.balls === 'all');
       if (!d || !a) return;
       out.push([season === '2025' ? '<b>' + esc(names ? (names[k] || k) : k) + '</b>' : '', season === '2025' ? d.n_feats : '', season,
-        F.signed(d.loss_if_dropped, 4) + ' ' + ci(d.low, d.high), verdictCell(d), F.signed(a.loss_if_dropped, 4) + ' ' + ci(a.low, a.high), verdictCell(a)]);
+        F.signed(d.loss_if_dropped, 4) + ' ' + ci(d.low, d.high), verdictCell(d, k), F.signed(a.loss_if_dropped, 4) + ' ' + ci(a.low, a.high), verdictCell(a, k)]);
     }));
     return table(head, out, 'Positive change = log-loss went up without the group, so the group was helping. 2025: refit on 2008-2024, scored on 2025. 2026: refit on 2008-2025, scored on 2026.');
   };
