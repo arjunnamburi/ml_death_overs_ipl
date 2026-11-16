@@ -24,12 +24,12 @@
    "text": "The final balls of an innings, often with nine down. The scorecard features dominate: few balls left per wicket, the ball count and the batting positions. XGBoost read these balls as all-out slogs and gave a dot far less chance than B1. Our hypothesis: the finer scorecard that brings most of XGBoost's gain also makes it overconfident here, where batters still miss, defend or take the single.",
    "check": "S4b check C (H1): does XGBoost under-predict dots and singles across the 20th over of 2026 (not just on these balls)? If so, this also explains part of the season-wide under-prediction of death dots.",
    "verdict": "Not seen across the season",
-   "result": "In the 20th over, dots and singles came about as often as XGBoost predicted. Dots are under-predicted in overs 16-19 as well, so the last over doesn't seem special: it looks like part of the death-wide dot gap in Figure 6 of the report."
+   "result": "In the 20th over, dots and singles came about as often as XGBoost predicted. Dots are under-predicted in overs 16-19 as well, so the last over doesn't seem special: it looks like part of the death-wide dot gap in Figure 5 of the report."
   },
   "D": {
    "title": "Wickets with no clear cause",
    "balls": 3,
-   "text": "Three wickets early in the death, with wickets in hand. No feature pushed hard. XGBoost gives such balls a lower wicket chance than B1, and across the season that lower chance is about right (Figure 6 in the report). So we read these as chance, the cost of being right on average, not as a feature that misled the model.",
+   "text": "Three wickets early in the death, with wickets in hand. No feature pushed hard. XGBoost gives such balls a lower wicket chance than B1, and across the season that lower chance is about right (Figure 5 in the report). So we read these as chance, the cost of being right on average, not as a feature that misled the model.",
    "check": "S4b check D (added Nov 6): early in the death with wickets in hand, is XGBoost's wicket chance about right?",
    "verdict": "Matches the season",
    "result": "Early in the death with five or fewer down, wickets fell about as often as XGBoost predicted (5.9% against 6.2%), so its lower wicket chance there looks about right."
