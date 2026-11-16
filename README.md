@@ -85,7 +85,7 @@ Every page also reads without JavaScript.
 - **All-overs vs death-only, decided by evidence.** One XGBoost model serves every ball, because trees can grow death-specific branches.
 
 **Four failures**
-- **Free hits:** XGBoost gives a 5.9% wicket chance on a free hit, because min_child_weight = 100 stops any wicket tree from splitting on such a rare flag.
+- **Free hits:** XGBoost gives a 5.9% wicket chance on a free hit, because with min_child_weight = 100 no wicket-tree leaf can hold almost every free hit after its other splits, so the trees never separate them.
 - **Lost chases:** it over-predicts sixes when the required rate is above 18 (12.0% vs 8.6%).
 - **The 2026 death shift:** more dots and fewer wickets than 2025, which every model missed, so claim 2 wasn't met.
 - **The detailed context matters less than I expected:** about 0.4% on top of a fine scorecard at the death.
@@ -122,8 +122,8 @@ Every page also reads without JavaScript.
 - **XGBoost left uncalibrated.** Temperature and vector scaling learned on 2024 made XGBoost worse on 2025, because its biases flip direction between seasons. The logistic regression kept vector scaling, because its overconfidence is built in and carries over from season to season.
 - **No recency weighting.** Weighting recent seasons more, or training on only the last 3 or 5 seasons, did worse, so older seasons still carry useful information.
 - **No reweighting of rare classes.** Threes are 0.2% of balls, but reweighting them would deliberately miscalibrate the probabilities, which works against a log-loss objective.
-- **Pre-registration.** I froze the claims, the planned comparisons and the slice testing rule (Bonferroni over 44 tests) at the `freeze-v1` tag, then scored 2026 exactly once at `test-2026`.
-- **Replay matches chosen by a rule.** The four replay matches were picked by a rule written before looking at any per-match death result.
+- **Pre-registration.** The three claims were set in my October 15 proposal. At the `freeze-v1` tag I froze the final models, the planned comparisons and the slice testing rule (Bonferroni over 44 tests) in `freeze.json`, then scored 2026 exactly once at `test-2026`.
+- **Replay matches chosen by a rule.** The four replay matches were picked by a fixed rule written on Nov 4. By then some whole-match results on all balls had been seen (the most and least predictable matches, and one match suggested during the error analysis), but no per-match death result had been looked at.
 - **Dropping the bowling simulator.** My original idea was a Monte Carlo simulator for choosing death bowlers. When I swapped 54 bowlers into the same 1,494 chase balls, the best and worst plans differed by only 0.11 runs from over 17, below the 1-run bar I had set in advance, so I dropped it.
 - **Keeping the matchup features.** They showed no measurable contribution, but neither season clearly supported dropping them.
 
@@ -143,8 +143,8 @@ Every page also reads without JavaScript.
 
 **Where the model fails, and what the claims showed**
 - **Scoring drift.** 2025 and 2026 have about 67% more sixes than the training seasons. Models trained on the past under-predict boundaries, and the season features only partly follow the change.
-- **Free hits.** XGBoost gives a 5.9% wicket chance on a free hit, when a batter can only be run out. None of its 301 wicket trees splits on the free-hit flag: each free hit adds only about 0.11 to a wicket leaf's weight, so all ~1,060 training free hits together fall below the 100 a leaf needs (min_child_weight). A setting I chose to stop overfitting caused a rule-of-the-game failure.
-- **Lost chases.** When the required rate is above 18, XGBoost over-predicts sixes (12.0% predicted vs 8.6% actual in 2026, and the same direction in 2025). It learned "more pressure, more sixes" from close chases, which isn't true once the chase is lost and the tail is batting.
+- **Free hits.** XGBoost gives a 5.9% wicket chance on a free hit, when a batter can only be run out. None of its 301 wicket trees splits on the free-hit flag: min_child_weight is a minimum total curvature in a leaf, not a count of balls, and each free hit adds only about 2 × 0.06 × 0.94 ≈ 0.11 to the wicket tree. The ~1,100 free hits in the 2008-2025 training seasons together add about 125, barely above the leaf minimum of 100, so a leaf holding only free hits would need almost all of them after up to three other splits, and in practice no wicket-tree leaf can separate them. A setting I chose to stop overfitting caused a rule-of-the-game failure.
+- **Lost chases.** When the required rate is above 18, XGBoost over-predicts sixes (12.0% predicted vs 8.6% actual in 2026, and the same direction in 2025). My hypothesis, not tested: it learned "more pressure, more sixes" from close chases, and that may not hold once the chase is lost and the tail is batting.
 - **Calibration at the death (claim 2).** 2026 had more death dots and fewer wickets, and every model, calibrated or not, missed that shift.
 - **Which group matters (claim 3).** Removing one feature group at a time can't show where the death gain comes from, because the groups overlap. I needed a Shapley analysis that averages over every order.
 - **History at the death isn't stable.** Player history helped at the 2025 death but added nothing at the 2026 death.
@@ -161,7 +161,7 @@ Every page also reads without JavaScript.
 - **Log-loss has a floor set by the season itself.** "It is an IPL ball: 1.668. It is a death ball: 1.612." Knowing which question you're answering is half the score, and the entropy of the outcomes tells you how much is left to win.
 - **A comparison needs a paired interval, not two separate ones.** Two models' intervals overlapped while the paired test was clear, because one match's luck hits both models.
 - **Calibration and discrimination are different jobs.** Calibration fixed the logistic regression's built-in overconfidence, but it couldn't fix XGBoost's season-level bias, which flipped direction between seasons.
-- **Trees beat a linear model only where effects multiply.** XGBoost's edge over the logistic regression is at the death and with 6+ wickets down, where wickets left, balls left and who is batting interact. Elsewhere a calibrated logistic regression was level.
+- **Trees beat a linear model only where effects multiply.** XGBoost's edge over the logistic regression is at the death (a planned result); 6+ wickets down clears only the plain 95% interval. These are the balls where wickets left, balls left and who is batting interact. Elsewhere a calibrated logistic regression was level.
 - **Every hyperparameter has side effects.** min_child_weight = 100 stopped overfitting, and it also made XGBoost blind to free-hit wickets.
 - **Most bugs were in the data, not the model.** The duplicated delivery, retired hurt, short overs and the clipping bug all came out of checks against slow, plain versions of the same calculation.
 - **Pre-registering made "not met" a result.** Two of my three claims weren't met, and that is reported rather than hidden.
@@ -242,6 +242,13 @@ The Kaggle "IPL Dataset" by Chaitanya (`IPL.csv`, CC0 public domain), with every
 ## AI use
 
 I used Claude (Anthropic) throughout the project. It wrote the code for the website, including the `site_build` and `site_figures` notebooks, which it ran in its own environment. It helped write the code in the other notebooks, and wrote the `review_checks` and `h1_checks` notebooks; it ran `h1_checks` itself. It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce, and it drafted most of the website's text and of this README. I chose the research question and directed every decision on this project; some, such as the How it works boxes, were Claude's suggestions that I approved. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to this repository. I used the Gemini API (`gemini-3.5-flash-lite`) to label each player's batting hand and bowling type, in batches of 100 names returning JSON; the prompt is in `archive_notebooks/ML_Project_IPL.ipynb`. I checked 100 labels by hand and labelled the 15 players it missed myself.
+
+**How the notebook code was written.** Code cells that Claude wrote are labelled in their first line:
+
+- `COPY-PASTE`: Claude wrote the cell, and I pasted it after reading what the block does. These are mostly setup, loading, plotting, saving files and checks.
+- `TYPE IT`: core logic that Claude also wrote, but that I typed out myself, line by line, to understand each function. These are the 2026 refits and the pre-registered checks in `test_2026`, the drop-one-group, ladder and temperature refits in `post_freeze_checks`, and the worst-ball and push calculations in `error_analysis`.
+
+From Nov 5 I was short on time, so every new cell was labelled `COPY-PASTE`. The website's CSS and JavaScript files start with a `COPY-PASTE` comment because Claude wrote them. `features`, `models`, `analysis_nb` and the data-prep notebooks in `archive_notebooks/` carry no labels (apart from one check cell Claude added at the end of `features` on Nov 16). I don't have a record of which parts of them I wrote myself and which came from AI help, so read them as AI-assisted.
 
 ## Libraries and references
 
