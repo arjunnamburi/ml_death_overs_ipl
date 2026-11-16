@@ -124,7 +124,7 @@ Every page also reads without JavaScript.
 - **No reweighting of rare classes.** Threes are 0.2% of balls, but reweighting them would deliberately miscalibrate the probabilities, which works against a log-loss objective.
 - **Pre-registration.** The three claims were set in my October 15 proposal. At the `freeze-v1` tag I froze the final models, the planned comparisons and the slice testing rule (Bonferroni over 44 tests) in `freeze.json`, then scored 2026 exactly once at `test-2026`.
 - **Replay matches chosen by a rule.** The four replay matches were picked by a fixed rule written on Nov 4. By then some whole-match results on all balls had been seen (the most and least predictable matches, and one match suggested during the error analysis), but no per-match death result had been looked at.
-- **Dropping the bowling simulator.** My original idea was a Monte Carlo simulator for choosing death bowlers. When I swapped 54 bowlers into the same 1,494 chase balls and counted the overs each bowler had left at over 17, the best and worst plans for overs 17-20 differed by a median of only 0.11 runs, below the 1-run bar I had set in advance, so I dropped it.
+- **Dropping the bowling simulator.** My original idea was a Monte Carlo simulator for choosing death bowlers. When I swapped 54 bowlers into the same 1,494 chase balls and counted the overs each bowler had left at over 17, the best and worst plans for overs 17-20 differed by a median of only 0.11 runs, below the 1-run bar I had set in advance, so I dropped it (`notebooks/bowler_swap_check.ipynb`).
 - **Keeping the matchup features.** They showed no measurable contribution, but neither season clearly supported dropping them.
 
 </details>
@@ -208,8 +208,9 @@ Every file is read from and written to `DATA`. On Nov 16, 2026 I reran all three
 | 7b | `results_2025.ipynb` | Scores the saved 2025 validation predictions of XGBoost, the logistic regression and B1, with paired differences; added on Nov 16 so the 2025 evidence for choosing the models has its own table (`results.csv` has only the baselines' rows) | `results_2025.csv`, `paired_2025.csv` |
 | 8 | `h1_checks.ipynb` | Checks the worst-ball hypotheses across the 2026 death | `site/data/h1_checks_2026.csv` |
 | 9 | `site_export.ipynb`, `site_build.ipynb`, `site_figures.ipynb` | Exports the website's data and draws its figures | `data/replay/`, `site/data/`, `site/img/`, `img/` |
+| 10 | `bowler_swap_check.ipynb` | The Nov 3 bowler-swap check behind dropping the simulator. The code is restored from my notes and not re-run here, so the results are given as recorded on Nov 3 | none |
 
-Steps 1 to 3 reproduce the headline. Steps 4 to 9 reproduce the analyses and the website.
+Steps 1 to 3 reproduce the headline. Steps 4 to 10 reproduce the analyses and the website.
 
 ### 4. Check the numbers
 
