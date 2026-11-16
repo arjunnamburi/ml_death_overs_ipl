@@ -47,7 +47,7 @@ At the death, XGBoost is 2.1% better than B1, and it also beats the logistic reg
 | + in-match context (momentum, chase pressure, partnership, bowler's spell) | 1.5677 | −0.0058 | 35% |
 | + player and venue history (the final model) | 1.5680 | +0.0002 (can't be told from zero) | 10% |
 
-An XGBoost model trained on the 17 scorecard features alone (B1+) is only 0.0060 behind the full model at the death (−0.0060 [−0.0124, +0.0005]), which one season can't tell from zero. Six of those 17 features are the current batter's and bowler's figures in the match, so how the features are grouped affects these shares.
+XGBoost (scorecard only), an XGBoost model trained on the 17 scorecard features alone, is only 0.0060 behind the full model at the death (−0.0060 [−0.0124, +0.0005]), which one season can't tell from zero. Six of those 17 features are the current batter's and bowler's figures in the match, so how the features are grouped affects these shares.
 
 ### The three claims in my proposal: 1 of 3 met
 
@@ -203,7 +203,7 @@ Every file is read from and written to `DATA`. On Nov 16, 2026 I reran all three
 | 3 | `test_2026.ipynb` | Refits on 2008-2025 and scores 2026 once | `results_2026.csv`, `paired_2026.csv`, `preregistered_2026.csv`, `slices_2026.csv`, `ece_2026.csv`, `xgb_X-hist_2026.json` |
 | 4 | `post_freeze_checks.ipynb` | Group and block ablations, the death ladder, rain matches, temperature check | `ablation_*.csv`, `ladder_2026.csv`, `rain_scored*.csv`, `temperature_*.csv` |
 | 5 | `error_analysis.ipynb` | Worst-predicted balls and per-feature contributions | `worst_balls_2026.csv`, `push_*.csv`, `balls_2026_explained.parquet` |
-| 6 | `review_checks.ipynb` | Raw-data checks, the Shapley split (16 refits), B1+ | `site/data/shapley_2026.csv` |
+| 6 | `review_checks.ipynb` | Raw-data checks, the Shapley split (16 refits), XGBoost (scorecard only) | `site/data/shapley_2026.csv` |
 | 7 | `analysis_nb.ipynb` | 2025 player tables | `players_*_2025.csv` |
 | 7b | `results_2025.ipynb` | Scores the saved 2025 validation predictions of XGBoost, the logistic regression and B1, with paired differences; added on Nov 16 so the 2025 evidence for choosing the models has its own table (`results.csv` has only the baselines' rows) | `results_2025.csv`, `paired_2025.csv` |
 | 8 | `h1_checks.ipynb` | Checks the worst-ball hypotheses across the 2026 death | `site/data/h1_checks_2026.csv` |
@@ -215,7 +215,7 @@ Steps 1 to 3 reproduce the headline. Steps 4 to 9 reproduce the analyses and the
 
 After `test_2026.ipynb`, `results_2026.csv` should show these death-ball log-losses: XGBoost 1.5680, logistic regression (vector-scaled) 1.5764, B1 1.6017, B0 1.6434. Its first check cell should print 244,269 training, 15,809 validation and 16,282 test balls. On 2025, `results_2025.csv` should show death-ball log-losses of XGBoost 1.5590, logistic regression 1.5722 and B1 1.6018, and its notebook checks each against the `logloss 2025` column of `results_2026.csv`.
 
-**Use a GPU runtime** (Runtime > Change runtime type > GPU). XGBoost was trained on a Colab GPU (`device='cuda'` in `models`, `test_2026`, `post_freeze_checks`, `error_analysis`, `review_checks` and `site_export`). On Nov 14, I reran the pipeline from `prog3.csv`. The feature table came out byte-identical, and on a GPU the 2026 XGBoost refit gave the same 301 trees and the same predictions. Without a GPU, XGBoost falls back to the CPU, which trains slightly different trees: the 2026 XGBoost log-loss moves by about 0.001 (all balls 1.4797 instead of 1.4787, death 1.5678 instead of 1.5680). That is enough to turn the all-balls XGBoost vs logistic regression comparison from "XGBoost better" to "can't tell", though the death results and all six pre-registered verdicts stay the same. The baselines and the logistic regression don't depend on the GPU. The saved model `xgb_X-hist_2026.json` in the data folder gives my exact 2026 predictions on either. On Nov 16, `post_freeze_checks` was rerun on a GPU and matched every saved table exactly. `review_checks` was rerun on a CPU: it reads the saved refit predictions (`shapley_preds_2026.npz`) rather than retraining, so it reproduced the published Shapley shares and the B1+ gap exactly.
+**Use a GPU runtime** (Runtime > Change runtime type > GPU). XGBoost was trained on a Colab GPU (`device='cuda'` in `models`, `test_2026`, `post_freeze_checks`, `error_analysis`, `review_checks` and `site_export`). On Nov 14, I reran the pipeline from `prog3.csv`. The feature table came out byte-identical, and on a GPU the 2026 XGBoost refit gave the same 301 trees and the same predictions. Without a GPU, XGBoost falls back to the CPU, which trains slightly different trees: the 2026 XGBoost log-loss moves by about 0.001 (all balls 1.4797 instead of 1.4787, death 1.5678 instead of 1.5680). That is enough to turn the all-balls XGBoost vs logistic regression comparison from "XGBoost better" to "can't tell", though the death results and all six pre-registered verdicts stay the same. The baselines and the logistic regression don't depend on the GPU. The saved model `xgb_X-hist_2026.json` in the data folder gives my exact 2026 predictions on either. On Nov 16, `post_freeze_checks` was rerun on a GPU and matched every saved table exactly. `review_checks` was rerun on a CPU: it reads the saved refit predictions (`shapley_preds_2026.npz`) rather than retraining, so it reproduced the published Shapley shares and the gap between XGBoost and XGBoost (scorecard only) exactly.
 
 ### Environment
 
@@ -264,7 +264,7 @@ From Nov 5 I was short on time, so every new cell was labelled `COPY-PASTE`. The
 
 Everything below was used by the notebooks, except where noted.
 
-- **XGBoost** (Chen and Guestrin, 2016): the gradient-boosted trees, the B1+ and ablation refits, and the per-feature pushes (`pred_contribs`).
+- **XGBoost** (Chen and Guestrin, 2016): the gradient-boosted trees, the scorecard-only and ablation refits, and the per-feature pushes (`pred_contribs`).
 - **TreeSHAP** (Lundberg et al., 2020): the method XGBoost uses to compute the pushes exactly for trees.
 - **scikit-learn** (Pedregosa et al., 2011): the logistic regression (`LogisticRegression`, L-BFGS) and log-loss (`log_loss`).
 - **pandas** (McKinney, 2010): the feature table and every data table.

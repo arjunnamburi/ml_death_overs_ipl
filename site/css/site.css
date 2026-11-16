@@ -255,3 +255,21 @@ p.finding { margin-top: .4rem; }
 /* Source link under a data table: the file on GitHub the numbers come from. */
 .src { font-size: .82rem; color: var(--ink-2); margin: -.5rem 0 1.1rem; max-width: var(--text-w); }
 .src a { overflow-wrap: anywhere; }
+
+/* ---------- Nov 17: opening figure (bars drawn in HTML so they stay readable on a phone) ---------- */
+.hero-fig { margin: 1.4rem 0 1.6rem; }
+.hbars { max-width: var(--text-w); margin: 0 auto; display: grid; gap: .55rem; }
+.hb-row, .hb-axis { display: grid; grid-template-columns: 15rem minmax(0, 1fr); align-items: center; gap: .8rem; }
+.hb-lab { font-size: .95rem; color: var(--ink); }
+.hb-strong .hb-lab, .hb-strong .hb-val { font-weight: 700; }
+.hb-track { display: flex; align-items: center; gap: .5rem; min-width: 0; }
+.hb-bar { display: block; height: 1.1rem; border-radius: 3px; width: calc(var(--w) * (100% - 7.5rem)); flex: none; }
+.hb-val { font-variant-numeric: tabular-nums; font-size: .9rem; white-space: nowrap; color: var(--ink); }
+.hb-val small { color: var(--ink-2); font-size: .8rem; margin-left: .2rem; }
+.hb-ticks { position: relative; height: 1.2rem; border-top: 1px solid var(--line); }
+.hb-ticks span { position: absolute; left: calc(var(--w) * (100% - 7.5rem)); transform: translateX(-50%); font-size: .75rem; color: var(--ink-2); top: .15rem; font-variant-numeric: tabular-nums; }
+.hb-ticks span:first-child { transform: none; }
+@media (max-width: 600px) {
+  .hb-row, .hb-axis { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
+  .hb-axis .hb-lab { display: none; }
+}
