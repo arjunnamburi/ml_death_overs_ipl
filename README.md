@@ -124,7 +124,7 @@ Every page also reads without JavaScript.
 - **No reweighting of rare classes.** Threes are 0.2% of balls, but reweighting them would deliberately miscalibrate the probabilities, which works against a log-loss objective.
 - **Pre-registration.** The three claims were set in my October 15 proposal. At the `freeze-v1` tag I froze the final models, the planned comparisons and the slice testing rule (Bonferroni over 44 tests) in `freeze.json`, then scored 2026 exactly once at `test-2026`.
 - **Replay matches chosen by a rule.** The four replay matches were picked by a fixed rule written on Nov 4. By then some whole-match results on all balls had been seen (the most and least predictable matches, and one match suggested during the error analysis), but no per-match death result had been looked at.
-- **Dropping the bowling simulator.** My original idea was a Monte Carlo simulator for choosing death bowlers. When I swapped 54 bowlers into the same 1,494 chase balls, the best and worst plans differed by only 0.11 runs from over 17, below the 1-run bar I had set in advance, so I dropped it.
+- **Dropping the bowling simulator.** My original idea was a Monte Carlo simulator for choosing death bowlers. When I swapped 54 bowlers into the same 1,494 chase balls and counted the overs each bowler had left at over 17, the best and worst plans for overs 17-20 differed by a median of only 0.11 runs, below the 1-run bar I had set in advance, so I dropped it (`notebooks/bowler_swap_check.ipynb`).
 - **Keeping the matchup features.** They showed no measurable contribution, but neither season clearly supported dropping them.
 
 </details>
@@ -150,7 +150,7 @@ Every page also reads without JavaScript.
 - **The detailed context matters less than I expected.** A scorecard-only XGBoost gets almost all of the gain; all the detailed context adds only about 0.4% at the death, which can't be told from zero.
 - **Recency weighting made things worse,** the opposite of what I expected.
 - **A single ball is mostly chance.** Fours and sixes never get more than a 37% predicted chance, and only 6 of 850 wickets in 2026 were given more than 22%.
-- **Bowlers look alike to the model.** Across 54 death bowlers, predicted economy spans only 0.52 runs per over, which is why the simulator was dropped.
+- **Bowlers look alike to the model.** Across 54 death bowlers, the middle 80% of predicted economies lie within 0.52 runs per over, which is why the simulator was dropped.
 
 </details>
 
@@ -208,8 +208,9 @@ Every file is read from and written to `DATA`. On Nov 16, 2026 I reran all three
 | 7b | `results_2025.ipynb` | Scores the saved 2025 validation predictions of XGBoost, the logistic regression and B1, with paired differences; added on Nov 16 so the 2025 evidence for choosing the models has its own table (`results.csv` has only the baselines' rows) | `results_2025.csv`, `paired_2025.csv` |
 | 8 | `h1_checks.ipynb` | Checks the worst-ball hypotheses across the 2026 death | `site/data/h1_checks_2026.csv` |
 | 9 | `site_export.ipynb`, `site_build.ipynb`, `site_figures.ipynb` | Exports the website's data and draws its figures | `data/replay/`, `site/data/`, `site/img/`, `img/` |
+| 10 | `bowler_swap_check.ipynb` | The Nov 3 bowler-swap check behind dropping the simulator. The code is restored from my notes and not re-run here, so the results are given as recorded on Nov 3 | none |
 
-Steps 1 to 3 reproduce the headline. Steps 4 to 9 reproduce the analyses and the website.
+Steps 1 to 3 reproduce the headline. Steps 4 to 10 reproduce the analyses and the website.
 
 ### 4. Check the numbers
 
@@ -248,7 +249,7 @@ I formulated the core research question. Some of the decisions that I made:
 1. **Testing on a later season.** Train on 2008-2024, choose on 2025, and score 2026 once, instead of a random split. The game drifts (sixes nearly doubled since 2008), and a real model always predicts a season it hasn't seen.
 2. **Death-ball log-loss as the headline.** The question is about the death overs, and log-loss scores the probability given to all seven outcomes, not just whether the top guess was right.
 3. **Within-match features first, then history.** I trained the models without player and venue history and then with it, and report both, so the results show what history adds on its own: it helps on all balls but not measurably at the 2026 death.
-4. **Dropping the bowling simulator.** I set a 1-run bar in advance. Swapping death bowlers moved the result by only 0.11 runs, so I didn't build it.
+4. **Dropping the bowling simulator.** I set a 1-run bar in advance. Swapping death bowlers moved the expected runs in overs 17-20 by a median of only 0.11 runs, so I didn't build it.
 5. **Three worst-ball lists.** One top-20 by log-loss would be mostly threes, so I used the worst 10 by log-loss, the worst 10 against B1, and the worst 3 of each outcome.
 
 I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to this repository. I used the Gemini API (`gemini-3.5-flash-lite`) to label each player's batting hand and bowling type, in batches of 100 names returning JSON; the prompt is in `archive_notebooks/ML_Project_IPL.ipynb`. I checked 100 labels by hand and labelled the 15 players it missed myself.

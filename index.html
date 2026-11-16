@@ -379,7 +379,7 @@
   <li>Player labels aren’t perfect. The hand check of 100 players found no errors, but at least one label outside it is wrong: VG Arora is labelled left-arm pace, though he bowls right-arm (228 balls in 2026). The models were frozen with this label.</li>
   <li>Free-hit wickets get about a 6% chance from XGBoost, which is far too high.</li>
   <li>Wides and no-balls aren’t predicted, because they are bowled again (<a href="site/extras.html#data-checks">Data checks</a>).</li>
-  <li>The model barely separates death bowlers: swapping the bowler changes the expected runs by only about 0.11 per ball.</li>
+  <li>The model barely separates death bowlers. With 54 regular death bowlers swapped onto the same 1,494 chase balls, the middle 80% of their predicted economies lie within 0.52 runs per over. Once the overs each bowler had left at over 17 are counted, the best and worst plans for overs 17-20 differ by a median of only 0.11 runs (38 chases). <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/notebooks/bowler_swap_check.ipynb">The check is in <code>bowler_swap_check.ipynb</code>.</a></li>
   <li>The close-chase replay ends in a tie that KKR won in a super over, which isn’t in the ball-by-ball data.</li>
   <li>The four replay matches were picked by a fixed rule written on Nov 4. By then some whole-match results on all balls had been seen (the most and least predictable matches, and one match suggested during the error analysis), but no per-match death result had been looked at.</li>
 </ul>
@@ -412,7 +412,7 @@
   <li><b>Testing on a later season.</b> Train on 2008-2024, choose on 2025, and score 2026 once, instead of a random split. The game drifts (sixes nearly doubled since 2008), and a real model always predicts a season it hasn’t seen.</li>
   <li><b>Death-ball log-loss as the headline.</b> The question is about the death overs, and log-loss scores the probability given to all seven outcomes, not just whether the top guess was right.</li>
   <li><b>Within-match features first, then history.</b> I trained the models without player and venue history and then with it, and report both, so the results show what history adds on its own: it helps on all balls but not measurably at the 2026 death.</li>
-  <li><b>Dropping the bowling simulator.</b> I set a 1-run bar in advance. Swapping death bowlers moved the result by only 0.11 runs, so I didn’t build it.</li>
+  <li><b>Dropping the bowling simulator.</b> I set a 1-run bar in advance. Swapping death bowlers moved the expected runs in overs 17-20 by a median of only 0.11 runs, so I didn’t build it.</li>
   <li><b>Three worst-ball lists.</b> One top-20 by log-loss would be mostly threes, so I used the worst 10 by log-loss, the worst 10 against B1, and the worst 3 of each outcome.</li>
 </ol>
 <p>I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
