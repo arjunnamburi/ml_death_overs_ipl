@@ -359,15 +359,15 @@
 
 <!-- ================================================================ -->
 <h2 id="ai">11. AI Assistance</h2>
-<p><b>Claude (Anthropic)</b> was used throughout the project:</p>
+<p>I used <b>Claude (Anthropic)</b> throughout the project:</p>
 <ul>
-  <li>It ran checks on the dataset and on the exported results.</li>
-  <li>It helped write the code in the notebooks and for this website, and helped run it.</li>
-  <li>It helped write the documentation and the text of this site.</li>
+  <li>It wrote the code for this website, including the <code>site_build</code> and <code>site_figures</code> notebooks, which it ran in its own environment.</li>
+  <li>It helped write the code in the other notebooks, and wrote the <code>review_checks</code> and <code>h1_checks</code> notebooks; it ran <code>h1_checks</code> itself.</li>
+  <li>It ran checks on the dataset and on the exported results, including reruns to check that the results reproduce.</li>
+  <li>It drafted most of the text of this site and of the README.</li>
 </ul>
-<p><b>Arjun Namburi</b> chose the research question and made every design decision. He ran and verified every notebook cell in Google Colab, hand-checked the player labels against ESPNcricinfo, and reviewed and merged every change to the repository.</p>
-<p><b>Gemini</b> labelled each player’s batting hand and bowling type: the Gemini API (<code>gemini-3.5-flash-lite</code>) was given batches of 100 player names and asked for JSON. The prompt is in <code>archive_notebooks/ML_Project_IPL.ipynb</code>. 100 labels were checked by hand, and the 15 it missed were labelled by hand.</p>
-<p>The push bars on the worst-balls page are XGBoost’s own per-feature contributions (<code>pred_contribs</code>, which are SHAP values for trees).</p>
+<p>I chose the research question and directed every decision on this project; some, such as the How it works boxes, were Claude’s suggestions that I approved. I ran every other notebook in Google Colab, hand-checked the player labels against ESPNcricinfo, reviewed the site over several rounds of feedback, and reviewed and merged every change to the repository.</p>
+<p>I used <b>Gemini</b> to label each player’s batting hand and bowling type: the Gemini API (<code>gemini-3.5-flash-lite</code>) was given batches of 100 player names and asked for JSON. The prompt is in <code>archive_notebooks/ML_Project_IPL.ipynb</code>. I checked 100 labels by hand and labelled the 15 players it missed myself.</p>
 
 <!-- ================================================================ -->
 <h2 id="credits">12. Libraries and Data</h2>
