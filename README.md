@@ -248,7 +248,7 @@ I used Claude (Anthropic) throughout the project. It wrote the code for the webs
 - `COPY-PASTE`: Claude wrote the cell, and I pasted it after reading what the block does. These are mostly setup, loading, plotting, saving files and checks.
 - `TYPE IT`: core logic that Claude also wrote, but that I typed out myself, line by line, to understand each function. These are the 2026 refits and the pre-registered checks in `test_2026`, the drop-one-group, ladder and temperature refits in `post_freeze_checks`, and the worst-ball and push calculations in `error_analysis`.
 
-From Nov 5 I was short on time, so every new cell was labelled `COPY-PASTE`. The website's CSS and JavaScript files start with a `COPY-PASTE` comment because Claude wrote them. `features`, `models`, `analysis_nb` and the data-prep notebooks in `archive_notebooks/` carry no labels (apart from one check cell Claude added at the end of `features` on Nov 16). I don't have a record of which parts of them I wrote myself and which came from AI help, so read them as AI-assisted.
+From Nov 5 I was short on time, so every new cell was labelled `COPY-PASTE`. The website's CSS and JavaScript files start with a `COPY-PASTE` comment because Claude wrote them.
 
 ## Libraries and references
 
