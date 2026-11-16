@@ -273,3 +273,8 @@ p.finding { margin-top: .4rem; }
   .hb-row, .hb-axis { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
   .hb-axis .hb-lab { display: none; }
 }
+
+/* ---------- Nov 17: top of the report sits beside the sidebar ---------- */
+article > .lede:first-child { margin-top: 0; }
+.hero-fig { margin-top: .4rem; }
+.hero-fig .hbars, .hero-fig figcaption, .hero-fig ul.figpoints { margin-left: 0; margin-right: 0; }

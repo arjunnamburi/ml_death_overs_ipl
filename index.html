@@ -13,7 +13,28 @@
 <main>
 <p class="muted">Arjun Namburi · Machine Learning (ES335) · <a href="https://github.com/arjunnamburi/ml_death_overs_ipl">Code on GitHub</a></p>
 <h1>Ball-by-Ball Outcome Prediction in IPL</h1>
-<p class="lede">For every legal ball in overs 16-20, the models give a probability to each of seven outcomes: a dot, 1, 2, 3, 4, 6 or a wicket. They were trained on 2008-2024, chosen on 2025 and scored once on the 2026 season. Balls are written the cricket way: 15.2 means the 2nd ball of the 16th over.</p>
+<div class="with-toc">
+<nav class="toc" aria-label="Sections">
+  <b>On this page</b>
+  <ol>
+    <li><a href="#question">Research Question</a></li>
+    <li><a href="#data">Data</a></li>
+    <li><a href="#preprocessing">Preprocessing</a></li>
+    <li><a href="#methods">Baselines and Methods</a></li>
+    <li><a href="#evaluation">Evaluation</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#errors">Errors</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#reproduce">Reproduction Steps</a></li>
+    <li><a href="#ai">AI Assistance</a></li>
+    <li><a href="#credits">Libraries and Data</a></li>
+  </ol>
+  <p><b>Interactive</b><br><a href="site/replay.html">Match Replay</a><br><a href="site/worst.html">Worst-Predicted Balls</a><br><a href="site/extras.html">Extras</a></p>
+</nav>
+
+<article>
+<p class="lede">For every legal ball in overs 16-20, the models give a probability to each of seven outcomes: a dot, 1, 2, 3, 4, 6 or a wicket. They were trained on 2008-2024, chosen on 2025 and scored once on the 2026 season.</p>
 
 <figure class="fig hero-fig">
   <div class="hbars" role="img" aria-label="How much lower each model’s 2026 death log-loss is than B0’s: B1 2.5%, logistic regression 3.5%, logistic regression with scaling 4.1%, XGBoost on the scorecard only 4.2%, XGBoost 4.6%.">
@@ -36,37 +57,9 @@
 </figure>
 <p class="src">Source: <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/results_2026.csv"><code>data/results_2026.csv</code></a>; XGBoost (scorecard only) is the “scorecard state” row of <a href="https://github.com/arjunnamburi/ml_death_overs_ipl/blob/main/data/ladder_2026.csv"><code>data/ladder_2026.csv</code></a>.</p>
 
-<div class="headline">
-  <div class="stat"><b>1.5680</b><span><span class="dot xgb"></span>XGBoost’s log-loss per 2026 death ball.</span></div>
-  <div class="stat"><b>1.6017</b><span><span class="dot b1"></span>The scorecard baseline’s (B1).</span></div>
-  <div class="stat"><b>2.1%</b><span>XGBoost’s gain over B1, clearly above zero.</span></div>
-  <div class="stat"><b>0.4%</b><span>What the detailed context adds beyond XGBoost (scorecard only), too small to tell from zero. The scorecard includes the batter’s and bowler’s figures in this match.</span></div>
-</div>
 <p class="muted" style="font-size:.9rem">In plain terms: on an average 2026 death ball, XGBoost gave what actually happened a 20.85% chance, against 20.15% for B1 (geometric means). 3,583 death balls in 71 matches.</p>
 <p class="muted" style="font-size:.9rem">Each section has collapsed <b>How it works</b> boxes that explain the methods behind it: what each one is, why it was used here instead of the alternative, and what it showed in this project.</p>
 
-
-<div class="with-toc">
-<nav class="toc" aria-label="Sections">
-  <b>On this page</b>
-  <ol>
-    <li><a href="#question">Research Question</a></li>
-    <li><a href="#data">Data</a></li>
-    <li><a href="#preprocessing">Preprocessing</a></li>
-    <li><a href="#methods">Baselines and Methods</a></li>
-    <li><a href="#evaluation">Evaluation</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#errors">Errors</a></li>
-    <li><a href="#limitations">Limitations</a></li>
-    <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#reproduce">Reproduction Steps</a></li>
-    <li><a href="#ai">AI Assistance</a></li>
-    <li><a href="#credits">Libraries and Data</a></li>
-  </ol>
-  <p><b>Interactive</b><br><a href="site/replay.html">Match Replay</a><br><a href="site/worst.html">Worst-Predicted Balls</a><br><a href="site/extras.html">Extras</a></p>
-</nav>
-
-<article>
 
 <!-- ================================================================ -->
 <h2 id="question">1. Research Question</h2>
@@ -84,6 +77,7 @@
 <!-- ================================================================ -->
 <h2 id="data">2. Data</h2>
 <ul>
+  <li><b>Ball numbers:</b> balls are written the cricket way: 15.2 means the 2nd ball of the 16th over.</li>
   <li><b>Source:</b> the Kaggle “IPL Dataset” by Chaitanya (<code>IPL.csv</code>, CC0 public domain), with every IPL match from 2008 to 2026 despite its name. In the raw file one row is one delivery, wides and no-balls included: 295,732 rows and 64 columns (295,553 after removing 175 super-over rows and the 7th ball of 4 overs that had seven legal balls).</li>
   <li><b>Key variables:</b> the match and season, the innings, over and ball, the batter, non-striker and bowler, the runs off the bat and extras, the dismissal, and running totals for the team, batter and bowler. All 64 columns are listed in <a href="site/extras.html#data-checks">Data checks</a>.</li>
   <li><b>Added:</b> each player’s batting hand and bowling type, labelled with the Gemini API. A random sample of 100 labelled players was checked by hand against their ESPNcricinfo profiles, and none was wrong. With 0 errors in 100, the error rate is below about 3% at 95% confidence (the “rule of three”: 3 / 100). Gemini gave no label for 15 players, and those were labelled by hand. At least one label outside the sample is wrong (see <a href="#limitations">Limitations</a>).</li>
