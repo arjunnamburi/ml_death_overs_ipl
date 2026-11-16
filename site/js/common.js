@@ -51,6 +51,7 @@
     '<nav class="nav" aria-label="Pages">' +
     PAGES.map(([id, name, href]) =>
       '<a href="' + href + '"' + (id === PAGE ? ' aria-current="page"' : '') + '>' + name + '</a>').join('') +
+    '<a href="https://github.com/arjunnamburi/ml_death_overs_ipl">Code on GitHub</a>' +
     '</nav><button class="theme-btn" type="button"></button></div>';
   body.prepend(header);
   header.querySelector('.theme-btn').addEventListener('click', () => {
