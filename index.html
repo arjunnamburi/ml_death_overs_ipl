@@ -63,11 +63,11 @@
 <!-- ================================================================ -->
 <h2 id="data">2. Data</h2>
 <ul>
-  <li><b>Source:</b> the Kaggle “IPL Dataset” by Chaitanya (<code>IPL.csv</code>, CC0 public domain), with every IPL match from 2008 to 2026 despite its name. In the raw file one row is one delivery, wides and no-balls included: 295,732 rows and 64 columns (295,553 after removing 179 super-over rows).</li>
+  <li><b>Source:</b> the Kaggle “IPL Dataset” by Chaitanya (<code>IPL.csv</code>, CC0 public domain), with every IPL match from 2008 to 2026 despite its name. In the raw file one row is one delivery, wides and no-balls included: 295,732 rows and 64 columns (295,553 after removing 175 super-over rows and the 7th ball of 4 overs that had seven legal balls).</li>
   <li><b>Key variables:</b> the match and season, the innings, over and ball, the batter, non-striker and bowler, the runs off the bat and extras, the dismissal, and running totals for the team, batter and bowler. All 64 columns are listed in <a href="site/extras.html#data-checks">Data checks</a>.</li>
   <li><b>Added:</b> each player’s batting hand and bowling type, labelled with the Gemini API. A random sample of 100 labelled players was checked by hand against their ESPNcricinfo profiles, and none was wrong. With 0 errors in 100, the error rate is below about 3% at 95% confidence (the “rule of three”: 3 / 100). Gemini gave no label for 15 players, and those were labelled by hand. At least one label outside the sample is wrong (see <a href="#limitations">Limitations</a>).</li>
   <li><b>Split by season,</b> because the game changes over time (Figure 1): train on 2008-2024, choose on 2025, test once on 2026.</li>
-  <li><b>Left out:</b> 179 super-over rows; wides and no-balls, which aren’t legal balls (they are used only to build features); and 50 rain-affected matches, whose targets were revised, scored separately in <a href="#errors">Errors</a>.</li>
+  <li><b>Left out:</b> 175 super-over rows; wides and no-balls, which aren’t legal balls (they are used only to build features); and 50 rain-affected matches, whose targets were revised, scored separately in <a href="#errors">Errors</a>.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Split</th><th>Seasons</th><th>Matches</th><th>Legal balls</th><th>Death balls</th><th class="l">Used for</th></tr></thead>
@@ -83,7 +83,7 @@
 <ul>
   <li>A double-counted delivery was found, and the running totals were rebuilt from the balls.</li>
   <li>Retired hurt is not counted as a wicket, and every missing value left in the feature table is intentional (for example, no target in the first innings).</li>
-  <li>4 of 47,756 overs have seven legal balls in the source data. They are kept as recorded.</li>
+  <li>4 of 47,756 overs have seven legal balls in the source data. The 7th ball of each was dropped when cleaning.</li>
   <li>Before 2016 some balls built as free hits weren’t real free hits (8 bowler wickets on 497 of them).</li>
   <li>50 matches were rain-affected, with revised targets. They are left out and scored separately (<a href="#errors">Errors</a>).</li>
   <li>Byes and leg-byes are on 1.8% of legal balls (2.3% at the death). They count toward the label (<a href="#preprocessing">Preprocessing</a>).</li>
